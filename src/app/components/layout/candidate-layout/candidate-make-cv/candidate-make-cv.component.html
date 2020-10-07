@@ -1,0 +1,304 @@
+<div class="col-xs-12" id="Step1">
+  <div class="col-md-9 panel-content">
+    <div class="col-xs-12">
+      <div class="col-xs-12 cv-top-background"></div>
+      <div class="col-xs-12 ">
+        <div class="cv-photo-container">
+          <div class="avatar-circle">
+            <img id="img_mem_avatar" width="160" height="160"
+              src="https://static.careerbuilder.vn/themes/kiemviecv32/jobseekers/images/icons/avatar_120x160.png"
+              class="profile-photo-edit">
+          </div>
+          <div class="upload-photo">
+            <label class="fileContainer"><i class="fa fa-edit"></i></label>
+            <ul class="upload-photo-menu">
+              <li>
+                <a href="javascript:void(0);">
+                  <i class="fa fa-pencil"></i>
+                  Tải hình ảnh
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0);">
+                  <i class="fa fa-trash"></i>
+                  Xóa hình ảnh
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <div class="col-xs-7 section_info">
+            <h1 class="section-name">le khai</h1>
+          </div>
+          <div class="col-xs-5 section-notify">
+            <div class="statusSearch">
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+                Trạng thái tìm việc đang tắt
+            </div>
+            <br>
+            <div class="statusSearch">
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+                Cho phép nhà tuyển dụng liên hệ
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 box-content" id="self-info-section">
+      <header class="card-header">
+        <h2 class="card-heading"><span class="iconheading"><i class="fa fa-user"></i></span>Thông tin cá nhân 
+            <span class="text-red">*</span><span class="check-section text-green">Hoàn thành</span></h2>
+      </header>
+      <div class="col-xs-12 section-body">
+        <div class="record-view">
+          <label class="col-xs-12 col-sm-3">Họ Và Tên</label>
+          <div class="col-xs-12 col-sm-9">Lê Minh Khai</div>
+        </div>
+        <div class="record-view">
+          <label class="col-xs-12 col-sm-3">Ngày sinh</label>
+          <div class="col-xs-12 col-sm-9">31/12/2005</div>
+        </div>
+        <div class="record-view">
+          <label class="col-xs-12 col-sm-3">Điện thoại</label>
+          <div class="col-xs-12 col-sm-9">0123123123</div>
+        </div>
+        <div class="record-view">
+          <label class="col-xs-12 col-sm-3">Email</label>
+          <div class="col-xs-12 col-sm-9">itk16bkdn.dut@gmail.com</div>
+        </div>
+
+        <div class="record-view">
+          <label class="col-xs-12 col-sm-3">Tỉnh/ Thành phố</label>
+          <div class="col-xs-12 col-sm-9">Đà Nẵng</div>
+        </div>
+
+        <div class="record-view">
+          <label class="col-xs-12 col-sm-3">Quận/ Huyện</label>
+          <div class="col-xs-12 col-sm-9">Quận Liên Chiểu</div>
+        </div>
+
+        <div class="record-view">
+          <label class="col-xs-12 col-sm-3">Địa chỉ</label>
+          <div class="col-xs-12 col-sm-9">k120, Quận Liên Chiểu, Đà Nẵng, Việt Nam</div>
+        </div>
+
+        <div class="record-view">
+          <a href="javascript:void(0);" class="btn btn-warning" (click)="getSelfInfor()">Chỉnh sửa</a>
+        </div>
+      </div>
+    </div>
+    <div class="box-content col-xs-12 job-target" id="target-job-section">
+      <header class="card-header">
+        <h2 class="card-heading"><span class="iconheading"><i class="fa fa-flag"></i></span>Mục tiêu nghề nghiệp 
+          <span class="text-red">*</span><span class="check-section text-green"> Hoàn thành</span></h2>
+      </header>
+      <div class="col-xs-12 section-body">
+        <div class="col-xs-12 record-view content-job-target">
+          <!-- content job target -->
+        </div>
+        <div class="record-view">
+          <a href="javascript:void(0);" class="btn btn-warning" (click)="getTarget()">Chỉnh sửa</a>
+        </div>
+      </div>
+    </div>
+    <div class="box-content col-xs-12" id="job-infor-section">
+      <header class="card-header">
+        <h2 class="card-heading"><span class="iconheading"><i class="fa fa-briefcase"></i></span>Thông tin công việc
+          <span class="text-red">*</span> <span class="check-section text-green"> Hoàn thành</span></h2>
+      </header>
+      <div class="col-xs-12 section-body">
+
+        <div class="record-view">
+          <label class="col-xs-12 col-sm-3">Cấp bậc mong muốn</label>
+          <div class="col-xs-12 col-sm-9">Mới tốt nghiệp</div>
+        </div>
+
+        <div class="record-view">
+          <label class="col-xs-12 col-sm-3">Mức lương</label>
+          <div class="col-xs-12 col-sm-9">
+            500,000 - 2,000,000 VND
+          </div>
+        </div>
+        <div class="record-view">
+          <label class="col-xs-12 col-sm-3">Hình thức làm việc</label>
+          <div class="col-xs-12 col-sm-9">Thực tập</div>
+        </div>
+        <div class="record-view">
+          <label class="col-xs-12 col-sm-3">Ngành nghề</label>
+          <div class="col-xs-12 col-sm-9">CNTT - Phần mềm</div>
+        </div>
+        <div class="record-view">
+          <label class="col-xs-12 col-sm-3">Nơi làm việc</label>
+          <div class="col-xs-12 col-sm-9">Đà Nẵng</div>
+        </div>
+        <div class="record-view">
+          <a href="javascript:void(0);" class="btn btn-warning" (click)="getExpectJob()">Chỉnh sửa</a>
+        </div>
+      </div>
+    </div>
+    <div class="box-content col-xs-12" id="experience-section">
+      <header class="card-header">
+        <h2 class="card-heading">
+          <span class="iconheading"><i class="fa fa-briefcase"></i></span>
+          Kinh nghiệm làm việc
+          <span class="text-red">*</span>
+          <span class="check-section text-text-green">Hoàn thành</span>
+        </h2>
+        <a class="header-add-action addtext" href="javascript:void(0);" (click)="getExperience()">Thêm mới</a>
+      </header>
+      <div class="col-xs-12 section-body">
+        <form>
+          <div class="record-view">
+            <label class="col-xs-12 col-sm-3">Số năm kinh nghiệm</label>
+            <div class="col-xs-12 col-sm-5">
+              <span>
+                <input type="number" class="form-control" maxlength="2" min="1" max="55" value="0">
+              </span>
+            </div>
+          </div>
+          <div class="record-view">
+            <label class="col-xs-12 col-sm-3">Cấp bậc hiện tại</label>
+            <div class="col-xs-12 col-sm-5">
+              <select class="form-control">
+                <option value="">Chọn</option>
+                <option value="1" selected="selected">Sinh viên/ Thực tập sinh</option>
+                <option value="2">Mới tốt nghiệp</option>
+                <option value="3">Nhân viên</option>
+                <option value="4">Trưởng nhóm / Giám sát</option>
+                <option value="5">Quản lý</option>
+                <option value="6">Phó Giám đốc</option>
+                <option value="7">Giám đốc </option>
+                <option value="8">Tổng giám đốc</option>
+                <option value="9">Chủ tịch / Phó Chủ tịch</option>
+              </select>
+            </div>
+          </div>
+        </form>
+        <div class="clearall line-record experience-list">
+          <div class="record-view posRelative">
+            <div class="pv-summary-info">
+              <h3>asd</h3>
+              <h4>asdf</h4>
+              <p>1/2005 - Hiện tại</p>
+            </div>
+            <div>
+              <p>asdf</p>
+            </div>
+            <a class="header-add-action" href="javascript:void(0);" title="Chỉnh sửa">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a class="header-delete-action" href="javascript:void(0);" title="Xóa">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="box-content col-xs-12" id="education-section">
+      <header class="card-header">
+        <h2 class="card-heading">
+          <span class="iconheading"><i class="fa fa-list"></i></span>
+          Học vấn 
+          <span class="text-red">*</span>
+          <span class="check-section text-green">Hoàn thành</span>
+        </h2>
+        <a class="header-add-action addtext" href="javascript:void(0);" (click)="getEducation()">Thêm mới</a>
+      </header>
+      <div class="col-xs-12 section-body">
+        <div class="record-view">
+          <label class="col-xs-12 col-sm-3">Ngoại ngữ</label>
+          <div class="col-xs-12 col-sm-9">
+            <p>Toeic
+              <a title="Xóa" href="javascript:void(0);"><i class="fa fa-trash-o"></i></a>
+              &nbsp;
+              <a title="Chỉnh sửa" href="javascript:void(0);"><i class="fa fa-edit"></i></a>
+            </p>
+            <p>
+              <a href="javascript:void(0);" title="Thêm mới"><i class="fa fa-plus"></i> Thêm mới</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="record-view">
+          <form>
+          
+          </form>
+        </div>
+        <div class="clearall line-record education-list">
+
+        </div>
+      </div>
+    </div>
+    <div class="box-content col-xs-12" id="skill-section">
+      <header class="card-header">
+        <h2 class="card-heading"><span class="iconheading"><i class="fa fa-list-ul"></i></span>Kỹ năng chuyên môn <span
+            class="text-red">*</span><span class="check-section text-green">Hoàn thành</span></h2>
+        <a class="header-add-action addtext" href="javascript:void(0);" (click)="getSkill()">Thêm mới</a>
+      </header>
+      <div class="col-xs-12 section-body">
+        <div class="clearall skill-list">
+          <div class="record-view">
+
+            <div class="col-xs-12 col-md-6 skill_info">
+              <h3>adfasdfasd 
+                <a class="header-add-action" href="javascript:void(0);" title="Chỉnh sửa">
+                  <i class="fa fa-pencil"></i>
+                </a>
+                <a class="header-delete-action" href="javascript:void(0)" title="Xóa">
+                  <i class="fa fa-trash-o"></i>
+                </a>
+              </h3>
+              <p>asdfasdfa</p>
+              <div class="chart skill_lvl3"></div>
+              <p class="text-skillLevel">Mức độ 3/5</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="box-content col-xs-12 job-achievement" id="achievement-section">
+      <header class="card-header">
+        <h2 class="card-heading"><span class="iconheading"><i class="fa fa-trophy"></i></span>Thành tích nổi bật 
+          <span class="check-section text-green">Không bắt buộc</span></h2>
+      </header>
+      <div class="col-xs-12 section-body">
+        <div class="record-view content-job-achievement">
+          <!-- content job achievment view -->
+        </div>
+        <div class="record-view">
+          <a href="javascript:void(0);" class="btn btn-warning" (click)="getAchievement()">Chỉnh sửa</a>
+        </div>
+      </div>
+    </div>
+    <div class="box-content col-xs-12" id="references-section">
+      <header class="card-header">
+        <h2 class="card-heading"><span class="iconheading"><i class="fa fa-book"></i></span>Người tham khảo <span
+            class="check-section text-green">Không bắt buộc</span></h2>
+        <a class="header-add-action addtext" href="javascript:void(0);" (click)="getReferences()">Thêm mới</a>
+      </header>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-3">
+    <div class="elementscroll">
+      <div class="tabmenulinks">
+        <ul>
+          <li id="link-self-info-section" class="tabmenulink-active"><a class="link-active" [routerLink]="['/candidate/make-cv']" fragment="self-info-section">Thông tin cá nhân</a></li>
+          <li id="link-target-job-section"><a [routerLink]="['/candidate/make-cv']" fragment="target-job-section">Mục tiêu nghề nghiệp</a></li>
+          <li id="link-job-infor-section"><a [routerLink]="['/candidate/make-cv']" fragment="job-infor-section">Thông tin công việc</a></li>
+          <li id="link-experience-section"><a [routerLink]="['/candidate/make-cv']" fragment="experience-section">Kinh nghiệm làm việc</a></li>
+          <li id="link-education-section"><a [routerLink]="['/candidate/make-cv']" fragment="education-section">Học vấn</a></li>
+          <li id="link-skill-section"><a [routerLink]="['/candidate/make-cv']" fragment="skill-section">Kỹ năng chuyên môn</a></li>
+          <li id="link-achievement-section"><a [routerLink]="['/candidate/make-cv']" fragment="achievement-section">Thành tích nổi bật</a></li>
+          <li id="link-references-section"><a [routerLink]="['/candidate/make-cv']" fragment="references-section">Người tham khảo</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

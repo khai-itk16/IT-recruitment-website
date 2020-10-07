@@ -1,0 +1,15 @@
+<div class="header-modal">
+    <h2>Thành tích nỗi bật</h2>
+</div>
+<mat-dialog-content>
+  <br>
+  <form>
+      <ckeditor [config]="editorConfig" [editor]="editor" [(ngModel)]="contentEditor" name="contentEditor"></ckeditor>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions class="footer-modal">
+  <button class="btn btn-default" (click)="close()">Đóng</button>
+  <button class="btn btn-success" (click)="save()">Lưu lại</button>
+</mat-dialog-actions>
+  

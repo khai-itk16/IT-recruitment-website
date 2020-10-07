@@ -1,0 +1,166 @@
+.cv-top-background {
+    background-color: #1d3571;
+    height: 110px;
+    position: absolute;
+    margin-left: -35px;
+    width: 105%;
+}
+
+.cv-photo-container {
+    width: 160px;
+    position: relative;
+    margin-top: 20px;
+}
+
+.avatar-circle {
+    border-radius: 49.9%;
+    overflow: hidden;
+    border: 4px solid #fff;
+    box-shadow: 0 1.5px 3px 0 rgba(0, 0, 0, 0.3) inset, 0 1.5px 3px 0 rgba(0, 0, 0, 0.3);
+    background-color: rgba(243, 246, 248, 0.94);
+}
+
+.upload-photo {
+    position: absolute;
+    top: 130px;
+    right: 18px;
+}
+
+.upload-photo .fileContainer {
+    width: 26px;
+    height: 26px;
+    line-height: 30px;
+    background: inherit;
+    background-color: #fff;
+    border: none;
+    border-radius: 100%;
+    overflow: inherit;
+    padding: 0;
+    margin: 0;
+    color: #999;
+    text-align: center;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.upload-photo .upload-photo-menu {
+    position: absolute;
+    right: 0;
+    top: 26px;
+    z-index: 2;
+    min-width: 150px;
+    padding: 5px 0;
+    margin-bottom: 0;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0px 5px 10px #999;
+    list-style: none;
+    display: none;
+}
+
+.upload-photo:hover .upload-photo-menu {
+    display: block;
+}
+
+.upload-photo-menu li a {
+    padding: 8px 20px;
+    color: #777;
+    display: block;
+}
+
+.upload-photo-menu li:hover {
+    background-color: #e9ebee;
+}
+
+.section-notify {
+    margin-top: -50px;
+}
+
+.card-header h2{
+    margin: 0 !important;
+}
+
+.box-content {
+    padding: 5px 15px;
+    color: #1d3571;
+    font-family: 'segoe ui', sans-serif;
+}
+
+.iconheading {
+    margin-right: 10px;
+}
+
+.record-view {
+    float: left;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.box-content .section-body {
+    padding: 20px 0;
+}
+
+.addtext {
+    position: absolute;
+    right: 16px;
+    font-size: 16px;
+    color: #777;
+    top: 24px;
+}
+
+.addtext:hover {
+    text-decoration: underline;
+}
+
+.elementscroll {
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.elementscroll-fixed {
+    position: fixed !important;
+    width: 19% !important;
+    margin-top: 20px;
+    top: 0;
+}
+
+.tabmenulinks {
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 15px;
+}
+
+.tabmenulinks ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tabmenulinks ul li {
+    padding: 10px 20px;
+}
+
+.tabmenulinks ul li a {
+    display: block;
+    text-decoration: none;
+    color: black;
+}
+
+.tabmenulinks ul li a:hover,
+.tabmenulinks ul li a:active {
+    color: white;
+}
+
+.link-active {
+    color: white !important;
+}
+
+.tabmenulinks ul li:hover {
+    background-color: #328fd1;
+}
+
+.tabmenulink-active {
+    background-color: #1d3571;
+}

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 const routes: Routes = [
@@ -17,7 +17,8 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes,
     {
-      preloadingStrategy: PreloadAllModules
+      preloadingStrategy: PreloadAllModules,
+      anchorScrolling: 'enabled'
     }  
   )],
   exports: [RouterModule]

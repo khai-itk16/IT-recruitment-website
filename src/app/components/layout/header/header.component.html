@@ -26,41 +26,30 @@
             <div class="col-md-7 col-sm-7 col-xs-12">
                 <div class="topnav responsive" id="myTopnav">
                     <ul class="list-inline">
-                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Home</a>
+                        <li>
+                            <a href="#">Việc làm IT</a>
+                        </li>
+                        <li>
+                            <a href="#">Công ty IT</a>
+                        </li>
+                        <li class="dropdown avatar">
+                            <a data-toggle="dropdown" href="#">
+                                <img class="icon-avatar" src="/assets/images/profile.png" alt="avatar" title="avatar">
+                                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                Account
+                            </a>
                             <div class="dropdown-menu">
                                 <div class="dropdown-inner">
                                     <ul class="list-unstyled">
-                                        <li><a>Homepage</a></li>
+                                        <li><a><img src="/assets/images/profile.png" alt="image" width="25" height="25"> Tài khoản</a></li>
+                                        <li><a><img src="/assets/images/change-password.png" alt="image" width="25" height="25"> Đổi mật khẩu</a></li>
+                                        <li><a><img src="/assets/images/save.jpg" alt="image" style="margin-left: -4px;" width="30" height="25"> Đã lưu</a></li>
+                                        <li><a><img src="/assets/images/applied.jpg" alt="image" width="25" height="25"> Đã ứng tuyển</a></li>
+                                        <li><a><img src="/assets/images/logout.png" alt="image" style="margin-left: 4px;" width="20" height="20"> Đăng xuất</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </li>
-                        <li><a>About</a></li>
-                        <li class="dropdown"><a data-toggle="dropdown" href="#">Blog</a>
-                            <div class="dropdown-menu">
-                                <div class="dropdown-inner">
-                                    <ul class="list-unstyled">
-                                        <li><a>Our Blog</a></li>
-                                        <li><a>Blog Detail</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <li><a>Contact</a></li>
-                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Pages</a>
-                            <div class="dropdown-menu">
-                                <div class="dropdown-inner">
-                                    <ul class="list-unstyled">
-                                        <li><a>FAQ</a></li>
-                                        <li><a>Dashboard</a></li>
-                                        <li><a>Pricing Plans</a></li>
-                                        <li><a> All Ads</a></li>
-                                        <li><a>Ads Single View</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <li><a>Term &amp; Conditions</a></li>
                     </ul>
                 </div>
             </div>
@@ -80,13 +69,13 @@
             </div>
                 
             <div class="col-md-7 col-sm-7 col-xs-12">
-                <form class="form-horizontal category" method="post">
+                <form class="form-horizontal category">
                     <div class="row">
                         <div class="col-sm-3 paddright">
                             <div class="form-group">
                                 <select class="selectpicker form-control bs-select-hidden" name="location">
                                     <option value="0">Chọn địa điểm</option>
-                                    <option *ngFor="let item of locations" [value]="item.id">{{ item.name }}</option>
+                                    <option *ngFor="let province of provinves" [value]="province.id">{{ province.name }}</option>
                                 </select>
                             </div>
                         </div>
@@ -119,7 +108,7 @@
                 </form>
             </div>
             <div class="col-md-2 col-sm-2 col-xs-12 center">
-                <button class="btn-primary btn-block" type="button"> <i class="la la-edit"></i>Add listing</button>
+                <button class="btn-primary btn-block" type="button"> <i class="la la-edit"></i>Đăng tin</button>
             </div>
         </div>
     </div>

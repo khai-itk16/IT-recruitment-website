@@ -26,6 +26,10 @@ const routes: Routes = [
       {
         path: "candidate",
         loadChildren: () => import("./candidate-layout/candidate-layout.module").then(m => m.CandidateLayoutModule)
+      },
+      {
+        path: "employer",
+        loadChildren: () => import("./employer-layout/employer-layout.module").then(m => m.EmployerLayoutModule)
       }
     ]
   }

@@ -11,7 +11,7 @@ import { ModalRegisterComponent } from '../modal-register/modal-register.compone
 })
 export class HeaderComponent implements OnInit {
 
-  locations: Array<any>
+  provinves: Array<any>
 
   constructor(
     private locationService: LocationService,
@@ -19,27 +19,27 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.locationService.readData().subscribe(data =>{
-      this.locations = data
+    this.locationService.readData().subscribe(data => {
+      this.provinves = data
       console.log(data)
     })
   }
 
   openLoginDialog() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.height = "350px";
-    dialogConfig.width = "400px";
-    this.dialog.open(ModalLoginComponent, dialogConfig);
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.disableClose = true
+    dialogConfig.autoFocus = true
+    dialogConfig.height = "350px"
+    dialogConfig.width = "400px"
+    this.dialog.open(ModalLoginComponent, dialogConfig)
   }
 
   openRegisterDialog() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.height = "350px";
-    dialogConfig.width = "400px";
-    this.dialog.open(ModalRegisterComponent, dialogConfig);
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.disableClose = true
+    dialogConfig.autoFocus = true
+    dialogConfig.height = "350px"
+    dialogConfig.width = "400px"
+    this.dialog.open(ModalRegisterComponent, dialogConfig)
   }
 }
