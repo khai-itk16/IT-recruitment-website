@@ -11,7 +11,7 @@ import { ModalRegisterComponent } from '../modal-register/modal-register.compone
 })
 export class HeaderComponent implements OnInit {
 
-  provinves: Array<any>
+  provinces: Array<any>
 
   constructor(
     private locationService: LocationService,
@@ -20,8 +20,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.locationService.readData().subscribe(data => {
-      this.provinves = data
-      console.log(data)
+      this.provinces = data
+      console.log("provinces", data)
     })
   }
 

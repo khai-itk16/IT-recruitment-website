@@ -1,5 +1,5 @@
 .cv-top-background {
-    background-color: #1d3571;
+    background-color: #04a08c;
     height: 110px;
     position: absolute;
     margin-left: -35px;
@@ -83,9 +83,13 @@
 
 .box-content {
     padding: 5px 15px;
-    color: #1d3571;
     font-family: 'segoe ui', sans-serif;
 }
+
+.box-content h2 {
+    color: #04a08c;
+}
+
 
 .iconheading {
     margin-right: 10px;
@@ -148,8 +152,7 @@
     color: black;
 }
 
-.tabmenulinks ul li a:hover,
-.tabmenulinks ul li a:active {
+.tabmenulinks ul li:hover a{
     color: white;
 }
 
@@ -158,9 +161,9 @@
 }
 
 .tabmenulinks ul li:hover {
-    background-color: #328fd1;
+    background-color: #04A0A0;
 }
 
 .tabmenulink-active {
-    background-color: #1d3571;
+    background-color: #04a08c;
 }

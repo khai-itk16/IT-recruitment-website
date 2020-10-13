@@ -6,7 +6,9 @@ import { EmployerLayoutComponent } from './employer-layout.component';
 
 
 @NgModule({
-  declarations: [EmployerLayoutComponent],
+  declarations: [
+    EmployerLayoutComponent
+  ],
   imports: [
     CommonModule,
     EmployerLayoutRoutingModule

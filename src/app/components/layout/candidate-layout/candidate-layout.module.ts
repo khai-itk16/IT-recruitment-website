@@ -16,6 +16,7 @@ import { ModalReferencesComponent } from './modal-references/modal-references.co
 import { ModalAchievementComponent } from './modal-achievement/modal-achievement.component';
 import { ModalSkillComponent } from './modal-skill/modal-skill.component';
 import { ModalEducationComponent } from './modal-education/modal-education.component';
+import { CandidateCvComponent } from './candidate-cv/candidate-cv.component';
 
 
 
@@ -31,7 +32,8 @@ import { ModalEducationComponent } from './modal-education/modal-education.compo
     ModalReferencesComponent,
     ModalAchievementComponent,
     ModalSkillComponent,
-    ModalEducationComponent
+    ModalEducationComponent,
+    CandidateCvComponent
   ],
   imports: [
     CommonModule,

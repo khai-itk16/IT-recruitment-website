@@ -19,8 +19,8 @@
                         </form>
                         <!--language code end here-->
                     </li>
-                    <li><a (click)="openLoginDialog()"><i class="la la-plus-square"></i><span>Đăng nhập</span></a></li>
-                    <li><a (click)="openRegisterDialog()"><i class="la la-key"></i><span>Đăng ký</span></a></li>
+                    <li><a style="cursor: pointer;" (click)="openLoginDialog()"><i class="la la-plus-square"></i><span>Đăng nhập</span></a></li>
+                    <li><a style="cursor: pointer;"  (click)="openRegisterDialog()"><i class="la la-key"></i><span>Đăng ký</span></a></li>
                 </ul>
             </div>
             <div class="col-md-7 col-sm-7 col-xs-12">
@@ -75,7 +75,7 @@
                             <div class="form-group">
                                 <select class="selectpicker form-control bs-select-hidden" name="location">
                                     <option value="0">Chọn địa điểm</option>
-                                    <option *ngFor="let province of provinves" [value]="province.id">{{ province.name }}</option>
+                                    <option *ngFor="let province of provinces" [value]="province.id">{{ province.name }}</option>
                                 </select>
                             </div>
                         </div>
