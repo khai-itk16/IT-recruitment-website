@@ -1,8 +1,8 @@
 <div class="header-modal">
     <h2>Đăng ký</h2>
 </div>
-<mat-dialog-content [formGroup]="form">
-  <form class="form-auth">
+<form class="form-auth">
+  <mat-dialog-content [formGroup]="form">
     <br>
     <div class="input-group">
       <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
@@ -20,14 +20,14 @@
     </div>
     <br>
     <div class="input-group" style="margin: auto;">
-      <label class="radio-inline"><input type="radio" name="type-member" checked>Ứng viên</label>
-      <label class="radio-inline"><input type="radio" name="type-member">Nhà tuyển dụng</label>
+      <label class="radio-inline"><input formControlName="role" value="role_candidate" type="radio" name="role">Ứng viên</label>
+      <label class="radio-inline"><input formControlName="role" value="role_employer" type="radio" name="role">Nhà tuyển dụng</label>
     </div>
-  </form>
-</mat-dialog-content>
+  </mat-dialog-content>
+</form>
 
 <mat-dialog-actions class="footer-modal">
     <button class="btn btn-default"(click)="close()">Đóng</button>
     <span>&nbsp;</span>
-    <button class="btn btn-success"(click)="save()">Đăng ký</button>
+    <button class="btn btn-success"(click)="save()" [disabled]="form.invalid">Đăng ký</button>
 </mat-dialog-actions>

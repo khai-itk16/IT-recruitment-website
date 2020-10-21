@@ -17,6 +17,7 @@ import { ModalAchievementComponent } from './modal-achievement/modal-achievement
 import { ModalSkillComponent } from './modal-skill/modal-skill.component';
 import { ModalEducationComponent } from './modal-education/modal-education.component';
 import { CandidateCvComponent } from './candidate-cv/candidate-cv.component';
+import { ModalForeignLangugeComponent } from './modal-foreign-languge/modal-foreign-languge.component';
 
 
 
@@ -33,7 +34,8 @@ import { CandidateCvComponent } from './candidate-cv/candidate-cv.component';
     ModalAchievementComponent,
     ModalSkillComponent,
     ModalEducationComponent,
-    CandidateCvComponent
+    CandidateCvComponent,
+    ModalForeignLangugeComponent
   ],
   imports: [
     CommonModule,
@@ -51,7 +53,8 @@ import { CandidateCvComponent } from './candidate-cv/candidate-cv.component';
     ModalEducationComponent,
     ModalSkillComponent,
     ModalAchievementComponent,
-    ModalReferencesComponent
+    ModalReferencesComponent,
+    ModalForeignLangugeComponent
   ]
 })
 export class CandidateLayoutModule { }

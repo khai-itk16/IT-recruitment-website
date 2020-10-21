@@ -1,3 +1,8 @@
+ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
 .cv-top-background {
     background-color: #04a08c;
     height: 110px;
@@ -143,13 +148,14 @@
 }
 
 .tabmenulinks ul li {
-    padding: 10px 20px;
+   cursor: pointer;
 }
 
 .tabmenulinks ul li a {
     display: block;
     text-decoration: none;
     color: black;
+    padding: 10px 20px;
 }
 
 .tabmenulinks ul li:hover a{
@@ -166,4 +172,125 @@
 
 .tabmenulink-active {
     background-color: #04a08c;
+}
+
+.sticker .list-sticker .item {
+    padding: 20px 30px;
+    padding-top: 0;
+    position: relative;
+}
+
+.sticker .list-sticker .item:before {
+    z-index: 11;
+    position: absolute;
+    top: -2px;
+    left: -4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #09a0db;
+    content: "";
+}
+
+
+.sticker .list-sticker .item .head-sticker {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.head-sticker .title h4 {
+    color: #172642;
+    font-weight: bold;
+}
+
+.head-sticker .title .sub-title {
+    color: #287ab9;
+}
+
+.head-sticker .title .date {
+    color: #5d677a;
+}
+
+.list-action {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: -30px;
+}
+
+.list-action li {
+    position: relative;
+    padding: 0 5px;
+}
+
+.list-action .edit-link a {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #09a0db;
+}
+
+.list-action .delete a {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ff0000;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.sticker .list-sticker .item:after {
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    z-index: 11;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 2px;
+    height: calc(100% - 30px);
+    transform: translateY(-50%);
+    background: #09a0db;
+    content: "";
+}
+
+.experience-list {
+    margin-top: 10px;
+}
+
+.list-action i {
+    font-size: 20px;
+}
+
+.list-infor-reference {
+    padding: 0;
+    color: #5d677a;
+}
+
+.list-infor-reference li i {
+    padding-right: 8px;
 }

@@ -1,26 +1,26 @@
 <div class="header-modal">
     <h2>Đăng nhập</h2>
 </div>
-<mat-dialog-content [formGroup]="form">
-  <form class="form-auth">
-    <br>
-    <div class="input-group">
-      <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-      <input type="text" class="form-control" name="email" formControlName="email" placeholder="Email">
-    </div>
-    <br>
-    <div class="input-group">
-      <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
-      <input type="password" class="form-control" name="password" formControlName="password" placeholder="Password">
-    </div>
-  </form>
-</mat-dialog-content>
+<form class="form-auth" [formGroup]="form">
+  <mat-dialog-content>
+      <br>
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+        <input type="text" required class="form-control" formControlName="username" placeholder="Username">
+      </div>
+      <br>
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+        <input type="password" required class="form-control" name="password" formControlName="password" placeholder="Password">
+      </div>
+  </mat-dialog-content>
 
-<mat-dialog-actions class="footer-modal">
-    <button class="btn btn-default"(click)="close()">Đóng</button>
-    <span>&nbsp;</span>
-    <button class="btn btn-success"(click)="save()">Đăng nhập</button>
-</mat-dialog-actions>
+  <mat-dialog-actions class="footer-modal">
+      <button class="btn btn-default"(click)="close()">Đóng</button>
+      <span>&nbsp;</span>
+      <button class="btn btn-success"(click)="save()" [disabled]="form.invalid">Đăng nhập</button>
+  </mat-dialog-actions>
+</form>
 <br>
 <hr>
 <div class="other-sigin"><span>Hoặc</span></div>

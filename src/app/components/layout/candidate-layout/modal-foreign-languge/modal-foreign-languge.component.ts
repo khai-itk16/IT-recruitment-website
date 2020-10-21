@@ -5,11 +5,11 @@ import { ToastrService } from 'ngx-toastr';
 import { CandidateCvService } from 'src/app/services/candidate-cv.service';
 
 @Component({
-  selector: 'app-modal-goal',
-  templateUrl: './modal-goal.component.html',
-  styleUrls: ['./modal-goal.component.css']
+  selector: 'app-modal-foreign-languge',
+  templateUrl: './modal-foreign-languge.component.html',
+  styleUrls: ['./modal-foreign-languge.component.css']
 })
-export class ModalGoalComponent implements OnInit {
+export class ModalForeignLangugeComponent implements OnInit {
 
   editor = ClassicEditor
   contentEditor = ""
@@ -29,18 +29,18 @@ export class ModalGoalComponent implements OnInit {
   };  
 
   constructor(
-    private dialogRef: MatDialogRef<ModalGoalComponent>,
+    private dialogRef: MatDialogRef<ModalForeignLangugeComponent>,
     @Inject(MAT_DIALOG_DATA) private data,
     private toastrService: ToastrService,
     private candidateCvService: CandidateCvService
   ) { }
 
   ngOnInit(): void {
-    this.contentEditor = this.data.jobObjective
+    this.contentEditor = this.data.foreignLanguage
   }
 
   save() {
-    this.data.jobObjective = this.contentEditor
+    this.data.foreignLanguage = this.contentEditor
     console.log(this.data)
     this.candidateCvService.updateCandidateResume(this.data).subscribe(
       res => {

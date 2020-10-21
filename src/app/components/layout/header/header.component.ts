@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/services/auth.service';
 import { LocationService } from 'src/app/services/location.service';
 import { ModalLoginComponent } from '../modal-login/modal-login.component';
 import { ModalRegisterComponent } from '../modal-register/modal-register.component';
@@ -15,14 +17,14 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private locationService: LocationService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private toastrService: ToastrService,
+    public authService: AuthService
   ) { }
 
   ngOnInit(): void {
-    this.locationService.readData().subscribe(data => {
-      this.provinces = data
-      console.log("provinces", data)
-    })
+    this.provinces = this.locationService.readData()
+    console.log(this.provinces)
   }
 
   openLoginDialog() {
@@ -31,7 +33,17 @@ export class HeaderComponent implements OnInit {
     dialogConfig.autoFocus = true
     dialogConfig.height = "350px"
     dialogConfig.width = "400px"
-    this.dialog.open(ModalLoginComponent, dialogConfig)
+    const dialogRef = this.dialog.open(ModalLoginComponent, dialogConfig)
+    dialogRef.afterClosed().subscribe(data => {
+      if (data == null) return
+      this.toastrService.success('Đăng nhập thành công', 'SUCCESS', {
+        timeOut: 3000,
+        closeButton: true,
+        progressBar: true,
+        progressAnimation: 'increasing',
+        tapToDismiss: false
+      });
+    })
   }
 
   openRegisterDialog() {
@@ -40,6 +52,16 @@ export class HeaderComponent implements OnInit {
     dialogConfig.autoFocus = true
     dialogConfig.height = "350px"
     dialogConfig.width = "400px"
-    this.dialog.open(ModalRegisterComponent, dialogConfig)
+    const dialogRef = this.dialog.open(ModalRegisterComponent, dialogConfig)
+    dialogRef.afterClosed().subscribe(data => {
+      if (data == null) return
+      this.toastrService.success('Đăng ký tài khoản thành công', 'SUCCESS', {
+        timeOut: 3000,
+        closeButton: true,
+        progressBar: true,
+        progressAnimation: 'increasing',
+        tapToDismiss: false
+      });
+    })
   }
 }

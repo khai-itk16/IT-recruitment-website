@@ -10,10 +10,10 @@
         <p>Mức lương mong muốn: <span class="text-red">Chưa cập nhật</span></p>
         <p>Mức độ hoàn thành: <span class="text-red">Chưa Hoàn Tất</span></p>
     </div>
-    <div class="col-md-7">
+    <div class="col-md-6">
         <div class="statusCV">
             <div class="col-md-12">
-                <div class="col-sm-5">
+                <div class="col-sm-3">
                     <img src="https://static.careerbuilder.vn/themes/cv_tool/images/template/thumb_template03_1540959078.png" class="img-responsive img-template" width="80">
                 </div>
                 <div class="col-sm-7">
@@ -25,26 +25,9 @@
                         </span>
                     </p>
                     <p class="links">
-                        <a href="javascript:void(0);">Xem hồ sơ</a>
-                        <a href="javascript:void(0);">Chỉnh sửa hồ sơ</a>
+                        <a href="javascript:void(0);" [routerLink]="['/candidate/view-cv']">Xem hồ sơ</a>
+                        <a href="javascript:void(0);" [routerLink]="['/candidate/make-cv']">Chỉnh sửa hồ sơ</a>
                     </p>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="statusSearch">
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider round"></span>
-                    </label>
-                    Trạng thái tìm việc đang tắt
-                </div>
-                <br>
-                <div class="statusSearch">
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider round"></span>
-                    </label>
-                    Cho phép nhà tuyển dụng liên hệ
                 </div>
             </div>
         </div>

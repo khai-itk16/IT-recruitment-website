@@ -19,20 +19,18 @@
                         </form>
                         <!--language code end here-->
                     </li>
-                    <li><a style="cursor: pointer;" (click)="openLoginDialog()"><i class="la la-plus-square"></i><span>Đăng nhập</span></a></li>
-                    <li><a style="cursor: pointer;"  (click)="openRegisterDialog()"><i class="la la-key"></i><span>Đăng ký</span></a></li>
+                    <li *ngIf="!authService.loggedIn()"><a style="cursor: pointer;" (click)="openLoginDialog()"><i class="la la-plus-square"></i><span>Đăng nhập</span></a></li>
+                    <li *ngIf="!authService.loggedIn()"><a style="cursor: pointer;"  (click)="openRegisterDialog()"><i class="la la-key"></i><span>Đăng ký</span></a></li>
                 </ul>
             </div>
             <div class="col-md-7 col-sm-7 col-xs-12">
                 <div class="topnav responsive" id="myTopnav">
                     <ul class="list-inline">
                         <li>
-                            <a href="#">Việc làm IT</a>
+                            <a [routerLink]="['/home']">Việc làm IT</a>
                         </li>
-                        <li>
-                            <a href="#">Công ty IT</a>
-                        </li>
-                        <li class="dropdown avatar">
+                       
+                        <li *ngIf="authService.loggedIn()" class="dropdown avatar">
                             <a data-toggle="dropdown" href="#">
                                 <img class="icon-avatar" src="/assets/images/profile.png" alt="avatar" title="avatar">
                                 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -41,11 +39,11 @@
                             <div class="dropdown-menu">
                                 <div class="dropdown-inner">
                                     <ul class="list-unstyled">
-                                        <li><a><img src="/assets/images/profile.png" alt="image" width="25" height="25"> Tài khoản</a></li>
+                                        <li><a [routerLink]="['/candidate/profile']" routerLinkActive="link-active" ><img src="/assets/images/profile.png" alt="image" width="25" height="25"> Tài khoản</a></li>
                                         <li><a><img src="/assets/images/change-password.png" alt="image" width="25" height="25"> Đổi mật khẩu</a></li>
                                         <li><a><img src="/assets/images/save.jpg" alt="image" style="margin-left: -4px;" width="30" height="25"> Đã lưu</a></li>
                                         <li><a><img src="/assets/images/applied.jpg" alt="image" width="25" height="25"> Đã ứng tuyển</a></li>
-                                        <li><a><img src="/assets/images/logout.png" alt="image" style="margin-left: 4px;" width="20" height="20"> Đăng xuất</a></li>
+                                        <li><a style="cursor: pointer;" (click)="authService.logoutUser()"><img src="/assets/images/logout.png" alt="image" style="margin-left: 4px;" width="20" height="20"> Đăng xuất</a></li>
                                     </ul>
                                 </div>
                             </div>

@@ -1,5 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { ToastrService } from 'ngx-toastr';
+import { CandidateCvService } from 'src/app/services/candidate-cv.service';
 
 @Component({
   selector: 'app-modal-experience',
@@ -10,7 +12,9 @@ export class ModalExperienceComponent implements OnInit {
 
   constructor(
     private dialogRef: MatDialogRef<ModalExperienceComponent>,
-    @Inject(MAT_DIALOG_DATA) data
+    @Inject(MAT_DIALOG_DATA) private data,
+    private toastrService: ToastrService,
+    private candidateCvService: CandidateCvService
   ) { }
 
   ngOnInit(): void {

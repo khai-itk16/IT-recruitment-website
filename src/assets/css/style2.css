@@ -1,3 +1,5 @@
+textarea { resize: none; }
+
 .logochange {
     height: 32px;
     width: 175px;

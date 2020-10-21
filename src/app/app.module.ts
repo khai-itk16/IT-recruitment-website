@@ -1,13 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { LocationService } from './services/location.service';
-
+import { TokenInterceptorService } from './services/token-interceptor.service';
+import { AuthService } from './services/auth.service';
+import { ToastrModule } from 'ngx-toastr';
+import { DecodeJwtService } from './services/decode-jwt.service';
+import { JobPositionService } from './services/job-position.service';
+import { JobTypeService } from './services/job-type.service';
 
 @NgModule({
   declarations: [
@@ -18,9 +23,21 @@ import { LocationService } from './services/location.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
-  providers: [LocationService],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    },
+    LocationService,
+    AuthService,
+    DecodeJwtService,
+    JobPositionService,
+    JobTypeService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
