@@ -3,27 +3,27 @@
 </div>
 <mat-dialog-content>
   <br>
-  <form>
+  <form [formGroup]="form">
     <div class="col-xs-12 section-body">
         <div class="row">
-          <label class="col-xs-12 col-sm-3">Vị trí / Chức danh <span class="text-red">*</span></label>
+          <label class="col-xs-12 col-sm-3">Kinh nghiệm <span class="text-red">*</span></label>
           <div class="col-xs-12 col-sm-5">
-            <input type="text" value="" class="form-control">
+            <input type="text" formControlName="experienceName" class="form-control">
           </div>
         </div>
         <br>
-        <div class="row">
+        <!-- <div class="row">
           <label class="col-xs-12 col-sm-3">Công ty <span class="text-red">*</span></label>
           <div class="col-xs-12 col-sm-5">
-            <input type="text" value="" class="form-control">
+            <input type="text" class="form-control">
           </div>
         </div>
-        <br>
+        <br> -->
         <div class="row">
           <label class="col-xs-12 col-sm-3">Thời gian làm việc <span class="text-red">*</span></label>
           <div class="col-xs-12 col-sm-9 form-inline">
 
-            <select name="rexp_month_start" class="form-control" style="float: left; width: 90px">
+            <select formControlName="monthStart" class="form-control" style="float: left; width: 90px">
               <option value="">Tháng</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -37,9 +37,8 @@
               <option value="10">10</option>
               <option value="11">11</option>
               <option value="12">12</option>
-
             </select>
-            <select name="rexp_year_start" class="form-control" style="float: left; width: 80px; margin-left: 10px">
+            <select formControlName="yearStart" class="form-control" style="float: left; width: 80px; margin-left: 10px">
               <option value="">Năm</option>
               <option value="2020">2020</option>
               <option value="2019">2019</option>
@@ -91,7 +90,7 @@
             </select>
             <span style="float: left; width: 40px; margin-left: 10px; padding-top:7px">Đến </span>
 
-            <select name="rexp_month_end" class="form-control" style="float: left; width: 90px">
+            <select formControlName="monthEnd" class="form-control" style="float: left; width: 90px">
               <option value="">Tháng</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -105,9 +104,9 @@
               <option value="10">10</option>
               <option value="11">11</option>
               <option value="12">12</option>
-
             </select>
-            <select name="rexp_year_end" class="form-control" style="float: left; width: 90px; margin-left: 10px">
+
+            <select formControlName="yearEnd" class="form-control" style="float: left; width: 90px; margin-left: 10px">
               <option value="">Năm</option>
               <option value="2020">2020</option>
               <option value="2019">2019</option>
@@ -157,16 +156,15 @@
               <option value="1975">1975</option>
 
             </select>
-            <label class="checkbox-inline" style="margin-left: 15px; padding-top:7px"> <input type="checkbox"
-                name="cboExperCurrent" value="1" class="chk-exper-current">Hiện nay</label>
-            <span class="error_rexp_start"></span>
+            <label class="checkbox-inline" style="margin-left: 15px; padding-top:7px"> 
+              <input type="checkbox" (change)="setPresent()" [checked]="isChecked" class="chk-exper-current">Hiện nay</label>
           </div>
         </div>
         <br>
         <div class="row">
           <label class="col-xs-12 col-sm-3">Mô tả công việc <span class="text-red">*</span></label>
           <div class="col-xs-12 col-sm-8">
-            <textarea name="rexp_workdesc" rows="6" class="form-control"
+            <textarea formControlName="description" rows="6" class="form-control"
               placeholder="Vui lòng nhập tối đa không quá 4.000 ký tự"></textarea>
           </div>
         </div>
@@ -176,5 +174,5 @@
 
 <mat-dialog-actions class="footer-modal">
   <button class="btn btn-default" (click)="close()">Đóng</button>
-  <button class="btn btn-success" (click)="save()">Lưu lại</button>
+  <button class="btn btn-success" [disabled]="form.invalid" (click)="save()">Lưu lại</button>
 </mat-dialog-actions>

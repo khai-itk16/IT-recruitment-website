@@ -6,7 +6,7 @@
         <div class="cv-photo-container">
           <div class="avatar-circle">
             <img id="img_mem_avatar" width="160" height="160"
-              src="https://static.careerbuilder.vn/themes/kiemviecv32/jobseekers/images/icons/avatar_120x160.png"
+              src="assets/images/avatar_120x160.png"
               class="profile-photo-edit">
           </div>
           <div class="upload-photo">
@@ -55,7 +55,10 @@
     <div class="col-xs-12 box-content" id="self-info-section">
       <header class="card-header">
         <h2 class="card-heading"><span class="iconheading"><i class="fa fa-user"></i></span>Thông tin cá nhân
-          <span class="text-red">*</span><span class="check-section text-green">Hoàn thành</span></h2>
+          <span class="text-red"> * </span>
+          <span *ngIf="this.candiateResume?.candidateName == null; else completeSelfInfor" class="text-warning">Chưa hoàn thành</span>
+          <ng-template #completeSelfInfor><span class="text-success">Hoàn thành</span></ng-template>
+        </h2>
       </header>
       <div class="col-xs-12 section-body">
         <div class="record-view">
@@ -68,7 +71,7 @@
         </div>
         <div class="record-view">
           <label class="col-xs-12 col-sm-3">Ngày sinh</label>
-          <div class="col-xs-12 col-sm-9">{{ candiateResume?.birthday }}</div>
+          <div class="col-xs-12 col-sm-9">{{ candiateResume?.birthday | date: "dd/MM/yyyy" }}</div>
         </div>
         <div class="record-view">
           <label class="col-xs-12 col-sm-3">Điện thoại</label>
@@ -106,8 +109,15 @@
     </div>
     <div class="box-content col-xs-12 job-target" id="target-job-section">
       <header class="card-header">
-        <h2 class="card-heading"><span class="iconheading"><i class="fa fa-flag"></i></span>Mục tiêu nghề nghiệp
-          <span class="text-red">*</span><span class="check-section text-green"> Hoàn thành</span></h2>
+        <h2 class="card-heading">
+          <span class="iconheading"><i class="fa fa-lightbulb-o" aria-hidden="true"></i></span>
+          Mục tiêu nghề nghiệp
+          <span class="text-red"> * </span>
+          <span *ngIf="(this.candiateResume?.jobObjective == null || 
+            this.candiateResume?.jobObjective == ''); 
+            else completeJobObjective" class="text-warning">Chưa hoàn thành</span>
+          <ng-template #completeJobObjective><span class="text-success">Hoàn thành</span></ng-template>
+        </h2>
       </header>
       <div class="col-xs-12 section-body">
         <div class="col-xs-12 record-view content-job-target">
@@ -121,7 +131,10 @@
     <div class="box-content col-xs-12" id="job-infor-section">
       <header class="card-header">
         <h2 class="card-heading"><span class="iconheading"><i class="fa fa-briefcase"></i></span>Thông tin công việc
-          <span class="text-red">*</span> <span class="check-section text-green"> Hoàn thành</span></h2>
+          <span class="text-red"> * </span>
+          <span *ngIf="this.candiateResume?.jobPositionEntity == null; else completeJobExpect" class="text-warning">Chưa hoàn thành</span>
+          <ng-template #completeJobExpect><span class="text-success">Hoàn thành</span></ng-template>
+        </h2>
       </header>
       <div class="col-xs-12 section-body">
 
@@ -150,10 +163,11 @@
         <h2 class="card-heading">
           <span class="iconheading"><i class="fa fa-briefcase"></i></span>
           Kinh nghiệm làm việc
-          <span class="text-red">*</span>
-          <span class="check-section text-green">Hoàn thành</span>
+          <span class="text-red"> * </span>
+          <span *ngIf="this.candiateResume?.experienceDTOs.length == 0; else completeExperience" class="text-warning">Chưa hoàn thành</span>
+          <ng-template #completeExperience><span class="text-success">Hoàn thành</span></ng-template>
         </h2>
-        <a class="header-add-action addtext" href="javascript:void(0);" (click)="getExperience()">Thêm mới</a>
+        <a class="header-add-action addtext" href="javascript:void(0);" (click)="addExperience()">Thêm mới</a>
       </header>
       <div class="col-xs-12 section-body">
         <div class="record-view">
@@ -170,26 +184,23 @@
         <div class="record-view experience-list">
           <div class="sticker">
             <ul class="list-sticker">
-              <li class="item" id="expList_1931266">
+              <li class="item" *ngFor="let experience of candiateResume?.experienceDTOs">
                 <div class="head-sticker">
                   <div class="title">
-                    <h4>sadf</h4>
-                    <div class="sub-title">
-                      <p>ádf</p>
-                    </div>
+                    <h4>{{ experience.experienceName }}</h4>
                     <div class="date">
-                      <p>1/2020 - Hiện tại</p>
+                      <p>{{ experience.startTime }} - {{ experience.endTime }}</p>
                     </div>
                   </div>
                   <div class="right-head">
                     <ul class="list-action">
                       <li class="edit-link">
-                        <a href="javascript:void(0);" title="Chỉnh sửa">
+                        <a href="javascript:void(0);" (click)="editExperience(experience.experienceId)" title="Chỉnh sửa">
                           <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         </a>
                       </li>
                       <li class="delete">
-                        <a href="javascript:void(0);" title="Xóa">
+                        <a href="javascript:void(0);" (click)="deleteExperience(experience.experienceId)" title="Xóa">
                           <i class="fa fa-times-circle-o" aria-hidden="true"></i>
                         </a>
                       </li>
@@ -197,37 +208,7 @@
                   </div>
                 </div>
                 <div class="body-sticker">
-                  <div class="description-content"> ádfdf </div>
-                </div>
-              </li>
-              <li class="item" id="expList_1917482">
-                <div class="head-sticker">
-                  <div class="title">
-                    <h4>asd</h4>
-                    <div class="sub-title">
-                      <p>asdf</p>
-                    </div>
-                    <div class="date">
-                      <p>1/2005 - Hiện tại</p>
-                    </div>
-                  </div>
-                  <div class="right-head">
-                    <ul class="list-action">
-                      <li class="edit-link">
-                        <a href="javascript:void(0);" title="Chỉnh sửa">
-                          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li class="delete">
-                        <a href="javascript:void(0);" title="Xóa">
-                          <i class="fa fa-times-circle-o" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="body-sticker">
-                  <div class="description-content"> asdf </div>
+                  <div class="description-content">{{ experience.description }} </div>
                 </div>
               </li>
             </ul>
@@ -238,10 +219,10 @@
     <div class="box-content col-xs-12" id="education-section">
       <header class="card-header">
         <h2 class="card-heading">
-          <span class="iconheading"><i class="fa fa-list"></i></span>
-          Học vấn
-          <span class="text-red">*</span>
-          <span class="check-section text-green">Hoàn thành</span>
+          <span class="iconheading"><i class="fa fa-graduation-cap" aria-hidden="true"></i></span>Học vấn
+          <span class="text-red"> * </span>
+          <span *ngIf="this.candiateResume?.educationDTOs.length == 0; else completeEducation" class="text-warning">Chưa hoàn thành</span>
+          <ng-template #completeEducation><span class="text-success">Hoàn thành</span></ng-template>
         </h2>
         <a class="header-add-action addtext" href="javascript:void(0);" (click)="addEducation()">Thêm mới</a>
       </header>
@@ -256,7 +237,7 @@
                     <p>{{ (education.degree == true) ? "Đã tốt nghiệp" : "Chưa tốt nghiệp" }}</p>
                   </div>
                   <div class="date">
-                    <p>{{ education.degreeTime }}</p>
+                    <p>{{ education.degreeTime | date: "dd/MM/yyyy" }}</p>
                   </div>
                 </div>
                 <div class="right-head">
@@ -284,33 +265,30 @@
     </div>
     <div class="box-content col-xs-12" id="skill-section">
       <header class="card-header">
-        <h2 class="card-heading"><span class="iconheading"><i class="fa fa-list-ul"></i></span>Kỹ năng chuyên môn <span
-            class="text-red">*</span><span class="check-section text-green">Hoàn thành</span></h2>
-        <a class="header-add-action addtext" href="javascript:void(0);" (click)="getSkill()">Thêm mới</a>
+        <h2 class="card-heading"><span class="iconheading"><i class="fa fa-list-ul"></i></span>Kỹ năng chuyên môn
+          <span class="text-red"> * </span>
+          <span *ngIf="this.candiateResume?.skillDTOs.length == 0; else completeSkill" class="text-warning">Chưa hoàn thành</span>
+          <ng-template #completeSkill><span class="text-success">Hoàn thành</span></ng-template>
+        </h2>
+        <a class="header-add-action addtext" href="javascript:void(0);" (click)="addSkill()">Thêm mới</a>
       </header>
       <div class="col-xs-12 section-body">
         <div class="sticker">
           <ul class="list-sticker">
-            <li class="item" id="expList_1931266">
+            <li class="item" *ngFor="let skill of candiateResume?.skillDTOs">
               <div class="head-sticker">
                 <div class="title">
-                  <h4>sadf</h4>
-                  <div class="sub-title">
-                    <p>ádf</p>
-                  </div>
-                  <div class="date">
-                    <p>1/2020 - Hiện tại</p>
-                  </div>
+                  <h4>{{ skill.skillName }}</h4>
                 </div>
                 <div class="right-head">
                   <ul class="list-action">
                     <li class="edit-link">
-                      <a href="javascript:void(0);" title="Chỉnh sửa">
+                      <a href="javascript:void(0);" (click)="editSkill(skill.skillId)" title="Chỉnh sửa">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                       </a>
                     </li>
                     <li class="delete">
-                      <a href="javascript:void(0);" title="Xóa">
+                      <a href="javascript:void(0);" (click)="deleteSkill(skill.skillId)" title="Xóa">
                         <i class="fa fa-times-circle-o" aria-hidden="true"></i>
                       </a>
                     </li>
@@ -318,37 +296,7 @@
                 </div>
               </div>
               <div class="body-sticker">
-                <div class="description-content"> ádfdf </div>
-              </div>
-            </li>
-            <li class="item" id="expList_1917482">
-              <div class="head-sticker">
-                <div class="title">
-                  <h4>asd</h4>
-                  <div class="sub-title">
-                    <p>asdf</p>
-                  </div>
-                  <div class="date">
-                    <p>1/2005 - Hiện tại</p>
-                  </div>
-                </div>
-                <div class="right-head">
-                  <ul class="list-action">
-                    <li class="edit-link">
-                      <a href="javascript:void(0);" title="Chỉnh sửa">
-                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                    <li class="delete">
-                      <a href="javascript:void(0);" title="Xóa">
-                        <i class="fa fa-times-circle-o" aria-hidden="true"></i>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="body-sticker">
-                <div class="description-content"> asdf </div>
+                <div class="description-content"> {{ skill.description }} </div>
               </div>
             </li>
           </ul>
@@ -357,8 +305,9 @@
     </div>
     <div class="box-content col-xs-12 foreign-language" id="foreign-language-section">
       <header class="card-header">
-        <h2 class="card-heading"><span class="iconheading"><i class="fa fa-trophy"></i></span>Ngoại ngữ
-          <span class="check-section text-green">Không bắt buộc</span></h2>
+        <h2 class="card-heading">
+          <span class="iconheading"><i class="fa fa-language" aria-hidden="true"></i></span>Ngoại ngữ
+          <span class="check-section text-success">Không bắt buộc</span></h2>
       </header>
       <div class="col-xs-12 section-body">
         <div class="record-view content-foreign-language">
@@ -372,7 +321,7 @@
     <div class="box-content col-xs-12 job-achievement" id="achievement-section">
       <header class="card-header">
         <h2 class="card-heading"><span class="iconheading"><i class="fa fa-trophy"></i></span>Thành tích nổi bật
-          <span class="check-section text-green">Không bắt buộc</span></h2>
+          <span class="check-section text-success">Không bắt buộc</span></h2>
       </header>
       <div class="col-xs-12 section-body">
         <div class="record-view content-job-achievement">

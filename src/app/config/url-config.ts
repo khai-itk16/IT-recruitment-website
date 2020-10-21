@@ -7,7 +7,7 @@ export class UrlConfig {
     urlUpdateCandidateReusme = this.host + "/api/candidate/candidate-resume"
     urlJobPosition = this.host + "/api/job-position"
     urlJobType = this.host + "/api/job-type"
-    urlExperience = this.host + "api/experience"
-    urlEducation = this.host + "api/education"
-    urlSkill = this.host + "api/skill"
+    urlExperience = this.host + "/api/experience"
+    urlEducation = this.host + "/api/education"
+    urlSkill = this.host + "/api/skill"
 }

@@ -97,7 +97,6 @@ export class CandidateMakeCVComponent implements OnInit {
   ward: any
   accountId: any
   isChangeNumYearExperience: boolean = false
- 
 
   constructor(
     private dialog: MatDialog,
@@ -286,8 +285,24 @@ export class CandidateMakeCVComponent implements OnInit {
     })
   }
 
-  getExperience() {
-    const dialogRef = this.openDialog(ModalExperienceComponent, "800px", "450px", {})
+  addExperience() {
+    const dialogRef = this.openDialog(ModalExperienceComponent, "800px", "450px", null)
+    dialogRef.afterClosed().subscribe(data => {
+      if (data == null) return
+      this.candiateResume.experienceDTOs.push(data)
+      this.toastrService.success("Thêm mới thành công", "SUCCESS", {
+        timeOut: 3000,
+        closeButton: true,
+        progressBar: true,
+        progressAnimation: 'increasing',
+        tapToDismiss: false
+      })
+    })
+  }
+
+  editExperience(experienceId) {
+    let experience = this.candiateResume.experienceDTOs.find(experience => experience.experienceId == experienceId)
+    const dialogRef = this.openDialog(ModalExperienceComponent, "800px", "450px", experience)
     dialogRef.afterClosed().subscribe(data => {
       if (data == null) return
       this.toastrService.success("Chỉnh sửa thành công", "SUCCESS", {
@@ -300,10 +315,50 @@ export class CandidateMakeCVComponent implements OnInit {
     })
   }
 
+  deleteExperience(experienceId) {
+    Swal.fire({
+      title: 'Bạn có chắc chắn muốn xóa?',
+      text: "Bạn không thể khôi phục lại nếu đã nhấn nút đồng ý",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Đồng ý',
+      cancelButtonText: 'Hủy bỏ'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.experienceService.deleteExperience(experienceId).subscribe(
+          res => {
+            const index = this.candiateResume.experienceDTOs.findIndex(experience => experience.experienceId == experienceId);
+            this.candiateResume.experienceDTOs.splice(index, 1);
+            this.toastrService.success("Xóa thành công", "SUCCESS", {
+              timeOut: 3000,
+              closeButton: true,
+              progressBar: true,
+              progressAnimation: 'increasing',
+              tapToDismiss: false
+            })
+          },
+          error => {
+            console.log(error)
+            this.toastrService.error("Có lỗi trong quá trình xóa. Vui lòng thực hiện lại", "ERROR", {
+              timeOut: 3000,
+              closeButton: true,
+              progressBar: true,
+              progressAnimation: 'increasing',
+              tapToDismiss: false
+            })
+          }
+        )
+      }
+    })
+  }
+
   addEducation() {
     const dialogRef = this.openDialog(ModalEducationComponent, "800px", "380px", null)
     dialogRef.afterClosed().subscribe(data => {
       if (data == null) return
+      this.candiateResume.educationDTOs.push(data)
       this.toastrService.success("Thêm mới thành công", "SUCCESS", {
         timeOut: 3000,
         closeButton: true,
@@ -343,6 +398,8 @@ export class CandidateMakeCVComponent implements OnInit {
       if (result.isConfirmed) {
         this.educationService.deleteEducation(educationId).subscribe(
           res => {
+            const index = this.candiateResume.educationDTOs.findIndex(education => education.educationId == educationId);
+            this.candiateResume.educationDTOs.splice(index, 1);
             this.toastrService.success("Xóa thành công", "SUCCESS", {
               timeOut: 3000,
               closeButton: true,
@@ -366,8 +423,24 @@ export class CandidateMakeCVComponent implements OnInit {
     })
   }
 
-  getSkill() {
-    const dialogRef = this.openDialog(ModalSkillComponent, "800px", "450px", {})
+  addSkill() {
+    const dialogRef = this.openDialog(ModalSkillComponent, "650px", "285px", null)
+    dialogRef.afterClosed().subscribe(data => {
+      if (data == null) return
+      this.candiateResume.skillDTOs.push(data)
+      this.toastrService.success("Thêm mới thành công", "SUCCESS", {
+        timeOut: 3000,
+        closeButton: true,
+        progressBar: true,
+        progressAnimation: 'increasing',
+        tapToDismiss: false
+      })
+    })
+  }
+
+  editSkill(skillId) {
+    let skill = this.candiateResume.skillDTOs.find(skill => skill.skillId == skillId)
+    const dialogRef = this.openDialog(ModalSkillComponent, "650px", "285px", skill)
     dialogRef.afterClosed().subscribe(data => {
       if (data == null) return
       this.toastrService.success("Chỉnh sửa thành công", "SUCCESS", {
@@ -377,6 +450,45 @@ export class CandidateMakeCVComponent implements OnInit {
         progressAnimation: 'increasing',
         tapToDismiss: false
       })
+    })
+  }
+
+  deleteSkill(skillId) {
+    Swal.fire({
+      title: 'Bạn có chắc chắn muốn xóa?',
+      text: "Bạn không thể khôi phục lại nếu đã nhấn nút đồng ý",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Đồng ý',
+      cancelButtonText: 'Hủy bỏ'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.skillService.deleteSkill(skillId).subscribe(
+          res => {
+            const index = this.candiateResume.skillDTOs.findIndex(skill => skill.skillId == skillId);
+            this.candiateResume.skillDTOs.splice(index, 1);
+            this.toastrService.success("Xóa thành công", "SUCCESS", {
+              timeOut: 3000,
+              closeButton: true,
+              progressBar: true,
+              progressAnimation: 'increasing',
+              tapToDismiss: false
+            })
+          },
+          error => {
+            console.log(error)
+            this.toastrService.error("Có lỗi trong quá trình xóa. Vui lòng thực hiện lại", "ERROR", {
+              timeOut: 3000,
+              closeButton: true,
+              progressBar: true,
+              progressAnimation: 'increasing',
+              tapToDismiss: false
+            })
+          }
+        )
+      }
     })
   }
 

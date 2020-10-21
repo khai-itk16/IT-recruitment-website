@@ -294,3 +294,13 @@ ul {
 .list-infor-reference li i {
     padding-right: 8px;
 }
+
+.text-warning {
+    color: orangered;
+    font-size: 14px;
+}
+
+.text-success {
+    color: green;
+    font-size: 14px;
+}

@@ -40,5 +40,5 @@
 
 <mat-dialog-actions class="footer-modal">
   <button class="btn btn-default" (click)="close()">Đóng</button>
-  <button class="btn btn-success" (click)="save()">Lưu lại</button>
+  <button class="btn btn-success" [disabled]="form.invalid" (click)="save()">Lưu lại</button>
 </mat-dialog-actions>

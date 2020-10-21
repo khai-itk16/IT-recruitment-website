@@ -15,6 +15,10 @@ export class EducationService {
     return this.http.post<any>(this.urlConfig.urlEducation, education)
   }
 
+  editEducation(education) {
+    return this.http.put<any>(this.urlConfig.urlEducation, education)
+  }
+
   deleteEducation(educationId) {
     return this.http.delete<any>(this.urlConfig.urlEducation+ "/" + educationId)
   }

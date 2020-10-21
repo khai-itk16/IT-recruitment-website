@@ -12,7 +12,7 @@ import { LocationService } from 'src/app/services/location.service';
 })
 export class ModalSelfInforComponent implements OnInit, AfterViewInit {
 
-  form: FormGroup;
+  form: FormGroup
   provinces: Array<any>
   provinceIdSelected: any
   districts: any

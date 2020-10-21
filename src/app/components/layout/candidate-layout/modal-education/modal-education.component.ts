@@ -14,6 +14,7 @@ export class ModalEducationComponent implements OnInit {
 
   form: FormGroup
   isDegree: boolean = true
+  private isAddEducation: boolean = true
 
   constructor(
     private dialogRef: MatDialogRef<ModalEducationComponent>,
@@ -35,6 +36,7 @@ export class ModalEducationComponent implements OnInit {
 
     if (this.data != null) {
       this.isDegree = this.data.degree
+      this.isAddEducation = false
       this.initData()
     }
   }
@@ -46,11 +48,14 @@ export class ModalEducationComponent implements OnInit {
       degreeTime: [this.data.degreeTime, [Validators.required]],
       degree: [!this.data.degree, [Validators.required]],
     })
+    if (this.isDegree == false) {
+      this.form.controls.degreeTime.setValue(null)
+      this.form.controls.degreeTime.disable()
+    }
   }
 
   statusDegree() {
     this.isDegree = !this.isDegree
-    console.log(this.isDegree)
     if (this.isDegree == false) {
       this.form.controls.degreeTime.setValue(null)
       this.form.controls.degreeTime.disable()
@@ -59,7 +64,7 @@ export class ModalEducationComponent implements OnInit {
     }
   }
 
-  save() {
+  private addEducation() {
     this.data = this.form.value
     this.data.degree = !this.data.degree
     this.data.candidateDTO = { accountId: this.decodeJwtService.getDecodedAccessToken().id }
@@ -67,6 +72,7 @@ export class ModalEducationComponent implements OnInit {
     console.log(this.data)
     this.educationService.addEducation(this.data).subscribe(
       res => {
+        this.dialogRef.close(res);
       },
       error => {
         console.log(error)
@@ -77,11 +83,40 @@ export class ModalEducationComponent implements OnInit {
           progressAnimation: 'increasing',
           tapToDismiss: false
         })
-      },
-      () => {
-        this.dialogRef.close(true);
       }
     )
+  }
+
+  private editEducation() {
+    const formValue = this.form.value
+    this.data.degree = !formValue.degree
+    this.data.school = formValue.school
+    this.data.degreeTime = formValue.degreeTime
+    this.data.description = formValue.description
+    this.data.candidateDTO = { accountId: this.decodeJwtService.getDecodedAccessToken().id }
+    this.educationService.editEducation(this.data).subscribe(
+      res => {
+        this.dialogRef.close(res);
+      },
+      error => {
+        console.log(error)
+        this.toastrService.error("Có lỗi trong quá trình chỉnh sửa. Vui lòng kiểm tra lại", "ERROR", {
+          timeOut: 3000,
+          closeButton: true,
+          progressBar: true,
+          progressAnimation: 'increasing',
+          tapToDismiss: false
+        })
+      }
+    )
+  }
+
+  save() {
+    if (this.isAddEducation == true) {
+      this.addEducation()
+    } else {
+      this.editEducation()
+    }
   }
 
   close() {
