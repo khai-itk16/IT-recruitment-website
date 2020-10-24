@@ -1,4 +1,4 @@
-<div class="col-xs-12" id="Step1">
+<div class="col-xs-12">
   <div class="col-md-9 panel-content">
     <div class="col-xs-12">
       <div class="col-xs-12 cv-top-background"></div>
@@ -6,20 +6,21 @@
         <div class="cv-photo-container">
           <div class="avatar-circle">
             <img id="img_mem_avatar" width="160" height="160"
-              src="assets/images/avatar_120x160.png"
+              [src]="pathAvatar"
               class="profile-photo-edit">
           </div>
           <div class="upload-photo">
             <label class="fileContainer"><i class="fa fa-edit"></i></label>
             <ul class="upload-photo-menu">
               <li>
-                <a href="javascript:void(0);">
-                  <i class="fa fa-pencil"></i>
-                  Tải hình ảnh
-                </a>
+                  <label for="avatar">
+                    <input id="avatar" type="file" style="display: none;" (change)="addAvatar($event.target.files)">
+                    <i class="fa fa-pencil"></i>
+                    Tải hình ảnh
+                  </label>
               </li>
               <li>
-                <a href="javascript:void(0);">
+                <a href="javascript:void(0);" (click)="deleteAvater()">
                   <i class="fa fa-trash"></i>
                   Xóa hình ảnh
                 </a>
@@ -146,7 +147,7 @@
         <div class="record-view">
           <label class="col-xs-12 col-sm-3">Mức lương mong muốn</label>
           <div class="col-xs-12 col-sm-9">
-            {{ candiateResume?.salaryExpect }}
+            {{ candiateResume?.salaryExpect | currency:'VND':'symbol' }}
           </div>
         </div>
         <div class="record-view">
@@ -208,7 +209,9 @@
                   </div>
                 </div>
                 <div class="body-sticker">
-                  <div class="description-content">{{ experience.description }} </div>
+                  <div class="description-content">
+                    <pre>{{ experience.description }}</pre>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -256,7 +259,7 @@
                 </div>
               </div>
               <div class="body-sticker">
-                <div class="description-content">{{ education.description }}</div>
+                <div class="description-content"><pre>{{ education.description }}</pre></div>
               </div>
             </li>
           </ul>
@@ -296,7 +299,7 @@
                 </div>
               </div>
               <div class="body-sticker">
-                <div class="description-content"> {{ skill.description }} </div>
+                <div class="description-content"><pre>{{ skill.description }}</pre> </div>
               </div>
             </li>
           </ul>
@@ -310,7 +313,7 @@
           <span class="check-section text-success">Không bắt buộc</span></h2>
       </header>
       <div class="col-xs-12 section-body">
-        <div class="record-view content-foreign-language">
+        <div class="record-view content-foreign-language" style="margin-left: 15px;">
           <!-- content foreign-language view -->
         </div>
         <div class="record-view">
@@ -325,7 +328,7 @@
       </header>
       <div class="col-xs-12 section-body">
         <div class="record-view content-job-achievement">
-          <!-- content job achievment view -->
+          <!-- content job achievement view -->
         </div>
         <div class="record-view">
           <a href="javascript:void(0);" class="btn btn-warning" (click)="getAchievement()">Chỉnh sửa</a>

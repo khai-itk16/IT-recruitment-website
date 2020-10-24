@@ -5,6 +5,24 @@ textarea { resize: none; }
     width: 175px;
 }
 
+#cvo-document ul, 
+#cvo-document ol {
+    padding-left: 15px !important;  
+    margin: 0 !important;
+}
+
+#cvo-document p {
+    margin: 0 !important;
+}
+
+.cvo-document .cvo-subpage {
+    padding: 2mm 5mm !important;
+}
+
+#cvo-profile-table td {
+    height: 28px !important;
+}
+
 .flag {
     width: 20px;
     height: 20px;

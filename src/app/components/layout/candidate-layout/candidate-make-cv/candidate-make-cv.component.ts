@@ -18,6 +18,8 @@ import { ModalSelfInforComponent } from '../modal-self-infor/modal-self-infor.co
 import { ModalSkillComponent } from '../modal-skill/modal-skill.component';
 
 import Swal from 'sweetalert2'
+import { ImageService } from 'src/app/services/image.service';
+import { UrlConfig } from 'src/app/config/url-config';
 
 declare const $: any
 
@@ -38,6 +40,15 @@ export class CandidateMakeCVComponent implements OnInit {
         street: "",
         ward: "0"
       },
+      imageDTOs: [
+        {
+          imageId: 0,
+          imageName: "",
+          banner: false,
+          avatar: false,
+          thumbnail: false
+        }
+      ],
       email: "",
       roleEntities: [
         {
@@ -97,6 +108,10 @@ export class CandidateMakeCVComponent implements OnInit {
   ward: any
   accountId: any
   isChangeNumYearExperience: boolean = false
+  images: any = new Object()
+  pathAvatar: String = "assets/images/avatar_120x160.png"
+  urlConfig = new UrlConfig()
+  imageAvatar: any
 
   constructor(
     private dialog: MatDialog,
@@ -106,8 +121,8 @@ export class CandidateMakeCVComponent implements OnInit {
     private locationService: LocationService,
     private experienceService: ExperienceService,
     private educationService: EducationService,
-    private skillService: SkillService
-
+    private skillService: SkillService,
+    private imageService: ImageService
   ) { }
 
   ngOnInit(): void {
@@ -115,7 +130,7 @@ export class CandidateMakeCVComponent implements OnInit {
     this.initData()
   }
 
-  initAction() {
+  private initAction() {
    $(document).ready(function() {
      $(window).scroll(function() {
        if($(window).scrollTop() > 100 && $(window).scrollTop() < $("#achievement-section").offset().top) {
@@ -172,7 +187,7 @@ export class CandidateMakeCVComponent implements OnInit {
    })
   }
 
-  initData() {
+  private initData() {
     if (this.decodeJwtService.getDecodedAccessToken() == null) {
       this.candiateResume = null
       return
@@ -183,6 +198,10 @@ export class CandidateMakeCVComponent implements OnInit {
       res => {
         console.log(res)
         this.candiateResume = res
+        this.imageAvatar = this.candiateResume.accountDTO.imageDTOs.find(imageDTO => imageDTO.avatar)
+        if(this.imageAvatar != null) {
+          this.pathAvatar = this.urlConfig.urlImage + "/" + this.imageAvatar.imageName
+        }
         this.setLocation()
         $(".job-target .content-job-target").html(this.candiateResume.jobObjective)
         $(".foreign-language .content-foreign-language").html(this.candiateResume.foreignLanguage)
@@ -194,11 +213,127 @@ export class CandidateMakeCVComponent implements OnInit {
     )
   }
 
-  setLocation() {
+  private setLocation() {
     let provices = this.locationService.readData();
     this.provice = provices.find(province => province.id == this.candiateResume?.accountDTO?.addressEntity?.province)
     this.district = this.provice?.districts.find(district => district.id == this.candiateResume?.accountDTO?.addressEntity?.district)
     this.ward = this.district?.wards.find(ward => ward.id == this.candiateResume?.accountDTO?.addressEntity?.ward)
+  }
+
+  addAvatar(files) {
+    this.images.files = files;
+    if(this.imageAvatar != null) {
+      this.images.imageDTOs = [ this.imageAvatar ]
+      this.images.imageDTOs[0].accountDTO = { accountId: this.accountId }
+    } else {
+      this.images.imageDTOs = [
+        {
+          accountDTO: {
+            accountId: this.accountId
+          },
+          avatar: true,
+          imageId: 0,
+          imageName: "",
+          banner: false,
+          thumbnail: false
+        }
+      ]
+    }
+
+    console.log(this.images)
+    Swal.fire({
+      title: 'Bạn có chắc chắn muốn cập nhật avatar không?',
+      text: "Bạn không thể khôi phục lại nếu đã nhấn nút đồng ý",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Đồng ý',
+      cancelButtonText: 'Hủy bỏ'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.imageService.addImages(this.images).subscribe(
+          res => { 
+            if(this.imageAvatar != null) {
+              this.imageAvatar.imageName = res[0].imageName
+            } else {
+              this.candiateResume.accountDTO.imageDTOs.push(res[0])
+              this.imageAvatar = res[0]
+            }
+            this.pathAvatar = this.urlConfig.urlImage + "/" + this.imageAvatar.imageName
+            this.toastrService.success("Cập nhật avatar thành công", "SUCCESS", {
+              timeOut: 3000,
+              closeButton: true,
+              progressBar: true,
+              progressAnimation: 'increasing',
+              tapToDismiss: false
+            })
+          },
+          error => { 
+            console.log(error) 
+            this.toastrService.error("Cập nhật avatar thất bại", "ERROR", {
+              timeOut: 3000,
+              closeButton: true,
+              progressBar: true,
+              progressAnimation: 'increasing',
+              tapToDismiss: false
+            })
+          }
+        )
+      }
+    })
+    
+  }
+
+  deleteAvater() {
+    if(this.imageAvatar == null) {
+      this.toastrService.error("Avatar của bạn chưa cập nhật", "ERROR", {
+        timeOut: 3000,
+        closeButton: true,
+        progressBar: true,
+        progressAnimation: 'increasing',
+        tapToDismiss: false
+      })
+      return
+    }
+
+    Swal.fire({
+      title: 'Bạn có chắc chắn muốn xóa avatar không?',
+      text: "Bạn không thể khôi phục lại nếu đã nhấn nút đồng ý",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Đồng ý',
+      cancelButtonText: 'Hủy bỏ'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.imageService.deleteImage(this.imageAvatar).subscribe(
+          res => { 
+            const index = this.candiateResume.accountDTO.imageDTOs.findIndex(imageDTO => imageDTO.avatar);
+            this.candiateResume.experienceDTOs.splice(index, 1)
+            this.pathAvatar = "assets/images/avatar_120x160.png"
+            this.toastrService.success("Xóa avatar thành công", "SUCCESS", {
+              timeOut: 3000,
+              closeButton: true,
+              progressBar: true,
+              progressAnimation: 'increasing',
+              tapToDismiss: false
+            })
+          },
+          error => { 
+            console.log(error) 
+            this.toastrService.error("Xóa avatar thất bại", "ERROR", {
+              timeOut: 3000,
+              closeButton: true,
+              progressBar: true,
+              progressAnimation: 'increasing',
+              tapToDismiss: false
+            })
+          }
+        )
+      }
+    })
   }
 
   editNumYearExperience(isChange, numYearExperience?:any) {

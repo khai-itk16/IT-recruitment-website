@@ -19,7 +19,7 @@
       <div class="row">
         <label class="col-xs-12 col-sm-4">Mức lương <span class="text-red">*</span></label>
         <div class="col-sm-7">
-          <input type="text" class="form-control" formControlName="salaryExpect"
+          <input type="number" class="form-control" formControlName="salaryExpect"
             placeholder="Mức lương mong muốn hàng tháng">
         </div>
         <span class="label label-info">VND</span>
@@ -43,5 +43,5 @@
 
 <mat-dialog-actions class="footer-modal">
   <button class="btn btn-default" (click)="close()">Đóng</button>
-  <button class="btn btn-success" (click)="save()">Lưu lại</button>
+  <button class="btn btn-success" [disabled]="form.invalid" (click)="save()">Lưu lại</button>
 </mat-dialog-actions>

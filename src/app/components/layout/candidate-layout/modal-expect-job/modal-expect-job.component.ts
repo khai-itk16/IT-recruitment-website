@@ -31,7 +31,7 @@ export class ModalExpectJobComponent implements OnInit {
 
     this.form = this.fb.group({
       jobPositionId: [0, [Validators.required]],
-      salaryExpect: [0, [Validators.required]],
+      salaryExpect: [0, [Validators.required, Validators.max(200000000), Validators.min(0)]],
       jobTypeId: [0, [Validators.required]],
     });
     this.initData()
@@ -52,7 +52,7 @@ export class ModalExpectJobComponent implements OnInit {
         this.jobTypes = res
         this.form = this.fb.group({
           jobPositionId: [this.data?.jobPositionEntity?.jobPositionId, [Validators.required]],
-          salaryExpect: [this.data?.salaryExpect, [Validators.required]],
+          salaryExpect: [this.data?.salaryExpect, [Validators.required, Validators.max(200000000), Validators.min(0)]],
           jobTypeId: [this.data?.jobTypeEntity?.jobTypeId, [Validators.required]],
         });
       },

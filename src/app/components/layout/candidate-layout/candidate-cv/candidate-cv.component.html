@@ -1,8 +1,14 @@
 <div class="container">
   <div id="cv-layout-viewer">
     <div id="header-viewer" class="non-printable">
-      <h1>Xem CV Online của LÊ MINH KHAI</h1>
-      <div type="button" class="btn-download-cv" (click)="downloadAsPDF()" data-id="231f62f0b1a8ff953bd537e7ebf52a03" data-name="LÊ MINH KHAI">
+      <h1>Xem CV Online</h1>
+      <div class="edit-cv">
+        <a [routerLink]="['/candidate/make-cv']">
+          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+          <span> Chỉnh sửa CV</span>
+        </a>
+        </div>
+      <div class="btn-download-cv" (click)="downloadAsPDF()">
         <i class="fa fa-download"></i>
         <span> Tải CV PDF</span>
       </div>
@@ -17,13 +23,13 @@
                 <div class="cvo-block" id="cvo-profile">
                   <div id="cvo-profile-avatar-wraper" class="">
                     <img id="cvo-profile-avatar"
-                      src="assets/images/avatar.jpg"
-                      value="QBCnbnldZ71ioWrawuVy_5d0f306822fbd_cvtpl.jpg" alt="avatar">
+                      [src]="pathAvatar" alt="avatar">
                   </div>
                   <div id="cvo-profile-wraper">
                     <div id="cvo-profile-first">
-                      <span id="cvo-profile-fullname">LÊ MINH KHAI</span><br>
-                      <span id="cvo-profile-title">Thực tập sinh</span>
+                      <span id="cvo-profile-fullname">{{ candiateResume?.candidateName }}</span><br>
+                      <span id="cvo-profile-title">{{ candiateResume?.jobTypeEntity?.jobTypeName }}</span><br>
+                      <span id="cvo-profile-title">{{ candiateResume?.jobPositionEntity?.jobPositionName }}</span>
                     </div>
                     <div id="cvo-profile-table">
                       <table>
@@ -32,12 +38,12 @@
                             <td style="width: 230px;">
                               <div id="cvo-profile-phone-wraper" class="contact-item"><i
                                   class="contact-item-label fa fa-phone"></i><span id="cvo-profile-phone"
-                                  class="cvo-profile-content table-col-left">0981958090</span></div>
+                                  class="cvo-profile-content table-col-left">{{ candiateResume?.phone }}</span></div>
                             </td>
                             <td style="width:193px;">
                               <div class="contact-item">
                                 <i class="contact-item-label fa fa-user"></i>
-                                <span id="cvo-profile-gender" class="cvo-profile-content table-col-right">Male</span>
+                                <span id="cvo-profile-gender" class="cvo-profile-content table-col-right">{{ (candiateResume?.sex == true) ? "Nam" : "Nữ" }}</span>
                               </div>
                             </td>
                           </tr>
@@ -45,27 +51,43 @@
                             <td>
                               <div id="cvo-profile-email-wraper" class="contact-item"><i
                                   class="contact-item-label fa fa-envelope"></i><span id="cvo-profile-email"
-                                  class="cvo-profile-content table-col-left">minhkhaia12016@gmail.com</span></div>
+                                  class="cvo-profile-content table-col-left">{{ candiateResume?.accountDTO?.email }}</span></div>
                             </td>
                             <td>
                               <div id="cvo-profile-dob-wraper" class="contact-item">
                                 <i class="contact-item-label fa fa-calendar"></i>
-                                <span id="cvo-profile-dob" class="cvo-profile-content table-col-right">18/04/1998</span>
+                                <span id="cvo-profile-dob" class="cvo-profile-content table-col-right">{{ candiateResume?.birthday | date: "dd/MM/yyyy" }}</span>
                               </div>
                             </td>
                           </tr>
                           <tr>
                             <td>
                               <div class="contact-item">
-                                <i class="contact-item-label fa fa-link"></i><span id="cvo-profile-website"
-                                  class="cvo-profile-content table-col-left">https://www.facebook.com/minhkhai.le.96</span>
+                                <i class="contact-item-label fa fa-star-o"></i>
+                                <span class="cvo-profile-content table-col-left">
+                                  {{ (candiateResume?.numYearExperience == 0) ? "Chưa có kinh nghiệm" : candiateResume?.numYearExperience + " năm kinh nghiệm" }}
+                                </span>
                               </div>
                             </td>
                             <td>
                               <div class="contact-item">
+                                <i class="contact-item-label fa fa-money"></i>
+                                <span class="cvo-profile-content table-col-right">{{ candiateResume?.salaryExpect | currency:'VND':'symbol' }}</span>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="2">
+                              <div class="contact-item">
                                 <i class="contact-item-label fa fa-map-marker" style="text-align: center;"></i>
-                                <span id="cvo-profile-address" class="cvo-profile-content table-col-right">Quang Tri,
-                                  Viet Nam</span>
+                                <span id="cvo-profile-address" class="cvo-profile-content" style="width: 100%;">
+                                  {{ 
+                                    candiateResume?.accountDTO?.addressEntity?.street + ", "  +
+                                    ward?.name + ", "  +
+                                    district?.name + ", "  +
+                                    provice?.name
+                                  }}
+                                </span>
                               </div>
                             </td>
                           </tr>
@@ -83,155 +105,49 @@
                     <div class="cvo-block-icon-connector"></div>
                     <div class="cvo-block-icon-dot"></div>
                     <div class="cvo-block-icon"><i class="fa fa-lightbulb-o"></i></div>
-                    <div class="cvo-block-title"><span id="cvo-objective-blocktitle">Objective</span></div>
-                    <div id="cvo-objective-objective" class="color-content">Participate in internship with the Company,
-                      Organize and have chance become official employees. I can learn knowledge to practice my
-                      programming skills. Gain work experience in a real environment. Raise awareness, how to build and
-                      develop webside. Develop communication and teamwork skills.<br></div>
-                  </div>
-                  <div id="cvo-objective" class="cvo-block">
-                    <div class="cvo-block-icon-connector"></div>
-                    <div class="cvo-block-icon-dot"></div>
-                    <div class="cvo-block-icon"><i class="fa fa-lightbulb-o"></i></div>
-                    <div class="cvo-block-title"><span id="cvo-objective-blocktitle">Objective</span></div>
-                    <div id="cvo-objective-objective" class="color-content">Participate in internship with the Company,
-                      Organize and have chance become official employees. I can learn knowledge to practice my
-                      programming skills. Gain work experience in a real environment. Raise awareness, how to build and
-                      develop webside. Develop communication and teamwork skills.<br></div>
-                  </div>
-                  <div id="cvo-objective" class="cvo-block">
-                    <div class="cvo-block-icon-connector"></div>
-                    <div class="cvo-block-icon-dot"></div>
-                    <div class="cvo-block-icon"><i class="fa fa-lightbulb-o"></i></div>
-                    <div class="cvo-block-title"><span id="cvo-objective-blocktitle">Objective</span></div>
-                    <div id="cvo-objective-objective" class="color-content">Participate in internship with the Company,
-                      Organize and have chance become official employees. I can learn knowledge to practice my
-                      programming skills. Gain work experience in a real environment. Raise awareness, how to build and
-                      develop webside. Develop communication and teamwork skills.<br></div>
-                  </div>
-                  <div id="cvo-objective" class="cvo-block">
-                    <div class="cvo-block-icon-connector"></div>
-                    <div class="cvo-block-icon-dot"></div>
-                    <div class="cvo-block-icon"><i class="fa fa-lightbulb-o"></i></div>
-                    <div class="cvo-block-title"><span id="cvo-objective-blocktitle">Objective</span></div>
-                    <div id="cvo-objective-objective" class="color-content">Participate in internship with the Company,
-                      Organize and have chance become official employees. I can learn knowledge to practice my
-                      programming skills. Gain work experience in a real environment. Raise awareness, how to build and
-                      develop webside. Develop communication and teamwork skills.<br></div>
-                  </div>
-                  <div id="cvo-objective" class="cvo-block">
-                    <div class="cvo-block-icon-connector"></div>
-                    <div class="cvo-block-icon-dot"></div>
-                    <div class="cvo-block-icon"><i class="fa fa-lightbulb-o"></i></div>
-                    <div class="cvo-block-title"><span id="cvo-objective-blocktitle">Objective</span></div>
-                    <div id="cvo-objective-objective" class="color-content">Participate in internship with the Company,
-                      Organize and have chance become official employees. I can learn knowledge to practice my
-                      programming skills. Gain work experience in a real environment. Raise awareness, how to build and
-                      develop webside. Develop communication and teamwork skills.<br></div>
-                  </div>
-                  <div id="cvo-objective" class="cvo-block">
-                    <div class="cvo-block-icon-connector"></div>
-                    <div class="cvo-block-icon-dot"></div>
-                    <div class="cvo-block-icon"><i class="fa fa-lightbulb-o"></i></div>
-                    <div class="cvo-block-title"><span id="cvo-objective-blocktitle">Objective</span></div>
-                    <div id="cvo-objective-objective" class="color-content">Participate in internship with the Company,
-                      Organize and have chance become official employees. I can learn knowledge to practice my
-                      programming skills. Gain work experience in a real environment. Raise awareness, how to build and
-                      develop webside. Develop communication and teamwork skills.<br></div>
-                  </div>
-                  <div id="cvo-objective" class="cvo-block">
-                    <div class="cvo-block-icon-connector"></div>
-                    <div class="cvo-block-icon-dot"></div>
-                    <div class="cvo-block-icon"><i class="fa fa-lightbulb-o"></i></div>
-                    <div class="cvo-block-title"><span id="cvo-objective-blocktitle">Objective</span></div>
-                    <div id="cvo-objective-objective" class="color-content">Participate in internship with the Company,
-                      Organize and have chance become official employees. I can learn knowledge to practice my
-                      programming skills. Gain work experience in a real environment. Raise awareness, how to build and
-                      develop webside. Develop communication and teamwork skills.<br></div>
-                  </div>
-                  <div id="cvo-objective" class="cvo-block">
-                    <div class="cvo-block-icon-connector"></div>
-                    <div class="cvo-block-icon-dot"></div>
-                    <div class="cvo-block-icon"><i class="fa fa-lightbulb-o"></i></div>
-                    <div class="cvo-block-title"><span id="cvo-objective-blocktitle">Objective</span></div>
-                    <div id="cvo-objective-objective" class="color-content">Participate in internship with the Company,
-                      Organize and have chance become official employees. I can learn knowledge to practice my
-                      programming skills. Gain work experience in a real environment. Raise awareness, how to build and
-                      develop webside. Develop communication and teamwork skills.<br></div>
+                    <div class="cvo-block-title"><span id="cvo-objective-blocktitle">Mục tiêu nghề nghiệp</span></div>
+                    <div id="cvo-objective-objective" class="color-content">
+                      <!-- content job objective -->
+                      <br>
+                    </div>
                   </div>
                   <div id="cvo-education" class="cvo-block">
                     <div class="cvo-block-icon-connector"></div>
                     <div class="cvo-block-icon-dot"></div>
                     <div class="cvo-block-icon"><i class="fa fa-graduation-cap"></i></div>
-                    <div class="cvo-block-title"><span id="cvo-education-blocktitle">Education</span></div>
-                    <div id="education-table">
+                    <div class="cvo-block-title"><span id="cvo-education-blocktitle">Học vấn</span></div>
+                    <div class="item" *ngFor="let education of candiateResume?.educationDTOs">
                       <div class="cvo-education-school-wraper">
-                          <span class="cvo-education-school">DANANG UNIVERSITY OF TECHNOLOGY</span>
+                        <span class="cvo-education-school">{{ education.school }}</span>
+                      </div>
+                      <div class="cvo-education-time">
+                        <span class=" cvo-education-end">{{ education.degreeTime | date: "dd/MM/yyyy" }}</span>
+                      </div>
+                      <div style="clear:both;"></div>
+                      <div class="row-details">
+                        <div>
+                          <span class="cvo-education-title">{{ (education.degree == true) ? "Đã tốt nghiệp" : "Chưa tốt nghiệp" }}</span>
                         </div>
-                        <div class="cvo-education-time">
-                          <span class="cvo-education-start">Sep 2016</span>&nbsp;-&nbsp;<span
-                            class=" cvo-education-end">Present</span>
+                        <div class="cvo-education-details">
+                          <pre>{{ education.description }}</pre>
                         </div>
-                        <div style="clear:both;"></div>
-                        <div class="row-details">
-                          <div>
-                            <span class="cvo-education-title">Faculty of Information Technology</span>
-                          </div>
-                          <div class="cvo-education-details">Specialization: software technology<br>Four-year
-                            student<br>Grade point average: 3.16/4<br></div>
-                        </div>
+                      </div>
                     </div>
                   </div>
                   <div id="cvo-skillgroup" class="cvo-block">
                     <div class="cvo-block-icon-connector"></div>
                     <div class="cvo-block-icon-dot"></div>
                     <div class="cvo-block-icon"><i class="fa fa-wrench"></i></div>
-                    <div class="cvo-block-title"><span id="cvo-skillgroup-blocktitle">Skills</span></div>
+                    <div class="cvo-block-title"><span id="cvo-skillgroup-blocktitle">Kỷ năng, chuyên môn</span></div>
                     <div id="skill-table">
-                      <div class="">
+                      <div class="item" *ngFor="let skill of candiateResume?.skillDTOs">
                         <div>
-                          <span class="cvo-skillgroup-area">Programming language</span>
+                          <span class="cvo-skillgroup-area">{{ skill.skillName }}</span>
                         </div>
                         <div>
-                          <span class="cvo-skillgroup-skill-description">C/C++, Java,&nbsp;Android,
-                            PHP,&nbsp;JavaScript</span>
-                        </div>
-                        <div style="clear: both"></div>
-                      </div>
-                      <div class="">
-                        <div>
-                          <span class="cvo-skillgroup-area">Database</span>
-                        </div>
-                        <div>
-                          <span class="cvo-skillgroup-skill-description">MySQL, SQLServer</span>
-                        </div>
-                        <div style="clear: both"></div>
-                      </div>
-                      <div class="">
-                        <div>
-                          <span class="cvo-skillgroup-area">Architecture</span>
-                        </div>
-                        <div>
-                          <span class="cvo-skillgroup-skill-description">MVC</span>
-                        </div>
-                        <div style="clear: both"></div>
-                      </div>
-                      <div class="">
-                        <div>
-                          <span class="cvo-skillgroup-area">General</span>
-                        </div>
-                        <div>
-                          <span class="cvo-skillgroup-skill-description">HTML, CSS, Servlet - JSP, JQuery,&nbsp;
-                            Ajax</span>
-                        </div>
-                        <div style="clear: both"></div>
-                      </div>
-                      <div class="">
-                        <div>
-                          <span class="cvo-skillgroup-area">The languages are being studied</span>
-                        </div>
-                        <div>
-                          <span class="cvo-skillgroup-skill-description">C#, Angular</span>
+                          <span class="cvo-skillgroup-skill-description">
+                            <pre>{{ skill.description }}</pre>
+                          </span>
                         </div>
                         <div style="clear: both"></div>
                       </div>
@@ -241,51 +157,23 @@
                     <div class="cvo-block-icon-connector"></div>
                     <div class="cvo-block-icon-dot"></div>
                     <div class="cvo-block-icon"><i class="fa fa-briefcase"></i></div>
-                    <div class="cvo-block-title"><span id="cvo-experience-blocktitle">Work experience</span></div>
+                    <div class="cvo-block-title"><span id="cvo-experience-blocktitle">Kinh nghiệm làm việc</span></div>
                     <div id="experience-table">
-                      <div class="">
+                      <div class="item" *ngFor="let experience of candiateResume?.experienceDTOs">
                         <div class="cvo-experience-company-wraper">
-                          <span class="cvo-experience-company">project on school</span>
+                          <span class="cvo-experience-company">{{ experience.experienceName }}</span>
                         </div>
                         <div class="cvo-experience-time">
-                          <span class="cvo-experience-start"></span>&nbsp;-&nbsp;<span
-                            class="cvo-experience-end"></span>
+                          <span class="cvo-experience-start">{{ experience.startTime }}</span>&nbsp;-&nbsp;<span
+                            class="cvo-experience-end">{{ experience.endTime }}</span>
                         </div>
                         <div style="clear:both;"></div>
                         <div class="row-col-data">
                           <div class="row-title">
                           </div>
                           <div class="row-details">
-                            <div>
-                              <span class="cvo-experience-position">Control electrical equipment by internet use
-                                application android and website</span>
-                            </div>
-                            <div class="cvo-experience-details">Main responsibilities:<br>- Use CSS and bootstrap to
-                              make User Interface of website.&nbsp;<br>- Connect website and android application with
-                              processor via MQTT protocol.<br>-&nbsp;Save the state of the electrical
-                              device&nbsp;to&nbsp;database Mysql.<br>- Timer function to turn on and off electrical
-                              devices.<br></div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="">
-                        <div class="cvo-experience-company-wraper">
-                          <span class="cvo-experience-company">PROJECT ON SCHOOL</span>
-                        </div>
-                        <div class="cvo-experience-time">
-                          <span class="cvo-experience-start"></span>&nbsp;-&nbsp;<span
-                            class="cvo-experience-end"></span>
-                        </div>
-                        <div style="clear:both;"></div>
-                        <div class="row-col-data">
-                          <div class="row-title">
-                          </div>
-                          <div class="row-details">
-                            <div>
-                              <span class="cvo-experience-position">Website selling electronic components</span>
-                            </div>
-                            <div class="cvo-experience-details">- Use CSS and bootstrap to make User Interface of
-                              website. <br>- Use PHP to write backend<br>-&nbsp;Use the Mysql database to store data<br>
+                            <div class="cvo-experience-details">
+                              <pre>{{ experience.description }}</pre>
                             </div>
                           </div>
                         </div>
@@ -293,36 +181,22 @@
                     </div>
                     <div style="clear: both"></div>
                   </div>
-                  <div id="cvo-interests" class="cvo-block">
+                  <div class="cvo-block">
                     <div class="cvo-block-icon-connector"></div>
                     <div class="cvo-block-icon-dot"></div>
-                    <div class="cvo-block-icon"><i class="fa fa-heart"></i></div>
-                    <div class="cvo-block-title"><span id="cvo-interests-blocktitle">Interests</span></div>
-                    <div id="interest-table">
-                      <span id="cvo-interests-interests">- I like reading books and programming news to improve my
-                        knowledge.<br>- I enjoy watching the news related to Premier League football.<br>- I like to
-                        listen to US / UK music<br></span>
+                    <div class="cvo-block-icon"><i class="fa fa-language"></i></div>
+                    <div class="cvo-block-title"><span>Ngoại ngữ</span></div>
+                    <div id="content-foreign-language">
+                     <!-- content foreign-language view -->
                     </div>
                   </div>
                   <div id="cvo-award" class="cvo-block">
                     <div class="cvo-block-icon-connector"></div>
                     <div class="cvo-block-icon-dot"></div>
                     <div class="cvo-block-icon"><i class="fa fa-trophy"></i></div>
-                    <div class="cvo-block-title"><span id="cvo-award-blocktitle">Honors &amp; Awards</span></div>
-                    <div id="award-table">
-                      <div class="">
-                        <div class="row-award-time">
-                          <span class="cvo-award-time">2017-2018</span>
-                        </div>
-                        <div class="row-award-data">
-                          <div>
-                            <span class="cvo-award-title color-content">Scholarship to encourage learning of DaNang
-                              university of technology&nbsp;in 1st semester 2017-2018 and 2nd semester
-                              2017-2018.<br></span>
-                          </div>
-                        </div>
-                        <div style="clear:both;"></div>
-                      </div>
+                    <div class="cvo-block-title"><span>Thành tích nổi bật</span></div>
+                    <div id="content-achievement">
+                       <!-- content achievement view -->
                     </div>
                     <div style="clear: both"></div>
                   </div>
@@ -330,9 +204,6 @@
                 <div style="clear: both;"></div>
               </div>
               <div style="clear: both;"></div>
-            </div>
-            <div id="cv-watermark">
-              © topcv.vn
             </div>
           </div>
         </div>

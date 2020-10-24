@@ -1,7 +1,17 @@
 #cv-layout-viewer {
     background-color: #fff;
     width: 80%;
-    margin: 0 auto;
+    margin: 10px auto;
+}
+
+#cv-layout-viewer ul, 
+#cv-layout-viewer ol {
+    padding-left: 15px !important;  
+    margin: 0 !important;
+}
+
+#cv-layout-viewer p {
+    margin: 0 !important;
 }
 
 #header-viewer {
@@ -22,7 +32,8 @@
     font-weight: 500;
 }
 
-#header-viewer .btn-download-cv {
+#header-viewer .btn-download-cv, 
+.edit-cv a {
     float: right;
     background: 0 0;
     color: #ccc;
@@ -30,8 +41,37 @@
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
+    display: block;
 }
 
-#header-viewer .btn-download-cv:hover {
+#header-viewer .btn-download-cv:hover,
+.edit-cv:hover a {
     color: #fff;
+}
+
+pre {
+    width: 100%;
+    display: block;
+    background: transparent;
+    border: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    line-height: 21px;
+    margin: 0;
+    padding: 0;
+    font-family: 'Prompt-Regular', Arial, sans-serif;
+    font-size: 12px;
+    line-height: 18px;
+    color: #494949;
+    word-break: break-word;
+}
+
+.item {
+    border-bottom: 0.05cm solid #eee;
+    padding: 2px 0;
+}
+
+.item:last-child {
+    border-bottom: 0;
+    padding: 0;
 }

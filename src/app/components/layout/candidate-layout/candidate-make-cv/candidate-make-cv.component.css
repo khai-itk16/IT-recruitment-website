@@ -68,10 +68,13 @@ ul {
     display: block;
 }
 
+.upload-photo-menu li label,
 .upload-photo-menu li a {
     padding: 8px 20px;
     color: #777;
     display: block;
+    font-weight: normal;
+    cursor: pointer;
 }
 
 .upload-photo-menu li:hover {
@@ -303,4 +306,20 @@ ul {
 .text-success {
     color: green;
     font-size: 14px;
+}
+
+pre {
+    width: 100%;
+    display: block;
+    background: transparent;
+    border: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    line-height: 21px;
+    margin: 0;
+    padding: 0;
+    line-height: 18px;
+    color: #494949;
+    word-break: break-word;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

@@ -49,7 +49,7 @@ export class ModalLoginComponent implements OnInit {
         error => { 
           console.log(error)
           this.toastrService.error(
-            `Đăng ký tài khoản không thành công. 
+            `Đăng nhập tài khoản không thành công. 
             Vui lòng kiểm tra lại mật khẩu, mật khẩu phải có độ dài lớn hơn hoặc bằng 8 ký tự và
              bao gồm ký tự hoa chữ cái đặc biệt`, 'ERROR', {
             timeOut: 3000,

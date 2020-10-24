@@ -1,0 +1,115 @@
+.main-content {
+    margin: 10px auto;
+    width: 90%;
+    padding: 40px 70px;
+}
+
+.title h4 {
+    font-weight: bold;
+    color:  #09a0db;
+}
+
+.action-profile {
+    padding: 30px 0 15px;
+    text-align: center;
+}
+
+.notification span {
+    color: orange;
+    font-size: 24px;
+    margin-top: 8px;
+    position: absolute;
+}
+
+.notification p {
+    margin-left: 28px;
+    color: #777;
+    font-style: italic;
+}
+
+.desired {
+    list-style-type: none;
+    padding: 0;
+}
+
+.desired li {
+    display: flex;
+    font-weight: 600;
+    color: #827e7e;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.desired li p span {
+    color: #172642;
+}
+
+.desired i {
+    margin-right: 8px;
+    margin-top: 3px;
+}
+
+.progress-bar-status .profile-strength p {
+    color: #5d677a;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.progress-bar-status.impressive .profile-strength p span {
+    color: #32dba3;
+}
+
+.progress-main {
+    display: none;
+}
+
+.progress-bar .progress-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.progress-row .line.active {
+    background: #32dba3;
+}
+
+.progress-row .line:first-child {
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+}
+
+.progress-row .line:last-child {
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+.progress-row .line:last-child::after {
+    width: 0;
+}
+
+.progress-row .line:after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: #ffffff;
+    content: "";
+}
+
+.progress-row .line {
+    position: relative;
+    flex: 0 0 calc(100% / 9);
+    max-width: calc(100% / 9);
+    height: 14px;
+    background: #ebeff4;
+}
+
+.progress-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.text-warning {
+    color: orangered !important;
+    font-size: 12px;
+}
