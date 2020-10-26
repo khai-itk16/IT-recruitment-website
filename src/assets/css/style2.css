@@ -1,5 +1,17 @@
 textarea { resize: none; }
 
+.ck-editor__main p,
+.section-body p {
+    margin: 0 !important;
+}
+
+.ck-editor__main ul,
+.ck-editor__main ol, 
+.section-body ul,
+.section-body ol {
+    padding-left: 20px !important;
+}
+
 .logochange {
     height: 32px;
     width: 175px;

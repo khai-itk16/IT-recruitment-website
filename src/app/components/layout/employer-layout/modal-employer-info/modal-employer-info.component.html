@@ -1,0 +1,98 @@
+<div class="header-modal">
+    <h2>Thông tin cơ quan </h2>
+  </div>
+  <form [formGroup]="form">
+    <mat-dialog-content>
+      <br>
+      <div class="col-xs-12">
+        <div class="col-xs-12">
+          <div class="col-xs-12 section-body">
+            <div class="row">
+              <label class="col-xs-12 col-sm-3">Tên công ty<span class="text-red">*</span></label>
+              <div class="col-xs-12 col-sm-9">
+                <input type="text" formControlName="employerName" class="form-control" maxlength="100">
+              </div>
+            </div>
+            <br>
+            <div class="row">
+            <label class="col-xs-12 col-sm-3">Số lượng nhân viên<span class="text-red">*</span></label>
+              <div class="col-xs-12 col-sm-9">
+                <input type="text" formControlName="numMember" class="form-control" maxlength="100">
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <label class="col-xs-12 col-sm-3">Thời gian làm việc<span class="text-red">*</span></label>
+              <div class="col-xs-12 col-sm-9">
+                <select formControlName="dayStart" class="form-control" style="float: left; width: 105px;">
+                    <option value="Thứ 2">Thứ 2</option>
+                    <option value="Thứ 3">Thứ 3</option>
+                    <option value="Thứ 4">Thứ 4</option>
+                    <option value="Thứ 5">Thứ 5</option>
+                    <option value="Thứ 6">Thứ 6</option>
+                    <option value="Thứ 7">Thứ 7</option>
+                    <option value="Chủ nhật">Chủ nhật</option>
+                </select>
+                <span style="float: left; width: 40px; margin-left: 10px; padding-top:7px">Đến </span>
+    
+                <select formControlName="dayEnd" class="form-control" style="float: left; width: 105px;">
+                    <option value="Thứ 2">Thứ 2</option>
+                    <option value="Thứ 3">Thứ 3</option>
+                    <option value="Thứ 4">Thứ 4</option>
+                    <option value="Thứ 5">Thứ 5</option>
+                    <option value="Thứ 6">Thứ 6</option>
+                    <option value="Thứ 7">Thứ 7</option>
+                    <option value="Chủ nhật">Chủ nhật</option>
+                </select>
+            </div>
+            </div>
+            <br>
+              
+            <div class="row">
+              <label class="col-xs-12 col-sm-3">Tỉnh/Thành phố <span class="text-red">*</span></label>
+              <div class="col-xs-12 col-sm-9">
+                <select #idProvince (change)="selectProvince(idProvince.value)" formControlName="province" class="form-control" title="Vui lòng chọn thành phố / tỉnh thành">
+                  <option value="">Chọn tỉnh/thành phố</option>
+                  <option *ngFor="let province of provinces" [value]="province.id">{{ province.name }}</option>
+                </select>
+              </div>
+            </div>
+            <br>
+            <div class="row" id="areaDistrict">
+              <label class="col-xs-12 col-sm-3">Quận/Huyện <span class="text-red">*</span></label>
+              <div class="col-xs-12 col-sm-9">
+                <select #idDistrict (change)="selectDistrict(idDistrict.value)" formControlName="district" class="form-control" title="Vui lòng chọn quận/huyện">
+                  <option value="">Chọn quận/huyện</option>
+                  <option *ngFor="let district of districts" [value]="district.id">{{ district.name }}</option>
+                </select>
+              </div>
+            </div>
+            <br>
+            <div class="row" id="areaDistrict">
+              <label class="col-xs-12 col-sm-3">Phường/Xã <span class="text-red">*</span></label>
+              <div class="col-xs-12 col-sm-9">
+                <select formControlName="ward" class="form-control" title="Vui lòng chọn phường/xã">
+                  <option value="">Chọn phường/xã</option>
+                  <option *ngFor="let ward of wards" [value]="ward.id">{{ ward.prefix +" "+ ward.name }}</option>
+                </select>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <label class="col-xs-12 col-sm-3">Địa chỉ <span class="text-red">*</span></label>
+              <div class="col-xs-12 col-sm-9">
+                <input type="text" class="form-control" formControlName="street" >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-dialog-content>
+  </form>
+  
+  <mat-dialog-actions class="footer-modal">
+    <button class="btn btn-default" (click)="close()">Đóng</button>
+    <span>&nbsp;</span>
+    <button class="btn btn-success" (click)="save()" [disabled]="form.invalid">Lưu lại</button>
+  </mat-dialog-actions>
+  

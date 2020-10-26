@@ -15,7 +15,9 @@ export class ImageService {
     
     let lengthOfFiles = images.files.length;
 
-    formData.append('files', images.files[lengthOfFiles-1]);
+    for(let i = 0; i < lengthOfFiles; i++) {
+      formData.append('files', images.files[i]);
+    }
     
     formData.append('jsonImageDTOs', JSON.stringify(images.imageDTOs))
 

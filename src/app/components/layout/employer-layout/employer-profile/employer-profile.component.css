@@ -1,0 +1,52 @@
+.panel-title  {
+    margin: 0 !important;
+    /* color: #373833 !important; */
+    font-weight: bold;
+    font-family: 'Segoe-ui';
+    font-size: 22px;
+}
+
+.panel-default>.panel-heading {
+    background-image: linear-gradient(to bottom,#fff 0,#dff0ff 100%) !important;
+}
+
+.upload-photo .upload-photo-menu {
+    position: absolute;
+    right: 0;
+    top: 26px;
+    z-index: 2;
+    min-width: 150px;
+    padding: 5px 0;
+    margin-bottom: 0;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0px 5px 10px #999;
+    list-style: none;
+    display: none;
+}
+
+
+.upload-photo-menu {
+    background: #fff;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.upload-photo-menu li label,
+.upload-photo-menu li a {
+    padding: 8px 20px;
+    color: #777;
+    display: block;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.upload-photo-menu li:hover {
+    background-color: #e9ebee;
+}
+
+.company-infor i {
+    width: 16px;
+    text-align: center;
+}

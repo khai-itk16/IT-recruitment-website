@@ -108,7 +108,6 @@ export class CandidateMakeCVComponent implements OnInit {
   ward: any
   accountId: any
   isChangeNumYearExperience: boolean = false
-  images: any = new Object()
   pathAvatar: String = "assets/images/avatar_120x160.png"
   urlConfig = new UrlConfig()
   imageAvatar: any
@@ -221,12 +220,13 @@ export class CandidateMakeCVComponent implements OnInit {
   }
 
   addAvatar(files) {
-    this.images.files = files;
+    let images: any = new Object()
+    images.files = files;
     if(this.imageAvatar != null) {
-      this.images.imageDTOs = [ this.imageAvatar ]
-      this.images.imageDTOs[0].accountDTO = { accountId: this.accountId }
+      images.imageDTOs = [ this.imageAvatar ]
+      images.imageDTOs[0].accountDTO = { accountId: this.accountId }
     } else {
-      this.images.imageDTOs = [
+      images.imageDTOs = [
         {
           accountDTO: {
             accountId: this.accountId
@@ -240,7 +240,7 @@ export class CandidateMakeCVComponent implements OnInit {
       ]
     }
 
-    console.log(this.images)
+    console.log(images)
     Swal.fire({
       title: 'Bạn có chắc chắn muốn cập nhật avatar không?',
       text: "Bạn không thể khôi phục lại nếu đã nhấn nút đồng ý",
@@ -252,7 +252,7 @@ export class CandidateMakeCVComponent implements OnInit {
       cancelButtonText: 'Hủy bỏ'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.imageService.addImages(this.images).subscribe(
+        this.imageService.addImages(images).subscribe(
           res => { 
             if(this.imageAvatar != null) {
               this.imageAvatar.imageName = res[0].imageName
@@ -285,7 +285,7 @@ export class CandidateMakeCVComponent implements OnInit {
     
   }
 
-  deleteAvater() {
+  deleteAvatar() {
     if(this.imageAvatar == null) {
       this.toastrService.error("Avatar của bạn chưa cập nhật", "ERROR", {
         timeOut: 3000,
@@ -311,7 +311,7 @@ export class CandidateMakeCVComponent implements OnInit {
         this.imageService.deleteImage(this.imageAvatar).subscribe(
           res => { 
             const index = this.candiateResume.accountDTO.imageDTOs.findIndex(imageDTO => imageDTO.avatar);
-            this.candiateResume.experienceDTOs.splice(index, 1)
+            this.candiateResume.accountDTO.imageDTOs.splice(index, 1)
             this.pathAvatar = "assets/images/avatar_120x160.png"
             this.toastrService.success("Xóa avatar thành công", "SUCCESS", {
               timeOut: 3000,

@@ -1,0 +1,7 @@
+::ng-deep .ck-editor__editable {
+    min-height: 315px !important;
+}
+
+.footer-modal {
+    padding: 20px 5px!important;
+}
