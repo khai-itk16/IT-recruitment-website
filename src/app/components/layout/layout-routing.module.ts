@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from 'src/app/guard/auth.guard';
 import { DetailRecruitmentComponent } from './detail-recruitment/detail-recruitment.component';
 import { HomeComponent } from './home/home.component';
 
@@ -25,7 +26,8 @@ const routes: Routes = [
       },
       {
         path: "candidate",
-        loadChildren: () => import("./candidate-layout/candidate-layout.module").then(m => m.CandidateLayoutModule)
+        loadChildren: () => import("./candidate-layout/candidate-layout.module").then(m => m.CandidateLayoutModule),
+        canActivate: [AuthGuard]
       },
       {
         path: "employer",

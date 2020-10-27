@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { RoleGuard } from 'src/app/guard/role.guard';
 import { EmployerLayoutComponent } from './employer-layout.component';
 import { EmployerProfileComponent } from './employer-profile/employer-profile.component';
+import { JobPostReviewComponent } from './job-post-review/job-post-review.component';
+import { JobPostComponent } from './job-post/job-post.component';
 
 
 const routes: Routes = [
@@ -16,7 +19,27 @@ const routes: Routes = [
       },
       {
         path: "profile",
-        component: EmployerProfileComponent
+        component: EmployerProfileComponent,
+        canActivate: [RoleGuard], 
+        data: { 
+          expectedRole: 'ROLE_EMPLOYER'
+        } 
+      },
+      {
+        path: "job-post",
+        component: JobPostComponent,
+        canActivate: [RoleGuard], 
+        data: { 
+          expectedRole: 'ROLE_EMPLOYER'
+        } 
+      },
+      {
+        path: "review-job-post",
+        component: JobPostReviewComponent,
+        canActivate: [RoleGuard], 
+        data: { 
+          expectedRole: 'ROLE_EMPLOYER'
+        } 
       }
     ]
   }

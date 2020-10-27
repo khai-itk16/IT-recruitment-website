@@ -1,0 +1,22 @@
+.page-content {
+    background-color: #fff;
+    margin: 10px auto;
+    width: 85%;
+}
+
+.form-horizontal {
+    margin: auto;
+    padding: 20px 60px;
+}
+
+.form-horizontal .form-control {
+    border-radius: 0 !important;
+}
+
+::ng-deep .ck-editor__editable {
+    min-height: 315px !important;
+}
+
+.footer-modal {
+    padding: 20px 5px!important;
+}

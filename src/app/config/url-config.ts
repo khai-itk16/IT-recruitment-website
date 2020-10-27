@@ -12,4 +12,5 @@ export class UrlConfig {
     urlSkill = this.host + "/api/skill"
     urlImage = this.host + "/api/images"
     urlEmployer = this.host + "/api/employer"
+    urlJobPost = this.host + "/api/job-post"
 }

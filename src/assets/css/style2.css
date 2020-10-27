@@ -1,5 +1,12 @@
 textarea { resize: none; }
 
+.text-validate {
+    color: orangered;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 12px;
+}
+
 .ck-editor__main p,
 .section-body p {
     margin: 0 !important;

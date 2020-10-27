@@ -10,6 +10,8 @@ import { ModalWorkBenifitComponent } from './modal-work-benifit/modal-work-benif
 import { MatDialogModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { JobPostComponent } from './job-post/job-post.component';
+import { JobPostReviewComponent } from './job-post-review/job-post-review.component';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     EmployerProfileComponent,
     ModalEmployerInfoComponent,
     ModalEmployerOverviewComponent,
-    ModalWorkBenifitComponent
+    ModalWorkBenifitComponent,
+    JobPostComponent,
+    JobPostReviewComponent
   ],
   imports: [
     CommonModule,
