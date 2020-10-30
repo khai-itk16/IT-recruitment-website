@@ -12,6 +12,7 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA
 } from '@angular/material';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -30,7 +31,8 @@ export class ModalLoginComponent implements OnInit {
     private dialogRef: MatDialogRef < ModalLoginComponent > ,
     @Inject(MAT_DIALOG_DATA) data,
     private authService: AuthService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -45,6 +47,7 @@ export class ModalLoginComponent implements OnInit {
         res => {
             console.log(res)
             localStorage.setItem('token', res.token)
+            this.router.navigate(['/home'])
         },
         error => { 
           console.log(error)

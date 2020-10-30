@@ -18,7 +18,8 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes,
     {
       preloadingStrategy: PreloadAllModules,
-      anchorScrolling: 'enabled'
+      anchorScrolling: 'enabled',
+      onSameUrlNavigation: 'reload'
     }  
   )],
   exports: [RouterModule]

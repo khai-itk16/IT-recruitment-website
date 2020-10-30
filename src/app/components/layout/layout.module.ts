@@ -11,6 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { DetailRecruitmentComponent } from './detail-recruitment/detail-recruitment.component';
 import { ModalLoginComponent } from './modal-login/modal-login.component';
 import { ModalRegisterComponent } from './modal-register/modal-register.component';
+import { HomeEmployerComponent } from './home-employer/home-employer.component';
+import { HomeCandidateComponent } from './home-candidate/home-candidate.component';
 
 
 @NgModule({
@@ -21,7 +23,7 @@ import { ModalRegisterComponent } from './modal-register/modal-register.componen
     HomeComponent, 
     DetailRecruitmentComponent, 
     ModalLoginComponent, 
-    ModalRegisterComponent
+    ModalRegisterComponent, HomeEmployerComponent, HomeCandidateComponent
   ],
   imports: [
     CommonModule,

@@ -12,6 +12,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { JobPostComponent } from './job-post/job-post.component';
 import { JobPostReviewComponent } from './job-post-review/job-post-review.component';
+import { JobPostCompleteComponent } from './job-post-complete/job-post-complete.component';
+import { ManageApplyComponent } from './manage-apply/manage-apply.component';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { JobPostReviewComponent } from './job-post-review/job-post-review.compon
     ModalEmployerOverviewComponent,
     ModalWorkBenifitComponent,
     JobPostComponent,
-    JobPostReviewComponent
+    JobPostReviewComponent,
+    JobPostCompleteComponent,
+    ManageApplyComponent
   ],
   imports: [
     CommonModule,

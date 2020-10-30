@@ -28,7 +28,7 @@ export class RoleGuard implements CanActivate {
         decodeToken.roles !== expectedRole
       ) {
         this.router.navigate(['/home']);
-        this.toastrService.error("Bạn không được cấp quyền truy cập vào đường dẫn đó", "ERROR", {
+        this.toastrService.error("Bạn không được cấp quyền truy cập", "ERROR", {
           timeOut: 3000,
           closeButton: true,
           progressBar: true,

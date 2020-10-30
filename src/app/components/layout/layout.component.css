@@ -1,0 +1,15 @@
+.back-to-top {
+    position: fixed;
+    z-index: 1000;
+    bottom: 25%;
+    right: 45px;
+    color: #808080;
+    transform: scale(3);
+    cursor: pointer;
+    display: none;
+    transition: 0.4s;
+}
+
+.back-to-top:hover {
+    color: #313e46;
+}

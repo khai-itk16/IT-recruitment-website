@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
+import { DecodeJwtService } from 'src/app/services/decode-jwt.service';
 import { LocationService } from 'src/app/services/location.service';
 import { ModalLoginComponent } from '../modal-login/modal-login.component';
 import { ModalRegisterComponent } from '../modal-register/modal-register.component';
@@ -14,12 +16,15 @@ import { ModalRegisterComponent } from '../modal-register/modal-register.compone
 export class HeaderComponent implements OnInit {
 
   provinces: Array<any>
+  isEmployer: boolean = false
 
   constructor(
     private locationService: LocationService,
     private dialog: MatDialog,
     private toastrService: ToastrService,
-    public authService: AuthService
+    public authService: AuthService,
+    private router: Router,
+    public decodeJwtService: DecodeJwtService
   ) { }
 
   ngOnInit(): void {
@@ -63,5 +68,10 @@ export class HeaderComponent implements OnInit {
         tapToDismiss: false
       });
     })
+  }
+
+  logoutUser() {
+    this.authService.logoutUser()
+    this.router.navigate(['/home'])
   }
 }

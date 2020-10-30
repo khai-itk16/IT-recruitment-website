@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'src/app/guard/auth.guard';
 import { DetailRecruitmentComponent } from './detail-recruitment/detail-recruitment.component';
+import { HomeCandidateComponent } from './home-candidate/home-candidate.component';
+import { HomeEmployerComponent } from './home-employer/home-employer.component';
 import { HomeComponent } from './home/home.component';
 
 import { LayoutComponent } from './layout.component';
@@ -19,6 +21,14 @@ const routes: Routes = [
       {
         path: "home",
         component: HomeComponent
+      },
+      {
+        path: "home-candidate",
+        component: HomeCandidateComponent
+      },
+      {
+        path: "home-employer",
+        component: HomeEmployerComponent
       },
       {
         path: "detail-recruitment",

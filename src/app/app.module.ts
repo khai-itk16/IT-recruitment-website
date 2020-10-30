@@ -13,6 +13,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { DecodeJwtService } from './services/decode-jwt.service';
 import { JobPositionService } from './services/job-position.service';
 import { JobTypeService } from './services/job-type.service';
+import { DataTransferService } from './services/data-transfer.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { JobTypeService } from './services/job-type.service';
     AuthService,
     DecodeJwtService,
     JobPositionService,
-    JobTypeService
+    JobTypeService,
+    DataTransferService
   ],
   bootstrap: [AppComponent]
 })

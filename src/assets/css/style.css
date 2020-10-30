@@ -362,7 +362,7 @@ header .btn-primary i{
 ----------------------------------- */
 footer{
 	border-top:1px solid #E5E5E5;
-	padding:50px 0 0;
+	padding: 20px 0;
 }
 footer .matter{
 	width: 41%;
@@ -391,24 +391,15 @@ footer p{
 footer ul{
 	margin:0 !important;
 }
-footer .links li:first-child, footer .links li:nth-child(3), footer .links li:nth-child(5), footer .links li:nth-child(7), footer .links li:nth-child(9){
-	width:37%;
-}
-footer .links li:nth-child(2), footer .links li:nth-child(4), footer .links li:nth-child(6), footer .links li:nth-child(8), footer .links li:last-child{
-	width:60%;
-}
 footer .links li{
-	padding:0 0 5px;
-	line-height:12px;
-}
-footer .links li:last-child{
-	padding:0;
+	width:100%;
 }
 footer .links li a{
 	font-size:14px;
 	font-weight:400;
 	color:#686868;
-	line-height:24px;
+	line-height:14px;
+	cursor: pointer;
 }
 footer .links li a:hover{
 	color:#FED700;

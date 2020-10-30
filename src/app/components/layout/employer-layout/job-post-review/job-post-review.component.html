@@ -1,1 +1,54 @@
-<p>job-post-review works!</p>
+<div class="container">
+  <div class="page-content">
+    <div class="col-xl-12 process-bar">
+        <div class="row post-step">
+            <div class="col-xs-4 post-step-step active">
+                <div class="progress">
+                    <div class="progress-bar"></div>
+                </div>
+                <a class="post-step-num">1</a>
+                <div class="post-step-info text-center">Tạo tin</div>
+            </div>
+            <div class="col-xs-4 post-step-step active">
+                <div class="progress">
+                    <div class="progress-bar"></div>
+                </div>
+                <a class="post-step-num">2</a>
+                <div class="post-step-info text-center">Kiểm tra lại</div>
+            </div>
+            <div class="col-xs-4 post-step-step">
+                <div class="progress">
+                    <div class="progress-bar"></div>
+                </div>
+                <a class="post-step-num">3</a>
+                <div class="post-step-info text-center">Hoàn tất</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-12 page-inner">
+      <div class="section-body">
+        <div class="job_description">
+          <div class="title-apply-line">
+            <h2 class="title">Mô Tả Công Việc</h2>
+            <div class="clearfix"></div>
+          </div>
+          <div id="job_description">
+            
+          </div>
+        </div>
+        <div class="skills_experience">
+          <h2 class="title">Yêu Cầu Công Việc</h2>
+          <div id="skills_experience">
+            
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="text-center">
+        <button type="button" class="btn btn-default" (click)="goBack()" style="font-weight: bold;"><i style="font-size: 10px;" class="fa fa-chevron-left" aria-hidden="true"></i> Quay lại</button>
+        <span>&nbsp;&nbsp;</span>
+        <button type="button" class="btn btn-warning" (click)="save()" style="font-weight: bold;">Đăng tuyển <i style="font-size: 10px;" class="fa fa-chevron-right" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,111 +1,151 @@
 <div class="container">
   <div class="page-content">
-    <form class="form-horizontal" [formGroup]="form">
-        <div class="row">
-            <label class="col-md-3">Tên bài đăng<span class="text-red">*</span></label>
-            <div class="col-md-7">
-                <input type="text" formControlName="jobTitle" class="form-control">
-                <div *ngIf="formControl.jobTitle?.errors 
-                    && (formControl.jobTitle?.touched || formControl.jobTitle?.dirty)">
-                    <div *ngIf="formControl.jobTitle.errors?.required"  class="text-validate">
-                        Tên bài đăng không được để trống. Bạn vui lòng nhập vào.
+    <div class="col-xl-12 process-bar">
+        <div class="row post-step">
+            <div class="col-xs-4 post-step-step active">
+                <div class="progress">
+                    <div class="progress-bar"></div>
+                </div>
+                <a class="post-step-num">1</a>
+                <div class="post-step-info text-center">Tạo tin</div>
+            </div>
+            <div class="col-xs-4 post-step-step">
+                <div class="progress">
+                    <div class="progress-bar"></div>
+                </div>
+                <a class="post-step-num">2</a>
+                <div class="post-step-info text-center">Kiểm tra lại</div>
+            </div>
+            <div class="col-xs-4 post-step-step">
+                <div class="progress">
+                    <div class="progress-bar"></div>
+                </div>
+                <a class="post-step-num">3</a>
+                <div class="post-step-info text-center">Hoàn tất</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-12 page-inner">
+        <form class="form-horizontal" [formGroup]="form">
+            <div class="row">
+                <label class="col-md-3">Mã bài đăng<span class="text-red">*</span></label>
+                <div class="col-md-7">
+                    <input type="text" formControlName="jobCode" class="form-control">
+                    <div *ngIf="formControl.jobCode?.errors 
+                        && (formControl.jobCode?.touched || formControl.jobCode?.dirty)">
+                        <div *ngIf="formControl.jobCode.errors?.required"  class="text-validate">
+                            Mã bài đăng không được để trống. Bạn vui lòng nhập vào.
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <br>
-        <div class="row">
-            <label class="col-md-3">Vị trí cần tuyển<span class="text-red">*</span></label>
-            <div class="col-md-7">
-                <select class="form-control" formControlName="jobPositionId">
-                    <option value="">Chọn vị trí tuyển dụng</option>
-                    <option *ngFor="let jobPosition of jobPositions" 
-                      [value]="jobPosition?.jobPositionId">{{ jobPosition?.jobPositionName }}</option>
-                </select>
-                <div *ngIf="formControl.jobPositionId?.errors 
-                    && (formControl.jobPositionId?.touched || formControl.jobPositionId?.dirty)">
-                    <div *ngIf="formControl.jobPositionId.errors?.required"  class="text-validate">
-                        Bạn chưa chọn vị trí tuyển dụng.
+            <br>
+            <div class="row">
+                <label class="col-md-3">Tên bài đăng<span class="text-red">*</span></label>
+                <div class="col-md-7">
+                    <input type="text" formControlName="jobTitle" class="form-control">
+                    <div *ngIf="formControl.jobTitle?.errors 
+                        && (formControl.jobTitle?.touched || formControl.jobTitle?.dirty)">
+                        <div *ngIf="formControl.jobTitle.errors?.required"  class="text-validate">
+                            Tên bài đăng không được để trống. Bạn vui lòng nhập vào.
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <br>
-        <div class="row">
-            <label class="col-md-3">Hình thức tuyển<span class="text-red">*</span></label>
-            <div class="col-md-9">
-                <div class="">
-                    <label class="radio-inline" *ngFor="let jobType of jobTypes">
-                      <input type="radio" formControlName="jobTypeId" [value]="jobType?.jobTypeId">
-                      {{ jobType?.jobTypeName }}
-                    </label>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <label class="col-md-3">Số năm kinh nghiệm tốt thiểu<span class="text-red">*</span></label>
-            <div class="col-md-3">
-                <input type="number" formControlName="numYearExperience" class="form-control">
-            </div>
-            <div *ngIf="formControl.numYearExperience?.errors 
-                && (formControl.numYearExperience?.touched || formControl.numYearExperience?.dirty)">
-                <div *ngIf="formControl.numYearExperience.errors?.required"  class="text-validate">
-                    Bạn chưa nhập yêu cầu về số năm kinh nghiệm.
-                </div>
-                <div *ngIf="formControl.numYearExperience.errors?.min"  class="text-validate">
-                    Năm kinh nghiệp không được là một số âm.
-                </div>
-                <div *ngIf="formControl.numYearExperience.errors?.max"  class="text-validate">
-                    Năm kinh nghiệp không được là một số quá 60
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <label class="col-md-3">Hạn nộp hồ sơ<span class="text-red">*</span></label>
-            <div class="col-md-3">
-                <input type="date" formControlName="expirePostTime" class="form-control">
-            </div>
-            <div *ngIf="formControl.expirePostTime?.errors 
-                && (formControl.expirePostTime?.touched || formControl.expirePostTime?.dirty)">
-                <div *ngIf="formControl.expirePostTime.errors?.required"  class="text-validate">
-                    Bạn chưa chọn hạn nộp hồ sơ.
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <label class="col-md-3">Mô tả công việc<span class="text-red">*</span></label>
-            <div class="col-md-9">
-                <ckeditor formControlName="jobDescription" [config]="editorConfig" [editor]="editor" [(ngModel)]="contentEditorDescription" name="contentEditorDescription"></ckeditor>
-                <div *ngIf="formControl.jobDescription?.errors 
-                    && (formControl.jobDescription?.touched || formControl.jobDescription?.dirty)">
-                    <div *ngIf="formControl.jobDescription.errors?.required"  class="text-validate">
-                        Bạn chưa nhập mô tả về công việc.
+            <br>
+            <div class="row">
+                <label class="col-md-3">Vị trí cần tuyển<span class="text-red">*</span></label>
+                <div class="col-md-7">
+                    <select class="form-control" formControlName="jobPositionId">
+                        <option value="">Chọn vị trí tuyển dụng</option>
+                        <option *ngFor="let jobPosition of jobPositions" 
+                        [value]="jobPosition?.jobPositionId">{{ jobPosition?.jobPositionName }}</option>
+                    </select>
+                    <div *ngIf="formControl.jobPositionId?.errors 
+                        && (formControl.jobPositionId?.touched || formControl.jobPositionId?.dirty)">
+                        <div *ngIf="formControl.jobPositionId.errors?.required"  class="text-validate">
+                            Bạn chưa chọn vị trí tuyển dụng.
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <br>
-        <div class="row">
-            <label class="col-md-3">Yêu cầu công việc<span class="text-red">*</span></label>
-            <div class="col-md-9">
-                <ckeditor formControlName="jobRequire" [config]="editorConfig" [editor]="editor" [(ngModel)]="contentEditorRequire" name="contentEditorRequire"></ckeditor>
-                <div *ngIf="formControl.jobRequire?.errors 
-                    && (formControl.jobRequire?.touched || formControl.jobRequire?.dirty)">
-                    <div *ngIf="formControl.jobRequire.errors?.required"  class="text-validate">
-                        Bạn chưa nhập yêu cầu công việc để ứng viên ứng tuyển.
+            <br>
+            <div class="row">
+                <label class="col-md-3">Hình thức tuyển<span class="text-red">*</span></label>
+                <div class="col-md-9">
+                    <div class="">
+                        <label class="radio-inline" *ngFor="let jobType of jobTypes">
+                        <input type="radio" formControlName="jobTypeId" [value]="jobType?.jobTypeId">
+                        {{ jobType?.jobTypeName }}
+                        </label>
                     </div>
                 </div>
             </div>
-        </div>
-        <br>
-        <div class="row action-job-post">
-            <div class="col-md-12 text-center">
-                <button type="button" [disabled]="form.invalid" class="btn btn-warning" (click)="save()" style="font-weight: bold;">Tiếp tục <i style="font-size: 10px;" class="fa fa-chevron-right" aria-hidden="true"></i></button>
+            <br>
+            <div class="row">
+                <label class="col-md-3">Số năm kinh nghiệm tốt thiểu<span class="text-red">*</span></label>
+                <div class="col-md-3">
+                    <input type="number" formControlName="numYearExperience" class="form-control">
+                </div>
+                <div *ngIf="formControl.numYearExperience?.errors 
+                    && (formControl.numYearExperience?.touched || formControl.numYearExperience?.dirty)">
+                    <div *ngIf="formControl.numYearExperience.errors?.required"  class="text-validate">
+                        Bạn chưa nhập yêu cầu về số năm kinh nghiệm.
+                    </div>
+                    <div *ngIf="formControl.numYearExperience.errors?.min"  class="text-validate">
+                        Năm kinh nghiệp không được là một số âm.
+                    </div>
+                    <div *ngIf="formControl.numYearExperience.errors?.max"  class="text-validate">
+                        Năm kinh nghiệp không được là một số quá 60
+                    </div>
+                </div>
             </div>
-        </div>
-    </form>
+            <br>
+            <div class="row">
+                <label class="col-md-3">Hạn nộp hồ sơ<span class="text-red">*</span></label>
+                <div class="col-md-3">
+                    <input type="date" formControlName="expirePostTime" class="form-control">
+                </div>
+                <div *ngIf="formControl.expirePostTime?.errors 
+                    && (formControl.expirePostTime?.touched || formControl.expirePostTime?.dirty)">
+                    <div *ngIf="formControl.expirePostTime.errors?.required"  class="text-validate">
+                        Bạn chưa chọn hạn nộp hồ sơ.
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <label class="col-md-3">Mô tả công việc<span class="text-red">*</span></label>
+                <div class="col-md-9">
+                    <ckeditor formControlName="jobDescription" [config]="editorConfig" [editor]="editor" [(ngModel)]="contentEditorDescription" name="contentEditorDescription"></ckeditor>
+                    <div *ngIf="formControl.jobDescription?.errors 
+                        && (formControl.jobDescription?.touched || formControl.jobDescription?.dirty)">
+                        <div *ngIf="formControl.jobDescription.errors?.required"  class="text-validate">
+                            Bạn chưa nhập mô tả về công việc.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <label class="col-md-3">Yêu cầu công việc<span class="text-red">*</span></label>
+                <div class="col-md-9">
+                    <ckeditor formControlName="jobRequire" [config]="editorConfig" [editor]="editor" [(ngModel)]="contentEditorRequire" name="contentEditorRequire"></ckeditor>
+                    <div *ngIf="formControl.jobRequire?.errors 
+                        && (formControl.jobRequire?.touched || formControl.jobRequire?.dirty)">
+                        <div *ngIf="formControl.jobRequire.errors?.required"  class="text-validate">
+                            Bạn chưa nhập yêu cầu công việc để ứng viên ứng tuyển.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row action-job-post">
+                <div class="col-md-12 text-center">
+                    <button type="button" [disabled]="form.invalid" class="btn btn-warning" (click)="save()" style="font-weight: bold;">Tiếp tục <i style="font-size: 10px;" class="fa fa-chevron-right" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
   </div>
 </div>

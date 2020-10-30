@@ -133,3 +133,51 @@
 .paragraph ol {
     padding-left: 20px !important;
 }
+
+.post-step div.post-step-step:first-child {
+    padding-left: 15px;
+}
+
+.post-step div.post-step-step:last-child {
+    padding-right: 15px;
+}
+
+
+.post-step>.post-step-step {
+    padding: 1px;
+    position: relative;
+}
+
+.post-step>.post-step-step>.progress {
+    position: relative;
+    border-radius: 0;
+    height: 8px;
+    box-shadow: none;
+    margin-top: 37px;
+}
+
+.post-step>.post-step-step.active>.progress>.progress-bar {
+    width: 100%;
+    background: #E97926;
+}
+
+.post-step>.post-step-step>.post-step-num {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    display: block;
+    background: #E97926;
+    left: 50%;
+    margin-top: -35px;
+    margin-left: -15px;
+    padding-top: 3px;
+    border-radius: 50%;
+    text-align: center;
+    font-weight: 700;
+    font-size: 13px;
+    color: #FFF;
+}
+
+.post-step div.post-step-step:first-child .post-step-info {
+    margin-left: -30px;
+}

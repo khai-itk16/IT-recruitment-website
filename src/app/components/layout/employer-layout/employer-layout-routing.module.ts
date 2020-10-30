@@ -3,8 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { RoleGuard } from 'src/app/guard/role.guard';
 import { EmployerLayoutComponent } from './employer-layout.component';
 import { EmployerProfileComponent } from './employer-profile/employer-profile.component';
+import { JobPostCompleteComponent } from './job-post-complete/job-post-complete.component';
 import { JobPostReviewComponent } from './job-post-review/job-post-review.component';
 import { JobPostComponent } from './job-post/job-post.component';
+import { ManageApplyComponent } from './manage-apply/manage-apply.component';
 
 
 const routes: Routes = [
@@ -36,6 +38,22 @@ const routes: Routes = [
       {
         path: "review-job-post",
         component: JobPostReviewComponent,
+        canActivate: [RoleGuard], 
+        data: { 
+          expectedRole: 'ROLE_EMPLOYER'
+        } 
+      },
+      {
+        path: "complete-job-post",
+        component: JobPostCompleteComponent,
+        canActivate: [RoleGuard], 
+        data: { 
+          expectedRole: 'ROLE_EMPLOYER'
+        } 
+      },
+      {
+        path: "manage-apply/:jobPostId",
+        component: ManageApplyComponent,
         canActivate: [RoleGuard], 
         data: { 
           expectedRole: 'ROLE_EMPLOYER'

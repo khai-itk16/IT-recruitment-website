@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { ToastrService } from 'ngx-toastr';
+import { DataTransferService } from 'src/app/services/data-transfer.service';
 import { DecodeJwtService } from 'src/app/services/decode-jwt.service';
 import { JobPositionService } from 'src/app/services/job-position.service';
-import { JobPostService } from 'src/app/services/job-post.service';
 import { JobTypeService } from 'src/app/services/job-type.service';
 
 @Component({
@@ -41,15 +40,14 @@ export class JobPostComponent implements OnInit {
     private jobPositionService: JobPositionService,
     private jobTypeService: JobTypeService,
     private fb: FormBuilder,
-    private jobPostService: JobPostService,
     private decodeJwtService: DecodeJwtService,
-    private toastrService: ToastrService,
-    private route: ActivatedRoute,
+    private dataTransferService: DataTransferService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
+      jobCode: ["", [Validators.required]],
       jobTitle: ["", [Validators.required]],
       jobPositionId: ["", [Validators.required]],
       jobTypeId: [2, [Validators.required]],
@@ -97,6 +95,7 @@ export class JobPostComponent implements OnInit {
         jobPositionId: Number(formValue.jobPositionId)
       },
       jobPostId: 0,
+      jobCode: formValue.jobCode,
       jobRequire: formValue.jobRequire,
       jobTitle: formValue.jobTitle,
       jobTypeEntity: {
@@ -107,28 +106,9 @@ export class JobPostComponent implements OnInit {
         statusId: 1
       }
     }
-    this.jobPostService.addJobPost(jobPost).subscribe(
-      res => {
-        this.toastrService.success("Tạo bài đăng thành công", "SUSCCESS", {
-          timeOut: 3000,
-          closeButton: true,
-          progressBar: true,
-          progressAnimation: 'increasing',
-          tapToDismiss: false
-        })
-        this.router.navigate(['/employer/review-job-post'])
-      },
-      error => {
-        console.log(error)
-        this.toastrService.error("Có lỗi trong quá trình tạo bài đăng. Vui lòng kiểm tra lại", "ERROR", {
-          timeOut: 3000,
-          closeButton: true,
-          progressBar: true,
-          progressAnimation: 'increasing',
-          tapToDismiss: false
-        })
-      }
-    )
+
+    this.dataTransferService.setpreviewdata(jobPost)
+    this.router.navigate(['/employer/review-job-post'])
   }
 
 }
