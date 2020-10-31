@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RoleGuard } from 'src/app/guard/role.guard';
 import { CandidateCvComponent } from './candidate-cv/candidate-cv.component';
+import { CandidateJobSaveComponent } from './candidate-job-save/candidate-job-save.component';
 import { CandidateLayoutComponent } from './candidate-layout.component';
 import { CandidateMakeCVComponent } from './candidate-make-cv/candidate-make-cv.component';
 import { CandidateProfileComponent } from './candidate-profile/candidate-profile.component';
@@ -20,7 +21,7 @@ const routes: Routes = [
       {
         path: "profile",
         component: CandidateProfileComponent,
-        canActivate: [RoleGuard], 
+        canActivate: [RoleGuard],
         data: { 
           expectedRole: 'ROLE_CANDIDATE'
         } 
@@ -32,6 +33,14 @@ const routes: Routes = [
       {
         path: "make-cv",
         component: CandidateMakeCVComponent,
+        canActivate: [RoleGuard], 
+        data: { 
+          expectedRole: 'ROLE_CANDIDATE'
+        } 
+      },
+      {
+        path: "job-save",
+        component: CandidateJobSaveComponent,
         canActivate: [RoleGuard], 
         data: { 
           expectedRole: 'ROLE_CANDIDATE'

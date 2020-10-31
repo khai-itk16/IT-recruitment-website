@@ -29,7 +29,10 @@ export class ModalEmployerInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.provinces = this.locationService.readData()
-    let workTime = this.data?.workTime.split(" - ")
+    let workTime = this.data?.workTime?.split(" - ")
+    if(workTime == null) {
+      workTime = ["Thứ 2", "Thứ 6"]
+    }
 
     this.form = this.fb.group({
       employerName: [this.data?.employerName, [Validators.required]],
@@ -80,6 +83,7 @@ export class ModalEmployerInfoComponent implements OnInit {
     this.data.accountDTO.addressEntity.ward = formValue.ward
     this.data.accountDTO.addressEntity.street = formValue.street
     this.data.employerName = formValue.employerName
+    this.data.numMember = formValue.numMember
     this.data.workTime = `${formValue.dayStart} - ${formValue.dayEnd}`
 
     this.employerService.updateEmployer(this.data).subscribe(

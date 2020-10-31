@@ -120,20 +120,23 @@ textarea { resize: none; }
 
 .job-item {
     position: relative;
+    margin: 10px 5px;
 }
 
 .job-item .figure {
-    margin-top: 5px;
     padding: 15px;
     border: 1px solid #E5E5E5;
     display: flex;
     background-color: #fff;
+    transform: scale(0.96);
+    transition: 0.4s;
+    margin: auto;
 }
 
 .job-item .figure:hover {
     z-index: 5;
-    border-color: transparent;
-    box-shadow: 0 0 5px 1px #bcbcbc;
+    box-shadow: 0px 0px 5px 1px #bcbcbc;
+    transform: scale(0.98);
 }
 
 .job-item .figure .image {
@@ -222,9 +225,9 @@ textarea { resize: none; }
 .job-item .bottom-right-icon {
     position: absolute;
     right: 30px;
-    bottom: 25px;
-    font-weight: 600;
+    bottom: 30px;
     color: #5d677a;
+    font-style: italic;
 }
 
 .toollips {
@@ -330,6 +333,7 @@ textarea { resize: none; }
 .more_jobs .employer-profile {
     padding-top: 16px;
     text-align: center;
+    position: relative;
 }
 
 .more_jobs .links a, 
@@ -339,16 +343,20 @@ textarea { resize: none; }
     text-decoration: none;
     border-bottom: 1px dotted #ea2635;
     outline: none;
+    width: 45%;
+    margin: auto;
 }
 
 .more_jobs .links:after {
     display: inline-block;
     content: "";
-    position: relative;
+    position: absolute;
     border-left: solid 4px #ea2635;
     border-top: solid 4px transparent;
     border-bottom: solid 4px transparent;
     margin-left: 5px;
+    bottom: 5px;
+    right: 50px;
 }
 
 .saved-wrapper {

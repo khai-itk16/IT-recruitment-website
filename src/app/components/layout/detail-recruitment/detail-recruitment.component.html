@@ -1,5 +1,5 @@
 <div class="content">
-  <div class="jd-photos-container">
+  <!-- <div class="jd-photos-container">
     <div class="jd-photos" data-index="0"
       style="background-image: url(https://cdn.itviec.com/photos/43663/jd_photo_thumbnail/jd_photo_thumbnail-1567388.jpg?cgv9PQRqKR4Mjs1m1F4hKW5N);">
     </div>
@@ -10,29 +10,29 @@
       style="background-image: url(https://cdn.itviec.com/photos/43842/jd_photo_thumbnail/jd_photo_thumbnail-1567468.jpg?jQTNMcPQUvhcBPGYYocuSdYo);">
     </div>
 
-  </div>
+  </div> -->
 
   <div class="main-entity">
     <div class="side_bar col-md-3">
       <div class="inside">
         <div class="logo">
-          <a data-controller="utm-tracking" href="/nha-tuyen-dung/newwave-solutions"><img
-              alt="Newwave Solutions Vietnam Big Logo"
-              src="https://cdn.itviec.com/employers/newwave-solutions/logo/w170/j3EVYu8xYukuvk6abeX46xew/logo-nws-2_latest.jpg">
+          <a>
+            <img [src]="getImage()">
           </a></div>
         <div class="employer-info">
           <h3 class="name">
-            <a data-controller="utm-tracking" href="/nha-tuyen-dung/newwave-solutions">Newwave Solutions</a>
+            <a>{{ jobPost?.employerResumeDTO?.employerName }}</a>
           </h3>
           <div class="basic-info">
-            <div class="short">
+            <!-- <div class="short">
               <div style="text-align: left">A software solutions provider and software outsourcing company </div>
+            </div> -->
+            <div><i class="fa fa-users" aria-hidden="true"></i>{{ jobPost?.employerResumeDTO?.numMember }} thành viên
             </div>
-            <div><i class="fa fa-users" aria-hidden="true"></i>51-150</div>
             <div class="working-date">
               <i class="fa fa-calendar"></i>
               <span>
-                Thứ 2 - Thứ 6
+                {{ jobPost?.employerResumeDTO?.workTime }}
               </span>
             </div>
             <div class="overtime">
@@ -46,20 +46,19 @@
         <div class="employer-jobs-info">
           <div class="more_jobs">
             <div class="employer-profile links">
-              <a data-controller="utm-tracking" href="#">Về chúng tôi</a>
+              <a [routerLink]="['/introduce-employer', jobPost?.employerResumeDTO?.accountId]">Về chúng tôi</a>
             </div>
           </div>
-
         </div>
       </div>
       <div class="outside-jr">
         <div class="saved-wrapper">
-            <a class="saved-job">
-                <i class="fa fa-heart-o" aria-hidden="true"></i>
-                <div class="saved-text saved-text-default">
-                    <span class="save_job">Lưu việc làm này</span>
-                </div>
-            </a>
+          <a class="saved-job">
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+            <div class="saved-text saved-text-default">
+              <span class="save_job">Lưu việc làm này</span>
+            </div>
+          </a>
         </div>
 
       </div>
@@ -69,65 +68,52 @@
       <div class="header">
         <div class="job_info">
           <h1 class="job_title">
-            [HN] 5 Lập trình viên Java/Mobile
+            {{ jobPost?.jobTitle }}
           </h1>
           <div class="clearfix"></div>
-          <div class="salary">
-            <i class="fa fa-money" aria-hidden="true"></i>
-            <span class="salary-text">
-              700 - 1,500 USD
-            </span>
-          </div>
-
           <div class="address-wrapper">
             <i class="fa fa-map-marker" aria-hidden="true"></i>
             <div class="address">
-              <span> Duong Dinh Nghe, Cau Giay, Ha Noi</span>
+              <span>{{ getAddress() }}</span>
             </div>
-            <a target="_blank" class="address-map" href="https://www.google.com/maps?q= Duong Dinh Nghe, Cau Giay, Ha Noi">
+            <a target="_blank" class="address-map" [href]="'https://www.google.com/maps?q=' + getAddress()">
               Xem bản đồ
             </a>
           </div>
           <div class="address">
             <div class="clearfix"></div>
           </div>
-          <div class="distance-time-job-posted highlight">
+          <div class="expire-time-job">
             <i class="fa fa-calendar"></i>
-            7 giờ trước
-          </div>
-          <div class="action action-line-top">
-            <a>Ứng Tuyển</a>
+            Hạn nộp hồ sơ:
+            <span style="color: #337ab7;">{{ jobPost?.expirePostTime |date: "dd/MM/yyyy" }}</span>
           </div>
           <div class="clearfix"></div>
         </div>
       </div>
-      <div class="love_working_here">
-        <h2 class="title">Tại Sao Bạn Sẽ Yêu Thích Làm Việc Tại Đây</h2>
-        <div class="culture_description">
-          <p></p>
-          <ul>
-            <li>Lương:&nbsp;<strong>Từ 700$ -$1500 (Gross)</strong>, được xem xét tăng lương hàng năm theo năng lực và
-              hiệu quả công việc;</li>
-            <li>Thử việc được hưởng 100% lương;</li>
-            <li>Thưởng lễ tết, thưởng lương tháng 13; thưởng cuối năm theo tình hình sản xuất kinh doanh;</li>
-            <li>Hưởng đầy đủ các chế độ bảo hiểm và được công ty hỗ trợ hoàn toàn chi phí gói BH sức khỏe của PTI</li>
-            <li>Cơ hội làm việc với các khách hàng lớn, công nghệ tiên tiến, phát triển bản thân…;</li>
-            <li>Hưởng trợ cấp khi onsite bên khách hàng; trợ cấp tiếng Nhật theo năng lực;</li>
-            <li>Được tặng quà, thăm hỏi nhân các dịp sinh nhật, cưới hỏi, hiếu hỉ, ốm đau…</li>
-            <li>Làm việc trong môi trường hiện đại, trẻ trung,&nbsp;dân chủ với nhiều hoạt động văn hóa tinh thần: du
-              lịch, nghỉ dưỡng, party sự kiện…</li>
-            <li>Tham gia các buổi training của công ty,&nbsp;lớp tiếng Nhật (nếu có nhu cầu);</li>
-            <li>Thưởng đột xuất khi có thành tích, thưởng dự án; thưởng nhân viên xuất sắc nhất hàng tháng; thưởng giới
-              thiệu ứng viên</li>
-          </ul>
-          <p><strong>Nơi làm việc:</strong> Tại trụ sở công ty hoặc công ty khách hàng (Chi tiết trao đổi trong cuộc
-            phỏng vấn)</p>
-          <p><strong>Giờ làm việc</strong>: Làm việc từ T2-T6; nghỉ T7, CN, Lễ Tết.</p>
-          <p></p>
+      <div class="job_description">
+        <div class="title-apply-line">
+          <h2 class="title">Mô Tả Công Việc</h2>
+          <div class="clearfix"></div>
+        </div>
+        <div class="description">
+          
         </div>
       </div>
-      <div class="action">
-        <a>Ứng Tuyển</a>
+      <div class="skills_experience">
+        <h2 class="title">Yêu Cầu Công Việc</h2>
+        <div class="experience">
+          
+        </div>
+      </div>
+      <div class="love_working_here">
+        <h2 class="title">Thông điệp từ công ty</h2>
+        <div class="culture_description">
+          <!-- content set by js -->
+        </div>
+      </div>
+      <div class="apply text-center">
+        <a class="btn btn-success btn-lg">Ứng Tuyển</a>
       </div>
     </div>
   </div>

@@ -18,6 +18,7 @@ import { ModalSkillComponent } from './modal-skill/modal-skill.component';
 import { ModalEducationComponent } from './modal-education/modal-education.component';
 import { CandidateCvComponent } from './candidate-cv/candidate-cv.component';
 import { ModalForeignLangugeComponent } from './modal-foreign-languge/modal-foreign-languge.component';
+import { CandidateJobSaveComponent } from './candidate-job-save/candidate-job-save.component';
 
 
 
@@ -35,7 +36,8 @@ import { ModalForeignLangugeComponent } from './modal-foreign-languge/modal-fore
     ModalSkillComponent,
     ModalEducationComponent,
     CandidateCvComponent,
-    ModalForeignLangugeComponent
+    ModalForeignLangugeComponent,
+    CandidateJobSaveComponent
   ],
   imports: [
     CommonModule,

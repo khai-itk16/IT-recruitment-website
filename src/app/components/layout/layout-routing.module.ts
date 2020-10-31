@@ -5,6 +5,7 @@ import { DetailRecruitmentComponent } from './detail-recruitment/detail-recruitm
 import { HomeCandidateComponent } from './home-candidate/home-candidate.component';
 import { HomeEmployerComponent } from './home-employer/home-employer.component';
 import { HomeComponent } from './home/home.component';
+import { IntroduceEmployerComponent } from './introduce-employer/introduce-employer.component';
 
 import { LayoutComponent } from './layout.component';
 
@@ -31,8 +32,12 @@ const routes: Routes = [
         component: HomeEmployerComponent
       },
       {
-        path: "detail-recruitment",
+        path: "detail-recruitment/:id",
         component: DetailRecruitmentComponent
+      },
+      {
+        path: "introduce-employer/:id",
+        component: IntroduceEmployerComponent
       },
       {
         path: "candidate",

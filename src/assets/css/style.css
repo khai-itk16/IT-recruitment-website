@@ -2285,8 +2285,9 @@ footer .powered p span{
     border:1px solid #ddd;
 }
 .panel-default > .panel-heading {
-    color: #333;
-    background-color: #f5f5f5;
+    color: #fff;
+    background: #313e46;
+	text-align: center;
 }
 .panel-group .panel {
     margin-bottom: 0;

@@ -36,7 +36,6 @@ export class CandidateProfileComponent implements OnInit {
     let accountId = this.decodeJwtService.getDecodedAccessToken().id;
     await this.candidateCVService.getCandidateResume(accountId).subscribe(
       res => {
-        console.log(res)
         this.candiateResume = res
         this.imageAvatar = this.candiateResume.accountDTO.imageDTOs.find(imageDTO => imageDTO.avatar)
         if(this.imageAvatar != null) {

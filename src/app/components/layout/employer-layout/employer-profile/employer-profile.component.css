@@ -1,13 +1,8 @@
 .panel-title  {
     margin: 0 !important;
     /* color: #373833 !important; */
-    font-weight: bold;
-    font-family: 'Segoe-ui';
-    font-size: 22px;
-}
-
-.panel-default>.panel-heading {
-    background-image: linear-gradient(to bottom,#fff 0,#dff0ff 100%) !important;
+    font: 400 16px/28px Roboto,"Helvetica Neue",sans-serif;
+    font-size: 20px;
 }
 
 .upload-photo .upload-photo-menu {

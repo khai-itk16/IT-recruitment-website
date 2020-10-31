@@ -29,7 +29,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.provinces = this.locationService.readData()
-    console.log(this.provinces)
   }
 
   openLoginDialog() {

@@ -45,7 +45,6 @@ export class ModalLoginComponent implements OnInit {
   save() {
     this.authService.loginUser(this.form.value).subscribe(
         res => {
-            console.log(res)
             localStorage.setItem('token', res.token)
             this.router.navigate(['/home'])
         },

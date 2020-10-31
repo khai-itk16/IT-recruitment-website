@@ -7,7 +7,7 @@ import  *  as  data  from  'src/assets/local.json';
 })
 export class LocationService {
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
   
   readData() {
     return (data  as  any).default;

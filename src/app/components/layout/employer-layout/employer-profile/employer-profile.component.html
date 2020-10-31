@@ -70,10 +70,7 @@
               <div class="location-company">
                 <i class="fa fa-map-marker"></i>
                 <span>
-                  {{ employerResume?.accountDTO?.addressEntity?.street + ", " +
-                  ward?.name + ", " +
-                  district?.name + ", " +
-                  provice?.name }}
+                  {{ getAddress() }}
                 </span>
               </div>
               <div class="num-member">

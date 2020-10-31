@@ -52,12 +52,21 @@ export class EmployerProfileComponent implements OnInit {
         this.indexImageBanner = this.employerResume?.accountDTO?.imageDTOs?.findIndex(imageDTO => imageDTO.banner);
         $("#overview").html(this.employerResume?.overview)
         $("#work-reason").html(this.employerResume?.description)
-        this.setLocation()
       },
       error => {
         console.log(error)
       }
     )
+  }
+
+  getAddress() {
+    let addressObj = this.employerResume?.accountDTO?.addressEntity
+    let provices = this.locationService.readData();
+    let proviceObj = provices.find(province => province.id == addressObj?.province)
+    let districtObj = proviceObj?.districts.find(district => district.id == addressObj?.district)
+    let wardObj = districtObj?.wards.find(ward => ward.id == addressObj?.ward)
+    if (addressObj == null) { return "" }
+    return addressObj?.street +", "+ wardObj?.name +", "+ districtObj?.name +", "+ proviceObj?.name
   }
 
   addLogo(files) {
@@ -305,7 +314,6 @@ export class EmployerProfileComponent implements OnInit {
     const dialogRef = this.openDialog(ModalEmployerInfoComponent, "800px", "540px", this.employerResume)
     dialogRef.afterClosed().subscribe(data => {
       if (data == null) return
-      this.setLocation()
       this.toastrService.success("Chỉnh sửa thành công", "SUCCESS", {
         timeOut: 3000,
         closeButton: true,
@@ -314,13 +322,6 @@ export class EmployerProfileComponent implements OnInit {
         tapToDismiss: false
       })
     })
-  }
-
-  private setLocation() {
-    let provices = this.locationService.readData();
-    this.provice = provices.find(province => province.id == this.employerResume?.accountDTO?.addressEntity?.province)
-    this.district = this.provice?.districts.find(district => district.id == this.employerResume?.accountDTO?.addressEntity?.district)
-    this.ward = this.district?.wards.find(ward => ward.id == this.employerResume?.accountDTO?.addressEntity?.ward)
   }
 
   getOverview() {

@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { UrlConfig } from 'src/app/config/url-config';
 import { JobPostService } from 'src/app/services/job-post.service';
-import { UrlConfig } from 'src/app/config/url-config'
 import { LocationService } from 'src/app/services/location.service';
 
 @Component({
-  selector: 'app-home-candidate',
-  templateUrl: './home-candidate.component.html',
-  styleUrls: ['./home-candidate.component.css']
+  selector: 'app-candidate-job-save',
+  templateUrl: './candidate-job-save.component.html',
+  styleUrls: ['./candidate-job-save.component.css']
 })
-export class HomeCandidateComponent implements OnInit {
-  
+export class CandidateJobSaveComponent implements OnInit {
+
   jobPosts: any = null
   urlConfig = new UrlConfig()
   private provices: any
@@ -41,5 +41,4 @@ export class HomeCandidateComponent implements OnInit {
     let proviceId = jobPost?.employerResumeDTO?.accountDTO?.addressEntity?.province
     return this.provices.find(provice => provice.id === proviceId)?.name
   }
-
 }

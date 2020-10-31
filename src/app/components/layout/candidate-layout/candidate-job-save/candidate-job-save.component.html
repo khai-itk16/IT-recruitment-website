@@ -1,0 +1,65 @@
+
+<div class="main-slide">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title headline">
+            Các tin đã lưu
+          </h3>
+        </div>
+        <div class="panel-body">
+          <div class="swiper-container">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="jobs-side-list">
+        
+                    <div class="job-item" *ngFor="let jobPost of jobPosts">
+                      <div class="figure">
+                        <div class="image">
+                          <a [routerLink]="['/introduce-employer', jobPost?.employerResumeDTO?.accountId]">
+                            <img [src]="getImage(jobPost)" [alt]="jobPost?.employerResumeDTO?.employerName">
+                          </a>
+                        </div>
+                        <div class="figcaption">
+                          <div class="title">
+                            <a [routerLink]="['/detail-recruitment', jobPost.jobPostId]" class="job_link">
+                              {{ jobPost?.jobTitle }}
+                            </a>
+                          </div>
+                          <div class="caption">
+                            <a class="company-name">{{ jobPost?.employerResumeDTO?.employerName }}</a>
+                            <ul class="job-info">
+                              <li><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;{{ getProvice(jobPost) }}</li>
+                              <li><i class="fa fa-star"
+                                  aria-hidden="true"></i>&nbsp;{{ (jobPost?.numYearExperience == 0)? "Không yêu cầu kinh nghiệm" : jobPost.numYearExperience + " năm kinh nghiệm" }}
+                              </li>
+                              <li><i class="fa fa-calendar" aria-hidden="true"></i> Hạn nộp hồ sơ:
+                                {{ jobPost?.expirePostTime | date:"dd/MM/yyyy" }}</li>
+                            </ul>
+                          </div>
+                          <div class="bottom-right-icon">
+                            <ul>
+                              <li><a class="toollips save-job">
+                                  <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                  <span class="text">&nbsp; Lưu việc làm</span>
+                                </a>
+                              </li>
+                            </ul>
+                            <div class="time">
+                              <div class="toolip">
+                                <p>Ngày cập nhật</p>
+                              </div>
+                              <em><i class="fa fa-calendar" aria-hidden="true"></i></em>
+                              <time>&nbsp; {{ jobPost?.createPostTime | date:"dd/MM/yyyy" }}</time>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+        
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+</div>

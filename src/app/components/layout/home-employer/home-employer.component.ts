@@ -34,7 +34,7 @@ export class HomeEmployerComponent implements OnInit {
   getAllJobPostsByStatus(statusId) {
     $(".left a").removeClass("active-item-category")
     $("#status_"+statusId).addClass("active-item-category")
-    this.jobPostService.getAllJobPostsByStatus(statusId).subscribe(
+    this.jobPostService.getAllJobPostsByAccountAndStatus(statusId).subscribe(
       res => {
         this.jobPosts = res
       },

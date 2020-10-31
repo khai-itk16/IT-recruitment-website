@@ -19,8 +19,14 @@ export class JobPostService {
   }
 
   getAllJobPostsByStatus(statusId) {
-    let accountId = this.decodeJwtService.getDecodedAccessToken().id
     return this.http.get<any>(this.urlConfig.urlJobPost, {
+      params: { statusJobPostId: statusId }
+    })
+  }
+
+  getAllJobPostsByAccountAndStatus(statusId) {
+    let accountId = this.decodeJwtService.getDecodedAccessToken().id
+    return this.http.get<any>(this.urlConfig.urlEmployerJobPost, {
       params: { accountId: accountId, statusJobPostId: statusId }
     })
   }
