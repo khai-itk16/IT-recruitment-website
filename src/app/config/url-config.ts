@@ -2,6 +2,7 @@ export class UrlConfig {
     host = "http://localhost:9000"
     urlLogIn = this.host + "/api/auth/login"
     urlRegister = this.host + "/api/auth/register"
+    urlAccount = this.host + "/api/users/"
     urlCandidateResume = this.host + "/api/candidate/"
     urlCandidateReusmeSelfInfor = this.host + "/api/candidate/self-infor"
     urlUpdateCandidateReusme = this.host + "/api/candidate/candidate-resume"
@@ -14,4 +15,5 @@ export class UrlConfig {
     urlEmployer = this.host + "/api/employer"
     urlEmployerJobPost = this.host + "/api/employer/job-post"
     urlJobPost = this.host + "/api/job-post"
+    urlJobSave = this.host + "/api/job-save"
 }

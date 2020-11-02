@@ -37,10 +37,18 @@
                           </ul>
                         </div>
                         <div class="bottom-right-icon">
-                          <ul>
-                            <li><a class="toollips save-job">
+                          <ul *ngIf="authService.loggedIn()">
+                            <li *ngIf="!getSatusJobSave(jobPost?.jobPostId)">
+                              <a (click)="saveJob(jobPost?.jobPostId)" class="toollips save-job" title="Lưu việc làm">
                                 <i class="fa fa-heart-o" aria-hidden="true"></i>
                                 <span class="text">&nbsp; Lưu việc làm</span>
+                              </a>
+                            </li>
+
+                            <li *ngIf="getSatusJobSave(jobPost?.jobPostId)">
+                              <a (click)="deleteJobSave(jobPost?.jobPostId)" class="toollips save-job save-job-active" title="Bỏ lưu">
+                                <i class="fa fa-heart" aria-hidden="true"></i>
+                                <span class="text">&nbsp; Đã lưu</span>
                               </a>
                             </li>
                           </ul>

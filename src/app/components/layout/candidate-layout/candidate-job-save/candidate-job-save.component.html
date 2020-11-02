@@ -11,36 +11,41 @@
               <div class="swiper-wrapper">
                 <div class="swiper-slide">
                   <div class="jobs-side-list">
+
+                    <div *ngIf="jobSaves?.length == 0">
+                      <h3 class="text-center text-red">Bạn chưa lưu công việc nào</h3>
+                    </div>
         
-                    <div class="job-item" *ngFor="let jobPost of jobPosts">
+                    <div class="job-item" *ngFor="let jobSave of jobSaves">
                       <div class="figure">
                         <div class="image">
-                          <a [routerLink]="['/introduce-employer', jobPost?.employerResumeDTO?.accountId]">
-                            <img [src]="getImage(jobPost)" [alt]="jobPost?.employerResumeDTO?.employerName">
+                          <a [routerLink]="['/introduce-employer', jobSave?.jobPostDTO?.employerResumeDTO?.accountId]">
+                            <img [src]="getImage(jobSave?.jobPostDTO)" [alt]="jobSave?.jobPostDTO?.employerResumeDTO?.employerName">
                           </a>
                         </div>
                         <div class="figcaption">
                           <div class="title">
-                            <a [routerLink]="['/detail-recruitment', jobPost.jobPostId]" class="job_link">
-                              {{ jobPost?.jobTitle }}
+                            <a [routerLink]="['/detail-recruitment', jobSave?.jobPostDTO.jobPostId]" class="job_link">
+                              {{ jobSave?.jobPostDTO?.jobTitle }}
                             </a>
                           </div>
                           <div class="caption">
-                            <a class="company-name">{{ jobPost?.employerResumeDTO?.employerName }}</a>
+                            <a class="company-name">{{ jobSave?.jobPostDTO?.employerResumeDTO?.employerName }}</a>
                             <ul class="job-info">
-                              <li><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;{{ getProvice(jobPost) }}</li>
+                              <li><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;{{ getProvice(jobSave?.jobPostDTO) }}</li>
                               <li><i class="fa fa-star"
-                                  aria-hidden="true"></i>&nbsp;{{ (jobPost?.numYearExperience == 0)? "Không yêu cầu kinh nghiệm" : jobPost.numYearExperience + " năm kinh nghiệm" }}
+                                  aria-hidden="true"></i>&nbsp;{{ (jobSave?.jobPostDTO?.numYearExperience == 0)? "Không yêu cầu kinh nghiệm" : jobSave?.jobPostDTO?.numYearExperience + " năm kinh nghiệm" }}
                               </li>
                               <li><i class="fa fa-calendar" aria-hidden="true"></i> Hạn nộp hồ sơ:
-                                {{ jobPost?.expirePostTime | date:"dd/MM/yyyy" }}</li>
+                                {{ jobSave?.jobPostDTO?.expirePostTime | date:"dd/MM/yyyy" }}</li>
                             </ul>
                           </div>
                           <div class="bottom-right-icon">
                             <ul>
-                              <li><a class="toollips save-job">
-                                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                  <span class="text">&nbsp; Lưu việc làm</span>
+                              <li>
+                                <a (click)="deleteJobSave(jobSave?.jobSaveId)" class="toollips save-job save-job-active" title="Bỏ lưu">
+                                  <i class="fa fa-heart" aria-hidden="true"></i>
+                                  <span class="text">&nbsp; Đã lưu</span>
                                 </a>
                               </li>
                             </ul>
@@ -49,7 +54,7 @@
                                 <p>Ngày cập nhật</p>
                               </div>
                               <em><i class="fa fa-calendar" aria-hidden="true"></i></em>
-                              <time>&nbsp; {{ jobPost?.createPostTime | date:"dd/MM/yyyy" }}</time>
+                              <time>&nbsp; {{ jobSave?.jobPostDTO?.createPostTime | date:"dd/MM/yyyy" }}</time>
                             </div>
                           </div>
                         </div>

@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       if(!this.authService.loggedIn()) {
-        this.router.navigate(["/home"])
+        this.router.navigate(["/"])
         this.toastrService.error("Bạn chưa đăng nhập vào hệ thống. Vui lòng đăng nhập", "ERROR", {
           timeOut: 3000,
           closeButton: true,

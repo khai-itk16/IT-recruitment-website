@@ -11,7 +11,7 @@
                                 <button class="btn btn-link dropdown-toggle" data-toggle="dropdown">
                                     <span class="text"><i class="la la-language"></i>Việt Nam</span> <i class="la la-caret-down"></i>
                                 </button>
-                                <ul class="dropdown-menu dropdown-menu-right">
+                                <ul class="dropdown-menu dropdown-menu-left">
                                     <li class="p-0"><a href="javascript:;"><img class="flag" src="assets/images/flag-vi.png" alt="vietnamese" title="vietnamese">Việt Nam</a></li>
                                     <!-- <li class="p-0"><a href="javascript:;"><img class="flag" src="assets/images/flag-en.jpg" alt="english" title="english">English</a></li> -->
                                 </ul>
@@ -26,36 +26,36 @@
                 <div class="topnav responsive" id="myTopnav">
                     <ul class="list-inline right-nav">
                         <li>
-                            <a [routerLink]="['/home']"><i class="la la-home" aria-hidden="true"></i> Home</a>
+                            <a [routerLink]="['/home']"><i class="la la-home" aria-hidden="true"></i> Trang chủ</a>
                         </li>
                         <li *ngIf="!authService.loggedIn()"><a style="cursor: pointer;" (click)="openLoginDialog()"><i class="la la-plus-square"></i> Đăng nhập</a></li>
                         <li *ngIf="!authService.loggedIn()"><a style="cursor: pointer;"  (click)="openRegisterDialog()"><i class="la la-key"></i> Đăng ký</a></li>
                         <li *ngIf="authService.loggedIn()" class="dropdown avatar">
                             <a data-toggle="dropdown" href="#">
-                                <img class="icon-avatar" src="/assets/images/profile.png" alt="avatar" title="avatar">
+                                <img class="icon-avatar" [src]="getImage()" alt="avatar" title="avatar">
                                 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                Account
+                                {{ account?.username }}
                             </a>
                             <div class="dropdown-menu">
                                 <div class="dropdown-inner">
                                     <ul class="list-unstyled">
-                                        <li *ngIf="(this.decodeJwtService.getDecodedAccessToken()?.roles === 'ROLE_EMPLOYER') ? true : false">
+                                        <li *ngIf="isEmployer">
                                             <a [routerLink]="['/employer/profile']" routerLinkActive="link-active" >
                                                 <img src="/assets/images/profile.png" alt="image" width="25" height="25"> Tài khoản
                                             </a>
                                         </li>
-                                        <li *ngIf="(this.decodeJwtService.getDecodedAccessToken()?.roles === 'ROLE_CANDIDATE') ? true : false">
+                                        <li *ngIf="!isEmployer">
                                             <a [routerLink]="['/candidate/profile']" routerLinkActive="link-active" >
                                                 <img src="/assets/images/profile.png" alt="image" width="25" height="25"> Tài khoản
                                             </a>
                                         </li>
                                         <li><a><img src="/assets/images/change-password.png" alt="image" width="25" height="25"> Đổi mật khẩu</a></li>
-                                        <li *ngIf="(this.decodeJwtService.getDecodedAccessToken()?.roles === 'ROLE_CANDIDATE') ? true : false">
+                                        <li *ngIf="!isEmployer">
                                             <a [routerLink]="['/candidate/job-save']" routerLinkActive="link-active">
                                                 <img src="/assets/images/save.jpg" alt="image" style="margin-left: -4px;" width="30" height="25"> Đã lưu
                                             </a>
                                         </li>
-                                        <li *ngIf="(this.decodeJwtService.getDecodedAccessToken()?.roles === 'ROLE_CANDIDATE') ? true : false">
+                                        <li *ngIf="!isEmployer">
                                             <a>
                                                 <img src="/assets/images/applied.jpg" alt="image" width="25" height="25"> Đã ứng tuyển
                                             </a>
