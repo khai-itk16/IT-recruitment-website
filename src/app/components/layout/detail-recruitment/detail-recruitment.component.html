@@ -51,12 +51,18 @@
           </div>
         </div>
       </div>
-      <div class="outside-jr">
+      <div class="outside-jr" *ngIf="authService.loggedIn()">
         <div class="saved-wrapper">
-          <a class="saved-job">
+          <a class="saved-job" *ngIf="!isSave" (click)="saveJob()">
             <i class="fa fa-heart-o" aria-hidden="true"></i>
             <div class="saved-text saved-text-default">
               <span class="save_job">Lưu việc làm này</span>
+            </div>
+          </a>
+          <a class="saved-job" *ngIf="isSave" (click)="deleteJobSave()" style="color: red;">
+            <i class="fa fa-heart" aria-hidden="true"></i>
+            <div class="saved-text saved-text-default">
+              <span class="save_job">Đã lưu</span>
             </div>
           </a>
         </div>
@@ -113,7 +119,10 @@
         </div>
       </div>
       <div class="apply text-center">
-        <a class="btn btn-success btn-lg">Ứng Tuyển</a>
+        <a *ngIf="!isApply; else applied" (click)="addjobApply()" class="btn btn-warning">Ứng Tuyển</a>
+        <ng-template #applied>
+          <span>Đã ứng tuyển</span>
+        </ng-template>
       </div>
     </div>
   </div>

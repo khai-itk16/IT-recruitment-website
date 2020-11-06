@@ -14,4 +14,8 @@ export class AccountService {
   getAccount(id) {
     return this.http.get<any>(this.urlConfig.urlAccount + id)
   }
+
+  changePassword(passwordDTO) {
+    return this.http.put<any>(this.urlConfig.urlAccount+"change-password", passwordDTO)
+  }
 }

@@ -49,14 +49,18 @@
                                                 <img src="/assets/images/profile.png" alt="image" width="25" height="25"> Tài khoản
                                             </a>
                                         </li>
-                                        <li><a><img src="/assets/images/change-password.png" alt="image" width="25" height="25"> Đổi mật khẩu</a></li>
+                                        <li>
+                                            <a [routerLink]="['/user/change-password']" routerLinkActive="link-active" >
+                                                <img src="/assets/images/change-password.png" alt="image" width="25" height="25"> Đổi mật khẩu
+                                            </a>
+                                        </li>
                                         <li *ngIf="!isEmployer">
                                             <a [routerLink]="['/candidate/job-save']" routerLinkActive="link-active">
                                                 <img src="/assets/images/save.jpg" alt="image" style="margin-left: -4px;" width="30" height="25"> Đã lưu
                                             </a>
                                         </li>
                                         <li *ngIf="!isEmployer">
-                                            <a>
+                                            <a [routerLink]="['/candidate/job-apply']" routerLinkActive="link-active">
                                                 <img src="/assets/images/applied.jpg" alt="image" width="25" height="25"> Đã ứng tuyển
                                             </a>
                                         </li>

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'src/app/guard/auth.guard';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 import { DetailRecruitmentComponent } from './detail-recruitment/detail-recruitment.component';
 import { HomeCandidateComponent } from './home-candidate/home-candidate.component';
 import { HomeEmployerComponent } from './home-employer/home-employer.component';
@@ -38,6 +39,10 @@ const routes: Routes = [
       {
         path: "introduce-employer/:id",
         component: IntroduceEmployerComponent
+      },
+      {
+        path: "user/change-password",
+        component: ChangePasswordComponent
       },
       {
         path: "candidate",
