@@ -42,7 +42,8 @@ const routes: Routes = [
       },
       {
         path: "user/change-password",
-        component: ChangePasswordComponent
+        component: ChangePasswordComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: "candidate",

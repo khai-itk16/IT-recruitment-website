@@ -26,4 +26,8 @@ export class JobApplyService {
   addJobApply(jobApply) {
     return this.http.post<any>(`${ this.urlConfig.host }/api/job-apply`, jobApply)
   }
+
+  getAllCandidateAppliesByStatus(jobPostId, statusId) {
+    return this.http.get<any>(`${ this.urlConfig.host }/api/job-post/${jobPostId}/job-apply`, { params: { statusId } })
+  }
 }

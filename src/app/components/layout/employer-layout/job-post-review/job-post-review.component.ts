@@ -60,6 +60,4 @@ export class JobPostReviewComponent implements OnInit {
   goBack() {
     window.history.back()
   }
-
-
 }

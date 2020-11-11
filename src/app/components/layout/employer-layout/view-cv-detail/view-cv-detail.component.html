@@ -1,0 +1,208 @@
+<div class="container">
+    <div id="cv-layout-viewer">
+      <div id="header-viewer" class="non-printable">
+        <h1>Xem CV Online</h1>
+        <div class="btn-download-cv" (click)="downloadAsPDF()">
+          <i class="fa fa-download"></i>
+          <span> Tải CV PDF</span>
+        </div>
+      </div>
+      <div id="cvo-document-root">
+        <div id="cvo-document" class="cvo-document">
+          <div class="cvo-page">
+            <div class="cvo-subpage">
+              <div id="cvo-body">
+  
+                <div id="group-header">
+                  <div class="cvo-block" id="cvo-profile">
+                    <div id="cvo-profile-avatar-wraper" class="">
+                      <img id="cvo-profile-avatar" width="100" height="120"
+                        [src]="getImage()" alt="avatar">
+                    </div>
+                    <div id="cvo-profile-wraper">
+                      <div id="cvo-profile-first">
+                        <span id="cvo-profile-fullname">{{ candidateApply?.candidateName }}</span><br>
+                        <span id="cvo-profile-title">{{ candidateApply?.jobTypeEntity?.jobTypeName }}</span><br>
+                        <span id="cvo-profile-title">{{ candidateApply?.jobPositionEntity?.jobPositionName }}</span>
+                      </div>
+                      <div id="cvo-profile-table">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td style="width: 230px;">
+                                <div id="cvo-profile-phone-wraper" class="contact-item"><i
+                                    class="contact-item-label fa fa-phone"></i><span id="cvo-profile-phone"
+                                    class="cvo-profile-content table-col-left">{{ candidateApply?.phone }}</span></div>
+                              </td>
+                              <td style="width:193px;">
+                                <div class="contact-item">
+                                  <i class="contact-item-label fa fa-user"></i>
+                                  <span id="cvo-profile-gender" class="cvo-profile-content table-col-right">{{ (candidateApply?.sex == true) ? "Nam" : "Nữ" }}</span>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <div id="cvo-profile-email-wraper" class="contact-item"><i
+                                    class="contact-item-label fa fa-envelope"></i><span id="cvo-profile-email"
+                                    class="cvo-profile-content table-col-left">{{ candidateApply?.accountDTO?.email }}</span></div>
+                              </td>
+                              <td>
+                                <div id="cvo-profile-dob-wraper" class="contact-item">
+                                  <i class="contact-item-label fa fa-calendar"></i>
+                                  <span id="cvo-profile-dob" class="cvo-profile-content table-col-right">{{ candidateApply?.birthday | date: "dd/MM/yyyy" }}</span>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <div class="contact-item">
+                                  <i class="contact-item-label fa fa-star-o"></i>
+                                  <span class="cvo-profile-content table-col-left">
+                                    {{ (candidateApply?.numYearExperience == 0) ? "Chưa có kinh nghiệm" : candidateApply?.numYearExperience + " năm kinh nghiệm" }}
+                                  </span>
+                                </div>
+                              </td>
+                              <td>
+                                <div class="contact-item">
+                                  <i class="contact-item-label fa fa-money"></i>
+                                  <span class="cvo-profile-content table-col-right">{{ candidateApply?.salaryExpect | currency:'VND':'symbol' }}</span>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td colspan="2">
+                                <div class="contact-item">
+                                  <i class="contact-item-label fa fa-map-marker" style="text-align: center;"></i>
+                                  <span id="cvo-profile-address" class="cvo-profile-content" style="width: 100%;">
+                                    {{ 
+                                      candidateApply?.accountDTO?.addressEntity?.street + ", "  +
+                                      ward?.name + ", "  +
+                                      district?.name + ", "  +
+                                      provice?.name
+                                    }}
+                                  </span>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div style="clear: both;"></div>
+                  </div>
+                </div>
+                <div id="cvo-main">
+                  <div id="header-spacing"></div>
+                  <div id="group-main">
+                    <div id="cvo-objective" class="cvo-block">
+                      <div class="cvo-block-icon-connector"></div>
+                      <div class="cvo-block-icon-dot"></div>
+                      <div class="cvo-block-icon"><i class="fa fa-lightbulb-o"></i></div>
+                      <div class="cvo-block-title"><span id="cvo-objective-blocktitle">Mục tiêu nghề nghiệp</span></div>
+                      <div id="cvo-objective-objective" class="color-content">
+                        <!-- content job objective -->
+                        <br>
+                      </div>
+                    </div>
+                    <div id="cvo-education" class="cvo-block">
+                      <div class="cvo-block-icon-connector"></div>
+                      <div class="cvo-block-icon-dot"></div>
+                      <div class="cvo-block-icon"><i class="fa fa-graduation-cap"></i></div>
+                      <div class="cvo-block-title"><span id="cvo-education-blocktitle">Học vấn</span></div>
+                      <div class="item" *ngFor="let education of candidateApply?.educationDTOs">
+                        <div class="cvo-education-school-wraper">
+                          <span class="cvo-education-school">{{ education.school }}</span>
+                        </div>
+                        <div class="cvo-education-time">
+                          <span class=" cvo-education-end">{{ education.degreeTime | date: "dd/MM/yyyy" }}</span>
+                        </div>
+                        <div style="clear:both;"></div>
+                        <div class="row-details">
+                          <div>
+                            <span class="cvo-education-title">{{ (education.degree == true) ? "Đã tốt nghiệp" : "Chưa tốt nghiệp" }}</span>
+                          </div>
+                          <div class="cvo-education-details">
+                            <pre>{{ education.description }}</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="cvo-skillgroup" class="cvo-block">
+                      <div class="cvo-block-icon-connector"></div>
+                      <div class="cvo-block-icon-dot"></div>
+                      <div class="cvo-block-icon"><i class="fa fa-wrench"></i></div>
+                      <div class="cvo-block-title"><span id="cvo-skillgroup-blocktitle">Kỷ năng, chuyên môn</span></div>
+                      <div id="skill-table">
+                        <div class="item" *ngFor="let skill of candidateApply?.skillDTOs">
+                          <div>
+                            <span class="cvo-skillgroup-area">{{ skill.skillName }}</span>
+                          </div>
+                          <div>
+                            <span class="cvo-skillgroup-skill-description">
+                              <pre>{{ skill.description }}</pre>
+                            </span>
+                          </div>
+                          <div style="clear: both"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="cvo-experience" class="cvo-block">
+                      <div class="cvo-block-icon-connector"></div>
+                      <div class="cvo-block-icon-dot"></div>
+                      <div class="cvo-block-icon"><i class="fa fa-briefcase"></i></div>
+                      <div class="cvo-block-title"><span id="cvo-experience-blocktitle">Kinh nghiệm làm việc</span></div>
+                      <div id="experience-table">
+                        <div class="item" *ngFor="let experience of candidateApply?.experienceDTOs">
+                          <div class="cvo-experience-company-wraper">
+                            <span class="cvo-experience-company">{{ experience.experienceName }}</span>
+                          </div>
+                          <div class="cvo-experience-time">
+                            <span class="cvo-experience-start">{{ experience.startTime }}</span>&nbsp;-&nbsp;<span
+                              class="cvo-experience-end">{{ experience.endTime }}</span>
+                          </div>
+                          <div style="clear:both;"></div>
+                          <div class="row-col-data">
+                            <div class="row-title">
+                            </div>
+                            <div class="row-details">
+                              <div class="cvo-experience-details">
+                                <pre>{{ experience.description }}</pre>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div style="clear: both"></div>
+                    </div>
+                    <div class="cvo-block">
+                      <div class="cvo-block-icon-connector"></div>
+                      <div class="cvo-block-icon-dot"></div>
+                      <div class="cvo-block-icon"><i class="fa fa-language"></i></div>
+                      <div class="cvo-block-title"><span>Ngoại ngữ</span></div>
+                      <div id="content-foreign-language">
+                       <!-- content foreign-language view -->
+                      </div>
+                    </div>
+                    <div id="cvo-award" class="cvo-block">
+                      <div class="cvo-block-icon-connector"></div>
+                      <div class="cvo-block-icon-dot"></div>
+                      <div class="cvo-block-icon"><i class="fa fa-trophy"></i></div>
+                      <div class="cvo-block-title"><span>Thành tích nổi bật</span></div>
+                      <div id="content-achievement">
+                         <!-- content achievement view -->
+                      </div>
+                      <div style="clear: both"></div>
+                    </div>
+                  </div>
+                  <div style="clear: both;"></div>
+                </div>
+                <div style="clear: both;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

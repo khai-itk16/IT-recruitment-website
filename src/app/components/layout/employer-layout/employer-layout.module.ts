@@ -14,6 +14,7 @@ import { JobPostComponent } from './job-post/job-post.component';
 import { JobPostReviewComponent } from './job-post-review/job-post-review.component';
 import { JobPostCompleteComponent } from './job-post-complete/job-post-complete.component';
 import { ManageApplyComponent } from './manage-apply/manage-apply.component';
+import { ViewCvDetailComponent } from './view-cv-detail/view-cv-detail.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ManageApplyComponent } from './manage-apply/manage-apply.component';
     JobPostComponent,
     JobPostReviewComponent,
     JobPostCompleteComponent,
-    ManageApplyComponent
+    ManageApplyComponent,
+    ViewCvDetailComponent
   ],
   imports: [
     CommonModule,
