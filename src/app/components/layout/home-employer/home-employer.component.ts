@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { DataTransferService } from 'src/app/services/data-transfer.service';
+import { DecodeJwtService } from 'src/app/services/decode-jwt.service';
 import { JobPostService } from 'src/app/services/job-post.service';
 import Swal from 'sweetalert2'
 
@@ -12,14 +15,34 @@ declare const $: any
 })
 export class HomeEmployerComponent implements OnInit {
   jobPosts: Array<any>
+  isSearch: any
 
   constructor(
     private toastrService: ToastrService,
-    private jobPostService: JobPostService
+    private jobPostService: JobPostService,
+    private route: ActivatedRoute,
+    private dataTransferService: DataTransferService,
+    private decodeService: DecodeJwtService
   ) { }
 
   ngOnInit(): void {
-    this.getAllJobPostsByStatus(2)
+    this.isSearch = this.route.snapshot.queryParamMap.get('search');
+    if(this.isSearch == null) {
+      this.getAllJobPostsByStatus(2)
+    } else {
+      this.dataTransferService.getpreviewMessage().subscribe(
+        res => { 
+          $(document).ready(function() {
+            $(".left a").removeClass("active-item-category")
+            $("#status_2").addClass("active-item-category")
+          })
+          let accountId = this.decodeService?.getDecodedAccessToken()?.id
+          this.jobPosts = res?.filter(jobPost => jobPost?.employerResumeDTO?.accountId == accountId)
+        },
+        error => { console.log(error) }
+      )
+    }
+    
     $(document).ready(function() {
       $(window).scroll(function() {
         if($(window).scrollTop() > 100) {
@@ -32,8 +55,10 @@ export class HomeEmployerComponent implements OnInit {
   }
 
   getAllJobPostsByStatus(statusId) {
-    $(".left a").removeClass("active-item-category")
-    $("#status_"+statusId).addClass("active-item-category")
+    $(document).ready(function() {
+      $(".left a").removeClass("active-item-category")
+      $("#status_"+statusId).addClass("active-item-category")
+    })
     this.jobPostService.getAllJobPostsByAccountAndStatus(statusId).subscribe(
       res => {
         this.jobPosts = res

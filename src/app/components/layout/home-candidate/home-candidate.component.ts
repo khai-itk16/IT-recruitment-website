@@ -6,6 +6,8 @@ import { DecodeJwtService } from 'src/app/services/decode-jwt.service';
 import { JobSaveService } from 'src/app/services/job-save.service';
 import { JobApplyService } from 'src/app/services/job-apply.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { ActivatedRoute } from '@angular/router';
+import { DataTransferService } from 'src/app/services/data-transfer.service';
 
 @Component({
   selector: 'app-home-candidate',
@@ -17,6 +19,7 @@ export class HomeCandidateComponent implements OnInit {
   jobPosts: any = null
   jobSaves: any = null
   urlConfig = new UrlConfig()
+  isSearch: any
   private provices: any
 
   constructor(
@@ -26,11 +29,21 @@ export class HomeCandidateComponent implements OnInit {
     private jobSaveService: JobSaveService,
     private jobApplyService: JobApplyService,
     public authService: AuthService,
+    private route: ActivatedRoute,
+    private dataTransferService: DataTransferService
   ) {  }
 
   ngOnInit(): void {
     this.provices = this.locationService.readData()
-    this.getJobPost()
+    this.isSearch = this.route.snapshot.queryParamMap.get('search');
+    if(this.isSearch == null) {
+      this.getJobPost()
+    } else {
+      this.dataTransferService.getpreviewMessage().subscribe(
+        res => { this.jobPosts = res },
+        error => { console.log(error) }
+      )
+    }
     this.getJobSave()
   }
 
@@ -48,7 +61,6 @@ export class HomeCandidateComponent implements OnInit {
     this.jobPostService.getAllJobPostsByStatus(2).subscribe(
       res => {
         this.jobPosts = res
-        console.log(res)
       },
       error => {
         console.log(error)
@@ -69,7 +81,6 @@ export class HomeCandidateComponent implements OnInit {
     this.jobSaveService.getAllJobSave(accountId).subscribe(
       res => { 
         this.jobSaves = res
-        console.log(res) 
       },
       error => { console.log(error) }
     )
@@ -94,7 +105,6 @@ export class HomeCandidateComponent implements OnInit {
     }
     this.jobSaveService.addJobSave(jobSave).subscribe(
       res => {
-        console.log(res)
         this.getJobSave()
       },
       error => { console.log(error) }
@@ -105,7 +115,6 @@ export class HomeCandidateComponent implements OnInit {
     let index = this.jobSaves?.findIndex(jobSave => jobSave?.jobPostDTO?.jobPostId == jobPostId)
     this.jobSaveService.deleteJobSave(this.jobSaves[index].jobSaveId).subscribe(
       res => {
-        console.log(res)
         this.jobSaves.splice(index, 1)
       },
       error => {

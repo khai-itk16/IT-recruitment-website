@@ -1,14 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UrlConfig } from 'src/app/config/url-config';
 import { AccountService } from 'src/app/services/account.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { DataTransferService } from 'src/app/services/data-transfer.service';
 import { DecodeJwtService } from 'src/app/services/decode-jwt.service';
+import { JobPositionService } from 'src/app/services/job-position.service';
+import { JobPostService } from 'src/app/services/job-post.service';
 import { LocationService } from 'src/app/services/location.service';
 import { ModalLoginComponent } from '../modal-login/modal-login.component';
 import { ModalRegisterComponent } from '../modal-register/modal-register.component';
+
+declare const $: any
 
 @Component({
   selector: 'app-header',
@@ -21,6 +27,7 @@ export class HeaderComponent implements OnInit {
   isEmployer: boolean = false
   urlConfig = new UrlConfig()
   account: any
+  positions: Array<any>
 
   constructor(
     private locationService: LocationService,
@@ -30,11 +37,15 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     public decodeJwtService: DecodeJwtService,
     public accountService: AccountService,
+    private jobPositionService: JobPositionService,
+    private jobPostService: JobPostService,
+    private dataTransferService: DataTransferService
   ) {}
 
   ngOnInit(): void {
-    this.provinces = this.locationService.readData()
     this.accountInfo()
+    this.getAllJobPositions()
+    this.provinces = this.locationService.readData()
   }
 
   accountInfo() {
@@ -51,6 +62,42 @@ export class HeaderComponent implements OnInit {
         }
       )
     }
+  }
+
+  getAllJobPositions() {
+    this.jobPositionService.getAllJobPositions().subscribe(
+      res => {
+        this.positions = res
+      },
+      error => {
+        console.log(error)
+      }
+    )
+  }
+
+  search(keySearch) {
+    let provinceSearch = $("#provinceSearch").val()
+    let positionSearch = $("#positionSearch").val()
+    
+    let params = new Object()
+    params['keySearch'] = keySearch
+    if(typeof(provinceSearch) !== "undefined" && provinceSearch !== "") {
+      params['provinceId'] = provinceSearch
+    }
+    if(typeof(positionSearch) !== "undefined" && positionSearch !== "") {
+      params['positionId'] = positionSearch
+    }
+    this.jobPostService.searchJobPosts(params).subscribe(
+      res => {
+        this.dataTransferService.setpreviewdata(res)
+        if(this.isEmployer) {
+          this.router.navigate(["/home-employer"], { queryParams: { search: true } })
+        } else {
+          this.router.navigate(["/home-candidate"], { queryParams: { search: true } })
+        }
+      },
+      error => { console.log(error) }
+    )
   }
 
   getImage() {
@@ -75,7 +122,9 @@ export class HeaderComponent implements OnInit {
         progressAnimation: 'increasing',
         tapToDismiss: false
       });
-      window.location.reload()
+      this.router.navigateByUrl('/home-candidate', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/home'])
+      })
     })
   }
 
@@ -101,6 +150,6 @@ export class HeaderComponent implements OnInit {
   logoutUser() {
     this.authService.logoutUser()
     this.router.navigate(['/home'])
-    // window.location.reload()
+    window.location.reload()
   }
 }

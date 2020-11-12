@@ -38,4 +38,8 @@ export class JobPostService {
   deleteJobPost(jobPostId) {
     return this.http.delete<any>(this.urlConfig.urlJobPost + "/" + jobPostId)
   }
+
+  searchJobPosts(params) {
+    return this.http.get<any>(this.urlConfig.urlJobPost+"/search", { params })
+  }
 }

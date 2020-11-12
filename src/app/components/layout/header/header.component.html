@@ -91,36 +91,25 @@
                 <form class="form-horizontal category">
                     <div class="row">
                         <div class="col-sm-3 paddright">
-                            <div class="form-group">
-                                <select class="selectpicker form-control bs-select-hidden" name="location">
-                                    <option value="0">Chọn địa điểm</option>
+                            <div *ngIf="!isEmployer" class="form-group">
+                                <select class="selectpicker form-control bs-select-hidden" id="provinceSearch">
+                                    <option value="">Chọn địa điểm</option>
                                     <option *ngFor="let province of provinces" [value]="province.id">{{ province.name }}</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-sm-3 paddright">
-                            <div class="form-group">
-                                <select class="selectpicker form-control bs-select-hidden" name="position">
-                                    <option value="0">Chọn chức vụ</option>
-                                    <option value="0">Vehicle</option>
-                                    <option value="0">Mobiles</option>
-                                    <option value="0">Electonics</option>
-                                    <option value="0">Real Estate</option>
-                                    <option value="0">Fashion</option>
-                                    <option value="0">Furniture</option>
-                                    <option value="0">Jobs</option>
-                                    <option value="0">Services</option>
-                                    <option value="0">Pets</option>
-                                    <option value="0">Education</option>
-                                    <option value="0">Matrimony</option>
-                                    <option value="0">Note and Coins</option>
+                            <div *ngIf="!isEmployer" class="form-group">
+                                <select class="selectpicker form-control bs-select-hidden" id="positionSearch">
+                                    <option value="">Chọn vị trí</option>
+                                    <option *ngFor="let position of positions" [value]="position?.jobPositionId">{{ position?.jobPositionName }}</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-sm-6 search">
                             <div class="form-group">
-                                <input name="s" value="" class="form-control" placeholder="Enter Keyword" type="text">
-                                <button type="submit" value="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                <input #keySearch class="form-control" placeholder="Nhập thông tin tìm kiếm" type="text">
+                                <button (click)="search(keySearch.value)" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
                             </div>
                         </div>
                     </div>
