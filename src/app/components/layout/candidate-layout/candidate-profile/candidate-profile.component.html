@@ -13,7 +13,7 @@
           <div>
             <ul class="desired">
                 <li><i class="fa fa-star" aria-hidden="true"></i>
-                  <p>Số năm kinh nghiệm: <span>{{ candiateResume?.numYearExperience }}</span></p>
+                  <p>Số năm kinh nghiệm: <span>{{ (candiateResume?.numYearExperience == 0)? 'chưa có kinh nghiệm': candiateResume?.numYearExperience }}</span></p>
                 </li>
                 <li><i class="fa fa-user" aria-hidden="true"></i>
                   <p>Vị trí mong muốn: 
@@ -25,8 +25,8 @@
                 </li>
                 <li><i class="fa fa-money" aria-hidden="true"></i>
                   <p>Mức lương mong muốn: 
-                    <span *ngIf="candiateResume?.salaryExpect == null; else completeSalary" class="text-warning">
-                        Chưa cập nhật
+                    <span *ngIf="candiateResume?.salaryExpect == 0; else completeSalary">
+                        Lương thỏa thuận
                     </span>
                     <ng-template #completeSalary><span>{{ candiateResume?.salaryExpect | currency: "VND" : "symbol" }}</span></ng-template>
                   </p>

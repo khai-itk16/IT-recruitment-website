@@ -147,7 +147,7 @@
         <div class="record-view">
           <label class="col-xs-12 col-sm-3">Mức lương mong muốn</label>
           <div class="col-xs-12 col-sm-9">
-            {{ candiateResume?.salaryExpect | currency:'VND':'symbol' }}
+            {{ candiateResume?.salaryExpect == 0 ? "Lương thỏa thuận" : candiateResume?.salaryExpect | currency:'VND':'symbol'}}
           </div>
         </div>
         <div class="record-view">

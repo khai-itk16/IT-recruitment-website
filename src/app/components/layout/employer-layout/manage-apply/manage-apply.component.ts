@@ -28,7 +28,7 @@ export class ManageApplyComponent implements OnInit {
 
   ngOnInit(): void {
     this.jobPostId = this.route.snapshot.paramMap.get('jobPostId');
-    this.showJobPostRequire()
+    this.getAllCandidateAppliesByStatus(5)
     $(document).ready(function() {
       $(window).scroll(function() {
         if($(window).scrollTop() > 100) {

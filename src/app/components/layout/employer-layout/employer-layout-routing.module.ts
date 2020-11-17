@@ -32,7 +32,7 @@ const routes: Routes = [
       {
         path: "job-post",
         component: JobPostComponent,
-        canActivate: [RoleGuard, CompleteInfoGuard], 
+        canActivate: [RoleGuard], 
         data: { 
           expectedRole: 'ROLE_EMPLOYER'
         } 
@@ -40,7 +40,7 @@ const routes: Routes = [
       {
         path: "review-job-post",
         component: JobPostReviewComponent,
-        canActivate: [RoleGuard], 
+        canActivate: [RoleGuard, CompleteInfoGuard], 
         data: { 
           expectedRole: 'ROLE_EMPLOYER'
         } 

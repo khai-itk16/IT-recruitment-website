@@ -47,7 +47,7 @@ export class CompleteInfoGuard implements CanActivate {
           if(res?.skillDTOs.length  == 0) { isCompleteFieldMandatory = false }
 
           if(!isCompleteFieldMandatory) {
-            this.toastrService.error("Bạn phải hoàn thành thông tin CV mới được phép dùng chức năng này", "ERROR", {
+            this.toastrService.error("Bạn phải hoàn thành thông tin CV mới được phép ứng tuyển", "ERROR", {
               timeOut: 3000,
               closeButton: true,
               progressBar: true,
@@ -82,7 +82,7 @@ export class CompleteInfoGuard implements CanActivate {
           if(res?.description == null && res?.description == "") { isCompleteFieldMandatory = false }
         
           if(!isCompleteFieldMandatory) {
-            this.toastrService.error("Bạn phải hoàn thành thông tin về công ty, tổ chức mới được phép dùng chức năng này", "ERROR", {
+            this.toastrService.error("Bạn phải hoàn thành thông tin về công ty, tổ chức mới được phép đăng tin", "ERROR", {
               timeOut: 3000,
               closeButton: true,
               progressBar: true,

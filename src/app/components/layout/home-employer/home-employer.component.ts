@@ -95,9 +95,7 @@ export class HomeEmployerComponent implements OnInit {
                 })
                 return
               }
-              console.log(this.jobPosts)
               this.jobPosts.splice(index, 1)
-              console.log(this.jobPosts)
               this.toastrService.success("Xóa bài đăng thành công", "SUCCESS", {
                 timeOut: 3000,
                 closeButton: true,

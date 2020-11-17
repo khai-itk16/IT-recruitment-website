@@ -32,11 +32,11 @@ export class CandidateCvComponent implements OnInit {
     this.initData()
   }
 
-  private async initData() {
+  private initData() {
     if (this.decodeJwtService.getDecodedAccessToken() == null) { return }
 
     let accountId = this.decodeJwtService.getDecodedAccessToken().id;
-    await this.candidateCVService.getCandidateResume(accountId).subscribe(
+    this.candidateCVService.getCandidateResume(accountId).subscribe(
       res => {
         console.log(res)
         this.candiateResume = res
@@ -46,8 +46,6 @@ export class CandidateCvComponent implements OnInit {
         }
         this.setLocation()
         $("#cvo-objective-objective").html(this.candiateResume?.jobObjective)
-        $("#content-foreign-language").html(this.candiateResume?.foreignLanguage)
-        $("#content-achievement").html(this.candiateResume?.achievement)
       },
       error => {
         console.log(error)
@@ -60,6 +58,22 @@ export class CandidateCvComponent implements OnInit {
     this.provice = provices.find(province => province.id == this.candiateResume?.accountDTO?.addressEntity?.province)
     this.district = this.provice?.districts.find(district => district.id == this.candiateResume?.accountDTO?.addressEntity?.district)
     this.ward = this.district?.wards.find(ward => ward.id == this.candiateResume?.accountDTO?.addressEntity?.ward)
+  }
+
+  isLanguageExist() {
+    if(this.candiateResume?.foreignLanguage != null && this.candiateResume?.foreignLanguage != '') {
+      $("#content-foreign-language").html(this.candiateResume?.foreignLanguage)
+      return true
+    } 
+    return false
+  }
+
+  isAchievementExist() {
+    if(this.candiateResume?.achievement != null && this.candiateResume?.achievement != '') {
+      $("#content-achievement").html(this.candiateResume?.achievement)
+      return true
+    } 
+    return false
   }
 
   downloadAsPDF() {

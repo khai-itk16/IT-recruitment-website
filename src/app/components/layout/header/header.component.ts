@@ -149,7 +149,5 @@ export class HeaderComponent implements OnInit {
 
   logoutUser() {
     this.authService.logoutUser()
-    this.router.navigate(['/home'])
-    window.location.reload()
   }
 }

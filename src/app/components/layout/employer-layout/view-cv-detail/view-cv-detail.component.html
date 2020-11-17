@@ -175,7 +175,7 @@
                       </div>
                       <div style="clear: both"></div>
                     </div>
-                    <div class="cvo-block">
+                    <div class="cvo-block" *ngIf="isLanguageExist()">
                       <div class="cvo-block-icon-connector"></div>
                       <div class="cvo-block-icon-dot"></div>
                       <div class="cvo-block-icon"><i class="fa fa-language"></i></div>
@@ -184,7 +184,7 @@
                        <!-- content foreign-language view -->
                       </div>
                     </div>
-                    <div id="cvo-award" class="cvo-block">
+                    <div id="cvo-award" class="cvo-block" *ngIf="isAchievementExist()">
                       <div class="cvo-block-icon-connector"></div>
                       <div class="cvo-block-icon-dot"></div>
                       <div class="cvo-block-icon"><i class="fa fa-trophy"></i></div>

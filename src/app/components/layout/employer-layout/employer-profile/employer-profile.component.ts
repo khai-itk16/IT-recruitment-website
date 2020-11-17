@@ -325,7 +325,7 @@ export class EmployerProfileComponent implements OnInit {
   }
 
   getOverview() {
-    const dialogRef = this.openDialog(ModalEmployerOverviewComponent, "800px", "500px", this.employerResume)
+    const dialogRef = this.openDialog(ModalEmployerOverviewComponent, "800px", "540px", this.employerResume)
     dialogRef.afterClosed().subscribe(data => {
       if (data == null) return
       $("#overview").html(this.employerResume?.overview)
@@ -340,7 +340,7 @@ export class EmployerProfileComponent implements OnInit {
   }
 
   getReason() {
-    const dialogRef = this.openDialog(ModalWorkBenifitComponent, "800px", "500px", this.employerResume)
+    const dialogRef = this.openDialog(ModalWorkBenifitComponent, "800px", "540px", this.employerResume)
     dialogRef.afterClosed().subscribe(data => {
       if (data == null) return
       $("#work-reason").html(this.employerResume?.description)

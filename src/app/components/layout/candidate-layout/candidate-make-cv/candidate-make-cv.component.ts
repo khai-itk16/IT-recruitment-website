@@ -202,15 +202,16 @@ export class CandidateMakeCVComponent implements OnInit {
           this.pathAvatar = this.urlConfig.urlImage + "/" + this.imageAvatar.imageName
         }
         this.setLocation()
-        $(".job-target .content-job-target").html(this.candiateResume.jobObjective)
-        $(".foreign-language .content-foreign-language").html(this.candiateResume.foreignLanguage)
-        $(".job-achievement .content-job-achievement").html(this.candiateResume.achievement)
+        $(".job-target .content-job-target").html(this.candiateResume?.jobObjective)
+        $(".foreign-language .content-foreign-language").html(this.candiateResume?.foreignLanguage)
+        $(".foreign-language .content-foreign-language").html(this.candiateResume?.achievement)
       },
       error => {
         console.log(error)
       }
     )
   }
+
 
   private setLocation() {
     let provices = this.locationService.readData();
@@ -406,7 +407,7 @@ export class CandidateMakeCVComponent implements OnInit {
   }
 
   getExpectJob() {
-    const dialogRef = this.openDialog(ModalExpectJobComponent, "650px", "320px", this.candiateResume)
+    const dialogRef = this.openDialog(ModalExpectJobComponent, "650px", "350px", this.candiateResume)
     dialogRef.afterClosed().subscribe(data => {
       if (data == null) return
       console.log(data)
