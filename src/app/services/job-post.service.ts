@@ -35,6 +35,10 @@ export class JobPostService {
     return this.http.get<any>(this.urlConfig.urlJobPost + "/" + jobPostId)
   }
 
+  // changeStatusJobPost(jobPostId, statusJobPostId) {
+  //   return this.http.put<any>(this.urlConfig.urlJobPost + "/" + jobPostId, null, { params: { statusJobPostId } })
+  // }
+
   deleteJobPost(jobPostId) {
     return this.http.delete<any>(this.urlConfig.urlJobPost + "/" + jobPostId)
   }

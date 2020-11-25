@@ -55,6 +55,7 @@ export class HomeEmployerComponent implements OnInit {
   }
 
   getAllJobPostsByStatus(statusId) {
+    this.isSearch == null
     $(document).ready(function() {
       $(".left a").removeClass("active-item-category")
       $("#status_"+statusId).addClass("active-item-category")

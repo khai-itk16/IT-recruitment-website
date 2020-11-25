@@ -30,4 +30,12 @@ export class JobApplyService {
   getAllCandidateAppliesByStatus(jobPostId, statusId) {
     return this.http.get<any>(`${ this.urlConfig.host }/api/job-post/${jobPostId}/job-apply`, { params: { statusId } })
   }
+
+  filterResume(jobPostId) {
+    return this.http.get<any>(`${ this.urlConfig.host }/api/job-post/${jobPostId}/job-apply/filter`)
+  }
+
+  changeStatusJobApply(jobApplyId, statusId) {
+    return this.http.put<any>(`${ this.urlConfig.host }/api/job-apply/${ jobApplyId }/change-status`, null, { params: { statusId } })
+  }
 }

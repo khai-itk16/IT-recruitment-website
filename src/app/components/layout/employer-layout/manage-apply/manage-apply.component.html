@@ -46,48 +46,60 @@
                 </div>
                 
                 <div class="col-md-12" *ngIf="!isShowJobPostRequire">
-                    <div class="text-right">
-                        <button type="button" class="btn btn-warning">Lọc ứng viên</button>
+                    <div class="col-md-12" *ngIf="candidateApplies?.length == 0">
+                        <h2 class="text-center text-validate">KHÔNG CÓ KẾT QUẢ NÀO ĐƯỢC TÌM THẤY</h2>
                     </div>
-                    <br>
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">Ảnh đại diện</th>
-                                            <th class="text-center">Tên ứng viên</th>
-                                            <th class="text-center">Vị trí ứng tuyển</th>
-                                            <th class="text-center">Số năm kinh nghiệm</th>
-                                            <th class="text-center">Email liên hệ</th>
-                                            <th class="text-center">Thao tác</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr [class]="(i%2==0) ? 'odd' : 'even'" *ngFor="let candidateApply of candidateApplies; let i = index">
-                                            <td class="text-center"><img [src]="getImage(candidateApply)" width="40" height="40"></td>
-                                            <td>{{ candidateApply?.candidateName }}</td>
-                                            <td>{{ candidateApply?.jobPositionEntity?.jobPositionName }}</td>
-                                            <td class="text-center">{{ candidateApply?.numYearExperience }} năm</td>
-                                            <td>{{ candidateApply?.accountDTO?.email }}</td>
-                                            <td class="text-center">
-                                                <a class="text-info row-action" (click)="viewCV(candidateApply)" title="Xem chi tiết CV">
-                                                    <i class="fa fa-eye" aria-hidden="true"></i>
-                                                </a>
-                                                <a  class="text-red row-action" title="xóa bài đăng">
-                                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            
+                    <div class="col-md-12" *ngIf="candidateApplies?.length != 0">
+                        <div class="text-right" style="margin-bottom: 20px;" *ngIf="isShowPageFilter">
+                            <button type="button" (click)="filterResume()" class="btn btn-warning">Lọc ứng viên</button>
                         </div>
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover" id="dataTables">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">Ảnh đại diện</th>
+                                                <th class="text-center">Tên ứng viên</th>
+                                                <th class="text-center">Vị trí ứng tuyển</th>
+                                                <th class="text-center">Số năm kinh nghiệm</th>
+                                                <th class="text-center">Email liên hệ</th>
+                                                <th class="text-center">Phần trăm so khớp(%)</th>
+                                                <th class="text-center">Thao tác</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr [class]="(i%2==0) ? 'odd' : 'even'" *ngFor="let candidateApply of candidateApplies; let i = index">
+                                                <td class="text-center"><img [src]="getImage(candidateApply?.candidateDTO)" width="40" height="40"></td>
+                                                <td>{{ candidateApply?.candidateDTO?.candidateName }}</td>
+                                                <td>{{ candidateApply?.candidateDTO?.jobPositionEntity?.jobPositionName }}</td>
+                                                <td class="text-center">{{ candidateApply?.candidateDTO?.numYearExperience }} năm</td>
+                                                <td>{{ candidateApply?.candidateDTO?.accountDTO?.email }}</td>
+                                                <td class="text-center">{{ candidateApply?.matchPercent }}</td>
+                                                <td class="text-center " style="width: 110px;">
+                                                    <a class="text-info row-action" (click)="changeStatusJobApply(candidateApply?.jobApplyId, statusSwitch)" title="Thay đổi trạng thái">
+                                                        <i class="fa fa-exchange" aria-hidden="true"></i>
+                                                    </a>
+    
+                                                    <a class="text-info row-action" (click)="viewCV(candidateApply?.candidateDTO)" title="Xem chi tiết CV">
+                                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                                    </a>
+                                                    
+                                                    <a  class="text-red row-action" title="xóa bài đăng">
+                                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <!--End Advanced Tables -->
                     </div>
-                    <!--End Advanced Tables -->
                 </div>
+
             </div>	
             
         </div>

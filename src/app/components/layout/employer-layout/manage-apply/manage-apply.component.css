@@ -71,3 +71,7 @@
 tbody td {
     vertical-align: middle;
 }
+
+.table>thead>tr>th {
+    vertical-align: top !important;
+}

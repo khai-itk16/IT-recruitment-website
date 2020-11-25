@@ -33,7 +33,10 @@
             </div>
             
             <div class=" col-md-9 padd0 catebox">
-                <div class="col-md-12">
+                <div class="col-md-12" *ngIf="jobPosts?.length == 0">
+                    <h2 class="text-center text-validate">KHÔNG CÓ KẾT QUẢ NÀO ĐƯỢC TÌM THẤY</h2>
+                </div>
+                <div class="col-md-12" *ngIf="jobPosts?.length != 0">
                     <div class="card">
                         <div class="card-content">
                             <div class="table-responsive">

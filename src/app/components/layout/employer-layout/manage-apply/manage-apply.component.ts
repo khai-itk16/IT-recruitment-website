@@ -15,6 +15,8 @@ declare const $: any
 export class ManageApplyComponent implements OnInit {
   private jobPostId: string
   isShowJobPostRequire = true
+  isShowPageFilter = true
+  statusSwitch: number
   candidateApplies: Array<any>
   private urlConfig = new UrlConfig()
 
@@ -56,12 +58,35 @@ export class ManageApplyComponent implements OnInit {
 
   getAllCandidateAppliesByStatus(statusId) {
     this.isShowJobPostRequire = false
+    if(statusId == 5) {
+      this.isShowPageFilter = true
+    } else {
+      this.isShowPageFilter = false
+      if(statusId == 6) {
+        this.statusSwitch = 7
+      }
+
+      if(statusId == 7) {
+        this.statusSwitch = 6
+      }
+    }
     $(".left a").removeClass("active-item-category")
     $("#status_"+statusId).addClass("active-item-category")
     this.jobApplyService.getAllCandidateAppliesByStatus(this.jobPostId, statusId).subscribe(
       res => {
-        console.log(res)
         this.candidateApplies = res
+      },
+      error => {
+        console.log(error)
+      }
+    )
+  }
+
+  filterResume() {
+    this.jobApplyService.filterResume(this.jobPostId).subscribe(
+      res => {
+        console.log(res)
+        this.candidateApplies = []
       },
       error => {
         console.log(error)
@@ -77,6 +102,18 @@ export class ManageApplyComponent implements OnInit {
   viewCV(candidateApply) {
     this.dataTransferService.setpreviewdata(candidateApply)
     this.router.navigate(["/employer/view-cv-detail"])
+  }
+
+  changeStatusJobApply(jobApplyId, statusId) {
+    this.jobApplyService.changeStatusJobApply(jobApplyId, statusId).subscribe(
+      res => {
+        this.candidateApplies.splice(
+          this.candidateApplies.findIndex(candidateApply => candidateApply.jobApplyId == jobApplyId), 1)
+      }, 
+      error => {
+        console.log(error)
+      }
+    )
   }
 
 }
