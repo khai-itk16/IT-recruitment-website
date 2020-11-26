@@ -50,16 +50,30 @@ export class ModalLoginComponent implements OnInit {
         },
         error => { 
           console.log(error)
-          this.toastrService.error(
-            `Đăng nhập tài khoản không thành công. 
-            Vui lòng kiểm tra lại mật khẩu, mật khẩu phải có độ dài lớn hơn hoặc bằng 8 ký tự và
-             bao gồm ký tự hoa chữ cái đặc biệt`, 'ERROR', {
-            timeOut: 3000,
-            closeButton: true,
-            progressBar: true,
-            progressAnimation: 'increasing',
-            tapToDismiss: false
-          })
+          if(error.status == 401) {
+            this.toastrService.error(
+              `Đăng nhập tài khoản không thành công. 
+              Vui lòng kiểm tra lại mật khẩu, mật khẩu phải có độ dài lớn hơn hoặc bằng 8 ký tự và
+               bao gồm ký tự hoa chữ cái đặc biệt`, 'ERROR', {
+              timeOut: 3000,
+              closeButton: true,
+              progressBar: true,
+              progressAnimation: 'increasing',
+              tapToDismiss: false
+            })
+          }
+
+          if(error.status == 403) {
+            this.toastrService.warning(
+              `Đăng nhập tài khoản không thành công. 
+              Tài khoản của bạn đã bị khóa. Bạn không thể truy cập vào hệ thống`, 'WARNING', {
+              timeOut: 3000,
+              closeButton: true,
+              progressBar: true,
+              progressAnimation: 'increasing',
+              tapToDismiss: false
+            })
+          }
         },
         () => { this.dialogRef.close(true) }
     )

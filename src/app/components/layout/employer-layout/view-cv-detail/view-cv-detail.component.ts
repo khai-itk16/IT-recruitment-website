@@ -59,7 +59,7 @@ export class ViewCvDetailComponent implements OnInit {
 
   getImage() {
     let avartarImage = this.candidateApply?.accountDTO?.imageDTOs?.find(imageDTO => imageDTO.avatar)
-    return this.urlConfig.urlImage+'/'+avartarImage.imageName
+    return this.urlConfig.urlImage+'/'+avartarImage?.imageName
   }
 
   private setLocation() {

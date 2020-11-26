@@ -38,4 +38,8 @@ export class JobApplyService {
   changeStatusJobApply(jobApplyId, statusId) {
     return this.http.put<any>(`${ this.urlConfig.host }/api/job-apply/${ jobApplyId }/change-status`, null, { params: { statusId } })
   }
+
+  deleteJobApply(jobApplyId) {
+    return this.http.delete<any>(`${ this.urlConfig.host }/api/job-apply/${jobApplyId}`)
+  }
 }

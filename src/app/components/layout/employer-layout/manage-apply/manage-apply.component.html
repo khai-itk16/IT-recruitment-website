@@ -8,7 +8,7 @@
                         <h1>Quản lý hồ sơ ứng tuyển</h1>
                         <ul class="list-unstyled">
                             <li>
-                                <a id="status_5" (click)="getAllCandidateAppliesByStatus(5)"><img width="20" src="assets/images/icon-folder.png" class="img-fluid" alt="image"> Tất cả hồ sơ đã ứng tuyển</a>
+                                <a id="status_5" (click)="getAllCandidateAppliesByStatus(5)"><img width="20" src="assets/images/icon-folder.png" class="img-fluid" alt="image"> Tất cả hồ sơ chờ xử lý</a>
                             </li>
                             <li>
                                 <a id="show_detail_job" (click)="showJobPostRequire()"><img width="20" src="assets/images/icon-folder.png" class="img-fluid" alt="image"> Thông tin bài đăng</a>
@@ -47,7 +47,7 @@
                 
                 <div class="col-md-12" *ngIf="!isShowJobPostRequire">
                     <div class="col-md-12" *ngIf="candidateApplies?.length == 0">
-                        <h2 class="text-center text-validate">KHÔNG CÓ KẾT QUẢ NÀO ĐƯỢC TÌM THẤY</h2>
+                        <h2 class="text-center text-validate">KHÔNG HỒ SƠ NÀO ĐƯỢC TÌM THẤY</h2>
                     </div>
                     <div class="col-md-12" *ngIf="candidateApplies?.length != 0">
                         <div class="text-right" style="margin-bottom: 20px;" *ngIf="isShowPageFilter">
@@ -77,7 +77,7 @@
                                                 <td>{{ candidateApply?.candidateDTO?.accountDTO?.email }}</td>
                                                 <td class="text-center">{{ candidateApply?.matchPercent }}</td>
                                                 <td class="text-center " style="width: 110px;">
-                                                    <a class="text-info row-action" (click)="changeStatusJobApply(candidateApply?.jobApplyId, statusSwitch)" title="Thay đổi trạng thái">
+                                                    <a *ngIf="!isShowPageFilter" class="text-info row-action" (click)="changeStatusJobApply(candidateApply?.jobApplyId, statusSwitch)" title="Thay đổi trạng thái">
                                                         <i class="fa fa-exchange" aria-hidden="true"></i>
                                                     </a>
     
@@ -85,7 +85,7 @@
                                                         <i class="fa fa-eye" aria-hidden="true"></i>
                                                     </a>
                                                     
-                                                    <a  class="text-red row-action" title="xóa bài đăng">
+                                                    <a (click)="deleteJobApply(candidateApply?.jobApplyId)" class="text-red row-action" title="xóa bài đăng">
                                                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                                                     </a>
                                                 </td>

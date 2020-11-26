@@ -20,6 +20,7 @@ export class HomeCandidateComponent implements OnInit {
   jobSaves: any = null
   urlConfig = new UrlConfig()
   isSearch: any
+  isDataEmpty = false
   private provices: any
 
   constructor(
@@ -48,7 +49,7 @@ export class HomeCandidateComponent implements OnInit {
   }
 
   getImage(jobPost) {
-    let logoImage = jobPost.employerResumeDTO.accountDTO.imageDTOs.find(imageDTO => imageDTO.avatar)
+    let logoImage = jobPost?.employerResumeDTO?.accountDTO?.imageDTOs?.find(imageDTO => imageDTO.avatar)
     return this.urlConfig.urlImage+'/'+logoImage.imageName
   }
 
@@ -58,6 +59,7 @@ export class HomeCandidateComponent implements OnInit {
   }
 
   private getJobPost() {
+    this.isSearch == null
     this.jobPostService.getAllJobPostsByStatus(2).subscribe(
       res => {
         this.jobPosts = res

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { UrlConfig } from 'src/app/config/url-config';
 import { DataTransferService } from 'src/app/services/data-transfer.service';
 import { JobApplyService } from 'src/app/services/job-apply.service';
 import { JobPostService } from 'src/app/services/job-post.service';
+import Swal from 'sweetalert2'
 
 declare const $: any
 
@@ -25,7 +27,8 @@ export class ManageApplyComponent implements OnInit {
     private jobApplyService: JobApplyService,
     private route: ActivatedRoute,
     private dataTransferService: DataTransferService,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -87,9 +90,23 @@ export class ManageApplyComponent implements OnInit {
       res => {
         console.log(res)
         this.candidateApplies = []
+        this.toastrService.success("Lọc các hồ sơ thành công", "SUSCCESS", {
+          timeOut: 3000,
+          closeButton: true,
+          progressBar: true,
+          progressAnimation: 'increasing',
+          tapToDismiss: false
+        })
       },
       error => {
         console.log(error)
+        this.toastrService.error("Có lỗi trong quá trình lọc hồ sơ", "ERROR", {
+          timeOut: 3000,
+          closeButton: true,
+          progressBar: true,
+          progressAnimation: 'increasing',
+          tapToDismiss: false
+        })
       }
     )
   }
@@ -109,11 +126,66 @@ export class ManageApplyComponent implements OnInit {
       res => {
         this.candidateApplies.splice(
           this.candidateApplies.findIndex(candidateApply => candidateApply.jobApplyId == jobApplyId), 1)
+        
+        this.toastrService.success("Chuyển đổi trạng thái thành công", "SUSCCESS", {
+          timeOut: 3000,
+          closeButton: true,
+          progressBar: true,
+          progressAnimation: 'increasing',
+          tapToDismiss: false
+        })
       }, 
       error => {
         console.log(error)
+        this.toastrService.error("Có lỗi trong quá trình chuyển đổi trạng thái", "ERROR", {
+          timeOut: 3000,
+          closeButton: true,
+          progressBar: true,
+          progressAnimation: 'increasing',
+          tapToDismiss: false
+        })
       }
     )
+  }
+
+  deleteJobApply(jobApplyId) {
+    Swal.fire({
+      title: 'Bạn có chắc chắn muốn xóa hồ sơ ứng tuyển này không?',
+      text: "Bạn không thể khôi phục lại nếu đã nhấn nút đồng ý",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Đồng ý',
+      cancelButtonText: 'Hủy bỏ'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.jobApplyService.deleteJobApply(jobApplyId).subscribe(
+          res => {
+            this.candidateApplies.splice(
+              this.candidateApplies.findIndex(candidateApply => candidateApply.jobApplyId == jobApplyId), 1)
+            
+            this.toastrService.success("Xóa hồ sơ ứng tuyển thành công", "SUSCCESS", {
+              timeOut: 3000,
+              closeButton: true,
+              progressBar: true,
+              progressAnimation: 'increasing',
+              tapToDismiss: false
+            })
+          }, 
+          error => {
+            console.log(error)
+            this.toastrService.error("Có lỗi trong quá trình xóa hồ sơ ứng tuyển", "ERROR", {
+              timeOut: 3000,
+              closeButton: true,
+              progressBar: true,
+              progressAnimation: 'increasing',
+              tapToDismiss: false
+            })
+          }
+        )
+      }
+    })
   }
 
 }

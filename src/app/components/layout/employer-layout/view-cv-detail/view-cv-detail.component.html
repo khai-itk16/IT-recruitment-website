@@ -66,7 +66,7 @@
                               <td>
                                 <div class="contact-item">
                                   <i class="contact-item-label fa fa-money"></i>
-                                  <span class="cvo-profile-content table-col-right">{{ candidateApply?.salaryExpect | currency:'VND':'symbol' }}</span>
+                                  <span class="cvo-profile-content table-col-right">{{ (candidateApply?.salaryExpect == 0)? 'Lương thỏa thuận' : candidateApply?.salaryExpect | currency:'VND':'symbol' }}</span>
                                 </div>
                               </td>
                             </tr>
