@@ -102,7 +102,8 @@ export class HeaderComponent implements OnInit {
 
   getImage() {
     let logoImage = this.account?.imageDTOs?.find(imageDTO => imageDTO?.avatar)
-    return (logoImage !== null && logoImage !== undefined) ? this.urlConfig.urlImage+'/'+logoImage?.imageName : "/assets/images/profile.png"
+    console.log(logoImage)
+    return (logoImage != null && logoImage != "undefined") ? logoImage?.imageUrl : "/assets/images/profile.png"
   }
 
   openLoginDialog() {

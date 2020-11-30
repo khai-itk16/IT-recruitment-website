@@ -28,7 +28,6 @@ export class EmployerProfileComponent implements OnInit {
   indexImageLogo: any
   indexImageBanner: any
   private urlConfig = new UrlConfig()
-  domainImage = this.urlConfig.urlImage+"/"
 
   constructor(
     private dialog: MatDialog,
@@ -84,7 +83,7 @@ export class EmployerProfileComponent implements OnInit {
           },
           avatar: true,
           imageId: 0,
-          imageName: "",
+          imageUrl: "",
           banner: false,
           thumbnail: false
         }
@@ -107,7 +106,7 @@ export class EmployerProfileComponent implements OnInit {
             console.log(res)
             const indexLogoRes = res.findIndex(imageDTO => imageDTO.avatar)
             if(this.indexImageLogo != -1) {
-              this.employerResume.accountDTO.imageDTOs[this.indexImageLogo].imageName = res[indexLogoRes].imageName
+              this.employerResume.accountDTO.imageDTOs[this.indexImageLogo].imageUrl = res[indexLogoRes].imageUrl
             } else {
               this.employerResume.accountDTO.imageDTOs.push(res[indexLogoRes])
               this.indexImageLogo = this.employerResume.accountDTO.imageDTOs.length-1;
@@ -150,7 +149,7 @@ export class EmployerProfileComponent implements OnInit {
           },
           avatar: false,
           imageId: 0,
-          imageName: "",
+          imageUrl: "",
           banner: true,
           thumbnail: false
         }
@@ -172,7 +171,7 @@ export class EmployerProfileComponent implements OnInit {
           res => { 
             const indexBannerRes = res.findIndex(imageDTO => imageDTO.banner);
             if(this.indexImageBanner != -1) {
-              this.employerResume.accountDTO.imageDTOs[this.indexImageBanner].imageName = res[indexBannerRes].imageName
+              this.employerResume.accountDTO.imageDTOs[this.indexImageBanner].imageUrl = res[indexBannerRes].imageUrl
             } else {
               this.employerResume.accountDTO.imageDTOs.push(res[indexBannerRes])
               this.indexImageBanner = this.employerResume.accountDTO.imageDTOs.length-1;

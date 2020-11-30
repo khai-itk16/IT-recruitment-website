@@ -5,8 +5,7 @@
         <div class="cover-images-desktop cover-images-cropped aspect-ratio-box">
           <div class="aspect-ratio-box-inside">
             <img width="100%" height="100%" 
-            [src]="(indexImageBanner != -1) ? 
-              domainImage + employerResume?.accountDTO?.imageDTOs[indexImageBanner]?.imageName : 'assets/images/default-banner.jpg'">
+            [src]="(indexImageBanner != -1) ? employerResume?.accountDTO?.imageDTOs[indexImageBanner]?.imageUrl : 'assets/images/default-banner.jpg'">
             <!-- <img width="100%" height="100%" src="https://cdn.itviec.com/photos/45720/processed_headline_photo/viettel-group-tuyen-dung-viec-lam-IT-headline_photo-1512381.jpg?H43eaiySzXeJcgwxGr8DYN29"> -->
             <div class="dropdown edit-banner">
               <a data-toggle="dropdown" href="#" class="btn btn-default">
@@ -38,8 +37,7 @@
           <div class="logo-container">
             <div class="logo top-picture-without-ot">
               <img width="100%" height="100%" 
-              [src]="(indexImageLogo != -1) ? 
-              domainImage + employerResume?.accountDTO?.imageDTOs[indexImageLogo]?.imageName : 'assets/images/default-logo.png'">
+              [src]="(indexImageLogo != -1) ? employerResume?.accountDTO?.imageDTOs[indexImageLogo]?.imageUrl : 'assets/images/default-logo.png'">
               <span class="edit-logo" data-toggle="dropdown" title="cập nhật logo">
                 <i class="fa fa-camera" aria-hidden="true"></i>
               </span>

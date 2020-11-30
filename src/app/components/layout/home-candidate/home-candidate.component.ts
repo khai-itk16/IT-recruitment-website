@@ -50,7 +50,7 @@ export class HomeCandidateComponent implements OnInit {
 
   getImage(jobPost) {
     let logoImage = jobPost?.employerResumeDTO?.accountDTO?.imageDTOs?.find(imageDTO => imageDTO.avatar)
-    return this.urlConfig.urlImage+'/'+logoImage.imageName
+    return logoImage.imageUrl
   }
 
   getProvice(jobPost) {

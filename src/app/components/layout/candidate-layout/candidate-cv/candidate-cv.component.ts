@@ -40,9 +40,9 @@ export class CandidateCvComponent implements OnInit {
       res => {
         console.log(res)
         this.candiateResume = res
-        this.imageAvatar = this.candiateResume.accountDTO.imageDTOs.find(imageDTO => imageDTO.avatar)
+        this.imageAvatar = this.candiateResume.accountDTO.imageDTOs.find(imageDTO => imageDTO?.avatar)
         if(this.imageAvatar != null) {
-          this.pathAvatar = this.urlConfig.urlImage + "/" + this.imageAvatar.imageName
+          this.pathAvatar = this.imageAvatar?.imageUrl
         }
         this.setLocation()
         $("#cvo-objective-objective").html(this.candiateResume?.jobObjective)

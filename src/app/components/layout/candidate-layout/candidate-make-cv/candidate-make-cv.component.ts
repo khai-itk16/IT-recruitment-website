@@ -43,7 +43,7 @@ export class CandidateMakeCVComponent implements OnInit {
       imageDTOs: [
         {
           imageId: 0,
-          imageName: "",
+          imageUrl: "",
           banner: false,
           avatar: false,
           thumbnail: false
@@ -199,7 +199,7 @@ export class CandidateMakeCVComponent implements OnInit {
         this.candiateResume = res
         this.imageAvatar = this.candiateResume.accountDTO.imageDTOs.find(imageDTO => imageDTO.avatar)
         if(this.imageAvatar != null) {
-          this.pathAvatar = this.urlConfig.urlImage + "/" + this.imageAvatar.imageName
+          this.pathAvatar = this.imageAvatar.imageUrl
         }
         this.setLocation()
         $(".job-target .content-job-target").html(this.candiateResume?.jobObjective)
@@ -234,7 +234,7 @@ export class CandidateMakeCVComponent implements OnInit {
           },
           avatar: true,
           imageId: 0,
-          imageName: "",
+          imageUrl: "",
           banner: false,
           thumbnail: false
         }
@@ -256,12 +256,12 @@ export class CandidateMakeCVComponent implements OnInit {
         this.imageService.addImages(images).subscribe(
           res => { 
             if(this.imageAvatar != null) {
-              this.imageAvatar.imageName = res[0].imageName
+              this.imageAvatar.imageUrl = res[0].imageUrl
             } else {
               this.candiateResume.accountDTO.imageDTOs.push(res[0])
               this.imageAvatar = res[0]
             }
-            this.pathAvatar = this.urlConfig.urlImage + "/" + this.imageAvatar.imageName
+            this.pathAvatar = this.imageAvatar.imageUrl
             this.toastrService.success("Cập nhật avatar thành công", "SUCCESS", {
               timeOut: 3000,
               closeButton: true,

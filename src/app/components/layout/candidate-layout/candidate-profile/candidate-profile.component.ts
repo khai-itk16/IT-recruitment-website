@@ -39,7 +39,7 @@ export class CandidateProfileComponent implements OnInit {
         this.candiateResume = res
         this.imageAvatar = this.candiateResume.accountDTO.imageDTOs.find(imageDTO => imageDTO.avatar)
         if(this.imageAvatar != null) {
-          this.pathAvatar = this.urlConfig.urlImage + "/" + this.imageAvatar.imageName
+          this.pathAvatar = this.imageAvatar.imageUrl
           this.levelComplete++
         }
         if(this.candiateResume?.candidateName != null) { this.levelComplete++ }

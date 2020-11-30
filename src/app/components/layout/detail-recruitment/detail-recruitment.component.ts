@@ -58,7 +58,7 @@ export class DetailRecruitmentComponent implements OnInit {
 
   getImage() {
     let logoImage = this.jobPost?.employerResumeDTO?.accountDTO?.imageDTOs?.find(imageDTO => imageDTO.avatar)
-    return this.urlConfig.urlImage+'/'+logoImage?.imageName
+    return logoImage?.imageUrl
   }
 
   getAddress() {

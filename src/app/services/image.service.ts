@@ -30,7 +30,7 @@ export class ImageService {
 
   deleteImage(image) {
     return this.http.delete<any>(this.urlConfig.urlImage, { params: 
-      { imageId:image.imageId, imageName: image.imageName } 
+      { imageId:image.imageId, imageUrl: image.imageUrl } 
     })
   }
 
