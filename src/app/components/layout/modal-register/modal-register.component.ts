@@ -17,7 +17,7 @@ export class ModalRegisterComponent implements OnInit {
 
     constructor(
         private fb: FormBuilder,
-        private dialogRef: MatDialogRef<ModalLoginComponent>,
+        private dialogRef: MatDialogRef<ModalRegisterComponent>,
         @Inject(MAT_DIALOG_DATA) data,
         private authService: AuthService,
         private toastrService: ToastrService
