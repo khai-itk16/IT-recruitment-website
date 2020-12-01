@@ -118,7 +118,7 @@
           <!-- content set by js -->
         </div>
       </div>
-      <div class="apply text-center">
+      <div class="apply text-center" *ngIf="authService.loggedIn()">
         <a *ngIf="!isApply; else applied" (click)="addjobApply()" class="btn btn-warning">Ứng Tuyển</a>
         <ng-template #applied>
           <span>Đã ứng tuyển</span>

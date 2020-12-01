@@ -28,7 +28,7 @@ export class CompleteInfoGuard implements CanActivate {
     const decodeToken = this.decodeJwtService.getDecodedAccessToken()
     let isSuccess = true
     if (decodeToken.roles == 'ROLE_CANDIDATE') {
-      await this.candidateService.getCandidateResume(decodeToken.id).toPromise().then(
+      await this.candidateService.getCandidateResume(decodeToken?.id).toPromise().then(
         res => {
           let isCompleteFieldMandatory = true
           let avatar = res?.accountDTO?.imageDTOs?.find(imageDTO => imageDTO.avatar)
@@ -64,7 +64,7 @@ export class CompleteInfoGuard implements CanActivate {
     }
 
     if (decodeToken.roles == 'ROLE_EMPLOYER') {
-      await this.employerService.getEmployerById(decodeToken.id).toPromise().then(
+      await this.employerService.getEmployerById(decodeToken?.id).toPromise().then(
         res => {
           let isCompleteFieldMandatory = true
           let logo = res?.accountDTO?.imageDTOs?.find(imageDTO => imageDTO.avatar)

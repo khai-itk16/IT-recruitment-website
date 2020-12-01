@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CompleteInfoGuard } from 'src/app/guard/complete-info.guard';
 import { RoleGuard } from 'src/app/guard/role.guard';
 import { CandidateCvComponent } from './candidate-cv/candidate-cv.component';
 import { CandidateJobApplyComponent } from './candidate-job-apply/candidate-job-apply.component';
@@ -50,7 +51,7 @@ const routes: Routes = [
       {
         path: "job-apply",
         component: CandidateJobApplyComponent,
-        canActivate: [RoleGuard], 
+        canActivate: [RoleGuard, CompleteInfoGuard], 
         data: { 
           expectedRole: 'ROLE_CANDIDATE'
         } 

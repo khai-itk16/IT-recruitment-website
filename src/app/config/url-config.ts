@@ -1,5 +1,5 @@
 export class UrlConfig {
-    host = "http://localhost:9000"
+    host = "http://localhost:9001"
     urlLogIn = this.host + "/api/auth/login"
     urlRegister = this.host + "/api/auth/register"
     urlAccount = this.host + "/api/users/"

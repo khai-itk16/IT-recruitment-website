@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UrlConfig } from 'src/app/config/url-config';
 import { AuthService } from 'src/app/services/auth.service';
+import { CandidateCvService } from 'src/app/services/candidate-cv.service';
 import { DecodeJwtService } from 'src/app/services/decode-jwt.service';
 import { JobApplyService } from 'src/app/services/job-apply.service';
 import { JobPostService } from 'src/app/services/job-post.service';
@@ -27,6 +28,7 @@ export class DetailRecruitmentComponent implements OnInit {
   isApply: any = false
   
   constructor(
+    private candidateCvService: CandidateCvService,
     private jobPostService: JobPostService,
     private route: ActivatedRoute,
     private locationService: LocationService,
@@ -125,7 +127,39 @@ export class DetailRecruitmentComponent implements OnInit {
     )
   }
 
-  addjobApply() {
+  async addjobApply() {
+    let isCompleteFieldMandatory = true
+    await this.candidateCvService.getCandidateResume(this.accountId).toPromise().then(
+      res => {
+        let avatar = res?.accountDTO?.imageDTOs?.find(imageDTO => imageDTO.avatar)
+        if(avatar == null) { isCompleteFieldMandatory = false }
+
+        if(res?.candidateName == null) { isCompleteFieldMandatory = false }
+
+        if(res?.jobObjective == null && res?.jobObjective == "") { isCompleteFieldMandatory = false }
+
+        if(res.jobPositionEntity == null) { isCompleteFieldMandatory = false }
+
+        if(res?.experienceDTOs.length  == 0) { isCompleteFieldMandatory = false }
+
+        if(res?.educationDTOs.length  == 0) { isCompleteFieldMandatory = false }
+
+        if(res?.skillDTOs.length  == 0) { isCompleteFieldMandatory = false }
+        
+      }).catch(error => {
+        console.log(error)
+      })
+
+    if(!isCompleteFieldMandatory) {
+      this.toastrService.error("Bạn phải hoàn thành thông tin CV mới được phép ứng tuyển", "ERROR", {
+        timeOut: 3000,
+        closeButton: true,
+        progressBar: true,
+        progressAnimation: 'increasing',
+        tapToDismiss: false
+      })
+      return
+    }
     let jobApply = {
       candidateDTO: {
         accountDTO: null,
@@ -139,6 +173,7 @@ export class DetailRecruitmentComponent implements OnInit {
         employerResumeDTO: null,
         jobPostId: this.jobPostId
       },
+      matchPercent: 0,
       statusEntity: {
         statusId: 5
       }
@@ -166,7 +201,6 @@ export class DetailRecruitmentComponent implements OnInit {
         console.log(error) 
       }
     )
-    
   }
 
 }

@@ -42,21 +42,21 @@ export class IntroduceEmployerComponent implements OnInit {
   getAddress() {
     let addressObj = this.employerResume?.accountDTO?.addressEntity
     let provices = this.locationService.readData();
-    let proviceObj = provices.find(province => province.id == addressObj?.province)
-    let districtObj = proviceObj?.districts.find(district => district.id == addressObj?.district)
-    let wardObj = districtObj?.wards.find(ward => ward.id == addressObj?.ward)
-    return addressObj.street +", "+ wardObj.name +", "+ districtObj.name +", "+ proviceObj.name
+    let proviceObj = provices?.find(province => province?.id == addressObj?.province)
+    let districtObj = proviceObj?.districts?.find(district => district?.id == addressObj?.district)
+    let wardObj = districtObj?.wards?.find(ward => ward?.id == addressObj?.ward)
+    return addressObj?.street +", "+ wardObj?.name +", "+ districtObj?.name +", "+ proviceObj?.name
   }
 
   getImage(imageType) {
     if(imageType == "logo") {
-      let logoImage = this.employerResume.accountDTO.imageDTOs.find(imageDTO => imageDTO.avatar)
-      return this.urlConfig.urlImage+'/'+logoImage.imageName
+      let logoImage = this.employerResume?.accountDTO?.imageDTOs?.find(imageDTO => imageDTO.avatar)
+      return this.urlConfig.urlImage+'/'+logoImage?.imageName
     }
     
     if(imageType == "banner") {
-      let bannerImage = this.employerResume.accountDTO.imageDTOs.find(imageDTO => imageDTO.banner)
-      return this.urlConfig.urlImage+'/'+bannerImage.imageName
+      let bannerImage = this.employerResume?.accountDTO?.imageDTOs?.find(imageDTO => imageDTO.banner)
+      return this.urlConfig.urlImage+'/'+bannerImage?.imageName
     }
 
   }
