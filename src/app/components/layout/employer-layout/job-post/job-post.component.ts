@@ -35,6 +35,7 @@ export class JobPostComponent implements OnInit {
   jobPositions: Array<any>
   jobTypes: Array<any>
   form: FormGroup
+  jobPost = null;
 
   constructor(
     private jobPositionService: JobPositionService,
@@ -60,22 +61,37 @@ export class JobPostComponent implements OnInit {
   }
 
   private async initData() {
-    await this.jobPositionService.getAllJobPositions().subscribe(
-      res => {
+    await this.jobPositionService.getAllJobPositions()
+      .toPromise()
+      .then(res => {
         this.jobPositions = res
-      },
-      error => {
-        console.log(error)
-      }
-    )
+      })
+      .catch(error => console.log(error))
 
-    await this.jobTypeService.getAllJobTypes().subscribe(
-      res => {
+    await this.jobTypeService.getAllJobTypes()
+      .toPromise()
+      .then(res => {
         this.jobTypes = res
+      })
+      .catch(error => console.log(error))
+
+    this.dataTransferService.getpreviewMessage().subscribe(
+      res => {
+        this.jobPost = res
+        if(this.jobPost != null) {
+          this.form = this.fb.group({
+            jobCode: [this.jobPost?.jobCode, [Validators.required]],
+            jobTitle: [this.jobPost?.jobTitle, [Validators.required]],
+            jobPositionId: [this.jobPost?.jobPositionEntity?.jobPositionId, [Validators.required]],
+            jobTypeId: [this.jobPost?.jobTypeEntity?.jobTypeId, [Validators.required]],
+            numYearExperience: [this.jobPost?.numYearExperience, [Validators.required, Validators.min(0), Validators.max(60)]],
+            expirePostTime: [this.jobPost?.expirePostTime, [Validators.required]],
+            jobDescription: [this.jobPost?.jobDescription, [Validators.required]],
+            jobRequire: [this.jobPost?.jobRequire, [Validators.required]]
+          })
+        }
       },
-      error => {
-        console.log(error)
-      }
+      error => {console.log(error)}
     )
   }
 
@@ -84,7 +100,7 @@ export class JobPostComponent implements OnInit {
   save() {
     let formValue = this.form.value
     let accountId = this.decodeJwtService.getDecodedAccessToken().id
-    let jobPost = {
+    this.jobPost = {
       createPostTime: "",
       employerResumeDTO: {
         accountId: accountId
@@ -107,7 +123,7 @@ export class JobPostComponent implements OnInit {
       }
     }
 
-    this.dataTransferService.setpreviewdata(jobPost)
+    this.dataTransferService.setpreviewdata(this.jobPost)
     this.router.navigate(['/employer/review-job-post'])
   }
 
